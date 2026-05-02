@@ -1758,6 +1758,133 @@
 
   .horizontal-progress-dot.active { opacity: 1; }
 
+  /* ===== RESPONSIVE SERVICES ===== */
+  @media (max-width: 1024px) {
+    .service-h-card {
+      width: 380px;
+      height: 55vh;
+      padding: 2.5rem 2rem;
+    }
+
+    .services-flex {
+      gap: 2rem;
+      padding: 0 2rem;
+    }
+
+    .service-h-name {
+      font-size: 1.6rem;
+    }
+
+    .service-h-description {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services-horizontal {
+      padding: 4rem 0 0;
+    }
+
+    .services-horizontal-header {
+      padding: 0 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .services-horizontal-track {
+      height: auto;
+      position: relative;
+    }
+
+    .services-horizontal-inner {
+      position: relative;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }
+
+    .services-flex {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1.5rem 3rem 1.5rem;
+      will-change: auto;
+      transition: none;
+    }
+
+    .service-h-card {
+      flex-shrink: 1;
+      width: 100%;
+      height: auto;
+      min-height: 400px;
+      max-height: none;
+      padding: 2rem 1.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .service-h-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-h-number {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-h-name {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-h-description {
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-h-procedures {
+      margin-top: 1rem;
+    }
+
+    .service-h-procedures li {
+      font-size: 0.8rem;
+      padding: 0.4rem 0;
+    }
+
+    .horizontal-progress {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-horizontal-header {
+      padding: 0 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .services-flex {
+      padding: 0 1rem 2rem 1rem;
+      gap: 1.5rem;
+    }
+
+    .service-h-card {
+      padding: 1.5rem 1rem;
+      min-height: 350px;
+    }
+
+    .service-h-number {
+      font-size: 0.9rem;
+    }
+
+    .service-h-name {
+      font-size: 1.2rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+    }
+  }
+
   /* ===== STATS ===== */
   .stats {
     background: var(--cream-light);
