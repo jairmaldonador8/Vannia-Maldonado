@@ -1441,8 +1441,8 @@
     font-weight: 700;
   }
 
-  /* ===== VERTICAL SCROLL ONLY (MOBILE) ===== */
-  @media (hover: none) and (pointer: coarse) {
+  /* ===== VERTICAL SCROLL ONLY (TRUE MOBILE ONLY) ===== */
+  @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
     * {
       touch-action: pan-y pinch-zoom;
     }
