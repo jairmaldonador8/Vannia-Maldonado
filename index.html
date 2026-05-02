@@ -1832,377 +1832,141 @@
   }
 
   /* ===== HORIZONTAL SCROLL SERVICES ===== */
-  .services-horizontal {
+  /* ===== SERVICES GRID ===== */
+  .services {
     background: var(--bone);
-    position: relative;
-    padding: 8rem 0 0;
+    padding: 8rem 3rem;
   }
 
-  .services-horizontal-header {
-    padding: 0 3rem;
-    max-width: 700px;
-    margin-bottom: 4rem;
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 3rem auto 0;
+    max-width: 1200px;
   }
 
-  .services-horizontal-track {
-    height: 100vh;
-    position: relative;
-  }
-
-  .services-horizontal-inner {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  .services-flex {
-    display: flex;
-    gap: 2.5rem;
-    padding: 0 3rem;
-    will-change: transform;
-    transition: transform 0.05s linear;
-  }
-
-  .service-h-card {
-    flex-shrink: 0;
-    width: 480px;
-    height: auto;
-    min-height: 280px;
+  .service-card {
     background: var(--paper);
-    padding: 3.5rem 3rem;
-    border: 2px solid var(--line);
-    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    border: 1px solid transparent;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    opacity: 0;
+    transform: translateY(40px);
     display: flex;
     flex-direction: column;
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
-    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.320, 1),
-                transform 0.8s cubic-bezier(0.23, 1, 0.320, 1),
-                border-color 0.3s ease,
-                box-shadow 0.3s ease;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
 
-  .service-h-card.visible {
+  .service-card.visible {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 
-  .service-h-card::before {
+  .service-card::before {
     content: '';
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0;
     background: linear-gradient(135deg, var(--peach-light) 0%, var(--cream-light) 100%);
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.6s ease;
     z-index: 0;
   }
 
-  .service-h-card > * { position: relative; z-index: 1; }
+  .service-card:hover::before {
+    opacity: 1;
+  }
 
-  .service-h-card::after {
+  .service-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .service-card::after {
     content: '→';
     position: absolute;
-    bottom: 2.5rem;
-    right: 3rem;
-    font-size: 1.5rem;
+    bottom: 2rem;
+    right: 2.5rem;
+    font-size: 1.4rem;
     color: var(--mocha);
     transition: transform 0.4s ease;
     z-index: 1;
-    opacity: 0;
   }
 
-  .service-h-card.visible::after {
-    opacity: 1;
-    animation: slideArrow 0.8s cubic-bezier(0.23, 1, 0.320, 1) forwards;
-  }
-
-  @keyframes slideArrow {
-    0% {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  .service-h-card:hover {
+  .service-card:hover {
     border-color: var(--mocha);
-    background: linear-gradient(135deg, rgba(244, 222, 196, 0.5) 0%, rgba(236, 206, 171, 0.3) 100%), var(--paper);
-    transform: translateY(-16px) scale(1.03);
-    box-shadow: 0 50px 120px rgba(110, 93, 67, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(110, 93, 67, 0.15);
   }
 
-  .service-h-card:hover::before {
-    opacity: 1;
-  }
-
-  .service-h-card:hover::after {
+  .service-card:hover::after {
     transform: translateX(10px);
-    color: var(--mocha-dark);
   }
 
-  /* Card color variations for visual interest */
-  .service-h-card:nth-child(1) {
-    border-color: rgba(177, 154, 123, 0.3);
-  }
-
-  .service-h-card:nth-child(1):hover {
-    border-color: var(--mocha);
-    background: linear-gradient(135deg, rgba(177, 154, 123, 0.08) 0%, rgba(149, 128, 95, 0.04) 100%), var(--paper);
-  }
-
-  .service-h-card:nth-child(2) {
-    border-color: rgba(236, 206, 171, 0.4);
-  }
-
-  .service-h-card:nth-child(2):hover {
-    border-color: var(--peach);
-    background: linear-gradient(135deg, rgba(236, 206, 171, 0.12) 0%, rgba(244, 222, 196, 0.06) 100%), var(--paper);
-  }
-
-  .service-h-card:nth-child(3) {
-    border-color: rgba(177, 154, 123, 0.25);
-  }
-
-  .service-h-card:nth-child(3):hover {
-    border-color: var(--mocha-dark);
-    background: linear-gradient(135deg, rgba(110, 93, 67, 0.06) 0%, rgba(177, 154, 123, 0.04) 100%), var(--paper);
-  }
-
-  .service-h-card:nth-child(4) {
-    border-color: rgba(149, 128, 95, 0.35);
-  }
-
-  .service-h-card:nth-child(4):hover {
-    border-color: var(--mocha);
-    background: linear-gradient(135deg, rgba(149, 128, 95, 0.1) 0%, rgba(177, 154, 123, 0.05) 100%), var(--paper);
-  }
-
-  .service-h-number {
+  .service-number {
     font-family: 'Fraunces', serif;
     font-style: italic;
     color: var(--mocha);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-    font-weight: 400;
   }
 
-  .service-h-name {
+  .service-name {
     font-family: 'Fraunces', serif;
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: var(--ink);
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.02em;
   }
 
-  .service-h-description {
-    font-size: 1rem;
+  .service-description {
+    font-size: 0.95rem;
     color: var(--ink);
-    line-height: 1.7;
-    margin-bottom: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
     font-weight: 300;
   }
 
-  .service-h-procedures {
+  .service-procedures {
     list-style: none;
     padding: 0;
     margin-top: auto;
   }
 
-  .service-h-procedures li {
+  .service-procedures li {
     font-size: 0.85rem;
     color: var(--muted);
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     border-top: 1px solid var(--line);
-    letter-spacing: 0.02em;
-    font-weight: 400;
     transition: padding-left 0.3s ease, color 0.3s ease;
   }
 
-  .service-h-procedures li:hover {
+  .service-procedures li:hover {
     padding-left: 0.5rem;
     color: var(--mocha-deep);
   }
 
-  .horizontal-progress {
-    position: absolute;
-    bottom: 3rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.6rem;
-    z-index: 5;
-  }
-
-  .horizontal-progress-dot {
-    width: 30px; height: 2px;
-    background: var(--mocha);
-    opacity: 0.3;
-    transition: opacity 0.4s ease;
-  }
-
-  .horizontal-progress-dot.active { opacity: 1; }
-
   /* ===== RESPONSIVE SERVICES ===== */
   @media (max-width: 1024px) {
-    .service-h-card {
-      width: 380px;
-      height: 55vh;
-      padding: 2.5rem 2rem;
-    }
-
-    .services-flex {
-      gap: 2rem;
-      padding: 0 2rem;
-    }
-
-    .service-h-name {
-      font-size: 1.6rem;
-    }
-
-    .service-h-description {
-      font-size: 0.9rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .services-horizontal {
-      padding: 4rem 0 0;
-    }
-
-    .services-horizontal-header {
-      padding: 0 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .services-horizontal-track {
-      height: auto;
-      position: relative;
-    }
-
-    .services-horizontal-inner {
-      position: relative;
-      height: auto;
-      display: block;
-      overflow: visible;
-    }
-
-    .services-flex {
-      display: grid;
+    .services-grid {
       grid-template-columns: 1fr;
-      gap: 2rem;
-      padding: 0 1.5rem 3rem 1.5rem;
-      will-change: auto;
-      transition: none;
-    }
-
-    .service-h-card {
-      flex-shrink: 1;
-      width: 100%;
-      height: auto;
-      min-height: auto;
-      max-height: none;
-      padding: 1.75rem 1.5rem;
-      opacity: 0;
-      transform: translateY(30px);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .service-h-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .service-h-number {
-      font-size: 0.95rem;
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.05em;
-    }
-
-    .service-h-name {
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-      line-height: 1.3;
-    }
-
-    .service-h-description {
-      font-size: 0.875rem;
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .service-h-procedures {
-      margin-top: auto;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .service-h-procedures li {
-      font-size: 0.775rem;
-      padding: 0.35rem 0;
-      line-height: 1.4;
-    }
-
-    .horizontal-progress {
-      display: none;
+      gap: 1.5rem;
     }
   }
 
   @media (max-width: 640px) {
-    .services-horizontal-header {
-      padding: 0 1rem;
-      margin-bottom: 1.5rem;
+    .services {
+      padding: 5rem 1.5rem;
     }
 
-    .services-flex {
-      padding: 0 1rem 2rem 1rem;
-      gap: 1.5rem;
-    }
-
-    .service-h-card {
-      padding: 1.5rem 1rem;
-      min-height: auto;
-    }
-
-    .service-h-number {
-      font-size: 0.9rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .service-h-name {
-      font-size: 1.15rem;
-      margin-bottom: 0.7rem;
-      line-height: 1.3;
-    }
-
-    .service-h-description {
-      font-size: 0.85rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .service-h-procedures li {
-      font-size: 0.75rem;
-      padding: 0.3rem 0;
-    }
-
-    .section-title {
-      font-size: 1.8rem;
+    .service-card {
+      padding: 2rem 1.5rem;
     }
   }
 
@@ -3850,76 +3614,72 @@
   </p>
 </section>
 
-<!-- ============== HORIZONTAL SCROLL SERVICES ============== -->
-<section class="services-horizontal" id="servicios">
-  <div class="services-horizontal-header reveal">
+<!-- ============== SERVICES GRID ============== -->
+<section class="services" id="servicios">
+  <div class="section-header reveal">
     <div class="section-eyebrow">Áreas de práctica</div>
     <h2 class="section-title">Servicios <span class="italic">médico-quirúrgicos.</span></h2>
     <p class="section-intro">Especialización integral en otorrinolaringología, cirugía nasal y cirugía facial. Cada procedimiento es planeado con precisión y ejecutado con la técnica más adecuada para cada paciente.</p>
   </div>
 
-  <div class="services-horizontal-track" id="servicesTrack">
-    <div class="services-horizontal-inner">
-      <div class="services-flex" id="servicesFlex">
-        <div class="service-h-card">
-          <div class="service-h-number">— 01</div>
-          <h3 class="service-h-name">Cirugía Nasal Estética y Funcional</h3>
-          <p class="service-h-description">El corazón de mi práctica. Rinoplastías que combinan armonía estética con respiración óptima, usando técnicas de vanguardia.</p>
-          <ul class="service-h-procedures">
-            <li>Rinoplastía ultrasónica</li>
-            <li>Rinoplastía abierta</li>
-            <li>Rinoplastía estética</li>
-            <li>Rinoplastía correctora o funcional</li>
-            <li>Septoplastía nasal</li>
-            <li>Reparación de fractura nasal</li>
-            <li>Cirugía de cornetes</li>
-          </ul>
-        </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-number">— 01</div>
+      <h3 class="service-name">Cirugía Nasal Estética y Funcional</h3>
+      <p class="service-description">El corazón de mi práctica. Rinoplastías que combinan armonía estética con respiración óptima.</p>
+      <ul class="service-procedures">
+        <li>Rinoplastía ultrasónica</li>
+        <li>Rinoplastía abierta</li>
+        <li>Rinoplastía estética</li>
+        <li>Rinoplastía correctora o funcional</li>
+        <li>Septoplastía nasal</li>
+        <li>Reparación de fractura nasal</li>
+        <li>Cirugía de cornetes</li>
+      </ul>
+    </div>
 
-        <div class="service-h-card">
-          <div class="service-h-number">— 02</div>
-          <h3 class="service-h-name">Cirugía Facial Complementaria</h3>
-          <p class="service-h-description">Procedimientos faciales que armonizan con la cirugía nasal para resultados completos y balanceados.</p>
-          <ul class="service-h-procedures">
-            <li>Rinoplastía + Bichectomía</li>
-            <li>Bichectomía (bolsas de Bichat)</li>
-            <li>Blefaroplastia (párpados)</li>
-            <li>Otoplastia (orejas)</li>
-            <li>Toxina botulínica estética</li>
-            <li>Retiro de lunares</li>
-          </ul>
-        </div>
+    <div class="service-card">
+      <div class="service-number">— 02</div>
+      <h3 class="service-name">Cirugía Facial Complementaria</h3>
+      <p class="service-description">Procedimientos faciales que armonizan con la cirugía nasal para resultados completos y balanceados.</p>
+      <ul class="service-procedures">
+        <li>Rinoplastía + Bichectomía</li>
+        <li>Bichectomía (bolsas de Bichat)</li>
+        <li>Blefaroplastia (párpados)</li>
+        <li>Otoplastia (orejas)</li>
+        <li>Toxina botulínica estética</li>
+        <li>Retiro de lunares</li>
+      </ul>
+    </div>
 
-        <div class="service-h-card">
-          <div class="service-h-number">— 03</div>
-          <h3 class="service-h-name">Otorrinolaringología General</h3>
-          <p class="service-h-description">Atención integral de oído, nariz y garganta para adultos y niños. Diagnóstico preciso y tratamiento personalizado.</p>
-          <ul class="service-h-procedures">
-            <li>Sinusitis crónica y aguda</li>
-            <li>Cirugía de pólipos nasales</li>
-            <li>Cirugía endoscópica nasosinusal</li>
-            <li>Cirugía de ronquido y apnea</li>
-            <li>Amigdalectomía y adenoidectomía</li>
-            <li>Vértigo y trastornos del equilibrio</li>
-            <li>Trastornos de la voz</li>
-            <li>Lavado de oídos</li>
-          </ul>
-        </div>
+    <div class="service-card">
+      <div class="service-number">— 03</div>
+      <h3 class="service-name">Otorrinolaringología General</h3>
+      <p class="service-description">Atención integral de oído, nariz y garganta para adultos y niños.</p>
+      <ul class="service-procedures">
+        <li>Sinusitis crónica y aguda</li>
+        <li>Cirugía de pólipos nasales</li>
+        <li>Cirugía endoscópica nasosinusal</li>
+        <li>Cirugía de ronquido y apnea</li>
+        <li>Amigdalectomía y adenoidectomía</li>
+        <li>Vértigo y trastornos del equilibrio</li>
+        <li>Trastornos de la voz</li>
+        <li>Lavado de oídos</li>
+      </ul>
+    </div>
 
-        <div class="service-h-card">
-          <div class="service-h-number">— 04</div>
-          <h3 class="service-h-name">Pacientes con necesidades especiales</h3>
-          <p class="service-h-description">Atención empática y especializada para niños, adultos mayores y pacientes con condiciones especiales. Entornos tranquilos y técnicas adaptadas.</p>
-          <ul class="service-h-procedures">
-            <li>Pediatría (otitis, adenoides)</li>
-            <li>Autismo y TEA</li>
-            <li>Discapacidades del desarrollo</li>
-            <li>Adultos mayores</li>
-            <li>Ansiedad y fobias médicas</li>
-            <li>Evaluaciones auditivas infantiles</li>
-          </ul>
-        </div>
-      </div>
+    <div class="service-card">
+      <div class="service-number">— 04</div>
+      <h3 class="service-name">Pacientes con necesidades especiales</h3>
+      <p class="service-description">Atención empática y especializada para niños con autismo, adultos mayores y pacientes que requieren un trato particularmente cuidadoso.</p>
+      <ul class="service-procedures">
+        <li>Niños con autismo</li>
+        <li>Adultos mayores</li>
+        <li>Otitis recurrente pediátrica</li>
+        <li>Adenoides y amigdalitis</li>
+        <li>Audiometría infantil</li>
+        <li>Hipoacusia infantil</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -4624,13 +4384,13 @@
   }
 
   // ===== REVEAL ON SCROLL =====
-  const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-clip, .timeline-item, .stat-item, .technique-row, .feature-item, .testimonial-card, .faq-item, .about-content h3');
+  const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-clip, .timeline-item, .stat-item, .technique-row, .feature-item, .testimonial-card, .faq-item, .service-card, .about-content h3');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const parent = entry.target.parentElement;
-        const groupedClasses = ['timeline-item', 'stat-item', 'technique-row', 'feature-item', 'testimonial-card', 'faq-item'];
+        const groupedClasses = ['timeline-item', 'stat-item', 'technique-row', 'feature-item', 'testimonial-card', 'faq-item', 'service-card'];
         const isGrouped = groupedClasses.some(cls => entry.target.classList.contains(cls));
 
         let delay = 0;
@@ -4844,45 +4604,6 @@
       floatingCta.classList.remove('visible');
     }
   });
-
-  // ===== HORIZONTAL SCROLL FOR SERVICES =====
-  if (window.matchMedia('(min-width: 1025px)').matches) {
-    const servicesTrack = document.getElementById('servicesTrack');
-    const servicesFlex = document.getElementById('servicesFlex');
-    const progressDots = document.querySelectorAll('.horizontal-progress-dot');
-
-    if (servicesTrack && servicesFlex) {
-      // Set track height based on number of cards
-      const cards = servicesFlex.querySelectorAll('.service-h-card');
-      const totalScroll = servicesFlex.scrollWidth - window.innerWidth + 200;
-      servicesTrack.style.height = `${window.innerHeight + totalScroll}px`;
-
-      window.addEventListener('scroll', () => {
-        const rect = servicesTrack.getBoundingClientRect();
-        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
-          const scrolled = -rect.top;
-          const maxScroll = totalScroll;
-          const progress = Math.min(Math.max(scrolled / maxScroll, 0), 1);
-          servicesFlex.style.transform = `translateX(${-progress * totalScroll}px)`;
-
-          // Fade in services as they appear
-          cards.forEach((card, idx) => {
-            const cardProgress = Math.max(0, (progress * cards.length - idx) / 1);
-            if (cardProgress > 0 && !card.classList.contains('visible')) {
-              card.classList.add('visible');
-            }
-          });
-
-          // Update progress dots
-          const activeDot = Math.floor(progress * cards.length);
-          progressDots.forEach((dot, i) => {
-            if (i <= activeDot) dot.classList.add('active');
-            else dot.classList.remove('active');
-          });
-        }
-      });
-    }
-  }
 
   // ===== TESTIMONIALS CAROUSEL =====
   const carouselTrack = document.getElementById('carouselTrack');
