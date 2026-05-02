@@ -1597,6 +1597,98 @@
     font-size: 1rem;
   }
 
+  /* ===== RESPONSIVE BEFORE/AFTER ===== */
+  @media (max-width: 1024px) {
+    .before-after-container {
+      max-width: 100%;
+      margin: 2rem 0 0;
+      aspect-ratio: 4/5;
+    }
+
+    .ba-divider::before {
+      width: 45px;
+      height: 45px;
+      font-size: 1.2rem;
+    }
+
+    .ba-label {
+      font-size: 0.95rem;
+      padding: 0.4rem 1rem;
+    }
+
+    .ba-instruction {
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .before-after-container {
+      aspect-ratio: 3/4;
+      margin: 1.5rem 0 0;
+    }
+
+    .ba-divider {
+      width: 4px;
+    }
+
+    .ba-divider::before {
+      width: 55px;
+      height: 55px;
+      font-size: 1.3rem;
+    }
+
+    .ba-label {
+      top: 1rem;
+      font-size: 0.9rem;
+      padding: 0.35rem 0.9rem;
+    }
+
+    .ba-label.before-label { left: 1rem; }
+    .ba-label.after-label { right: 1rem; }
+
+    .ba-instruction {
+      font-size: 0.85rem;
+      margin-top: 1.2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .before-after-section {
+      padding: 4rem 1rem;
+    }
+
+    .before-after-container {
+      aspect-ratio: 1/1.2;
+      margin: 1.5rem 0 0;
+    }
+
+    .ba-divider::before {
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+    }
+
+    .ba-label {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+    }
+
+    .ba-instruction {
+      font-size: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .section-header.reveal {
+      margin-bottom: 2rem;
+    }
+
+    .section-intro {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  }
+
   /* ===== HORIZONTAL SCROLL SERVICES ===== */
   .services-horizontal {
     background: var(--bone);
@@ -4380,31 +4472,75 @@
   const baContainer = document.getElementById('baContainer');
   const baBefore = document.getElementById('baBefore');
   const baDivider = document.getElementById('baDivider');
+  const baInstruction = document.querySelector('.ba-instruction');
 
   if (baContainer && baBefore && baDivider) {
     let isMouseInside = false;
+    let isDragging = false;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    // Update instruction based on device
+    if (baInstruction) {
+      if (isMobile) {
+        baInstruction.textContent = '👆 Toca y desliza para ver la transformación';
+      } else {
+        baInstruction.textContent = '↔ Mueve el cursor sobre la imagen para revelar el resultado';
+      }
+    }
+
+    const updateSlider = (x, rect) => {
+      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+      baDivider.style.left = `${percent}%`;
+    };
+
+    // Mouse events (desktop)
+    baContainer.addEventListener('mouseenter', () => { isMouseInside = true; });
+    baContainer.addEventListener('mouseleave', () => {
+      isMouseInside = false;
+      if (!isMobile) {
+        baBefore.style.clipPath = 'inset(0 50% 0 0)';
+        baDivider.style.left = '50%';
+      }
+    });
 
     baContainer.addEventListener('mousemove', (e) => {
-      const rect = baContainer.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
-      baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
-      baDivider.style.left = `${percent}%`;
+      if (isMouseInside) {
+        const rect = baContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        updateSlider(x, rect);
+      }
     });
 
-    baContainer.addEventListener('mouseleave', () => {
-      baBefore.style.clipPath = 'inset(0 50% 0 0)';
-      baDivider.style.left = '50%';
+    // Touch events (mobile)
+    baContainer.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      e.preventDefault();
     });
 
-    // Touch support
     baContainer.addEventListener('touchmove', (e) => {
-      const rect = baContainer.getBoundingClientRect();
-      const x = e.touches[0].clientX - rect.left;
-      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
-      baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
-      baDivider.style.left = `${percent}%`;
+      if (isDragging) {
+        e.preventDefault();
+        const rect = baContainer.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        updateSlider(x, rect);
+      }
     });
+
+    baContainer.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
+    // Pointer events for better cross-device support
+    baContainer.addEventListener('pointerdown', () => { isDragging = true; });
+    baContainer.addEventListener('pointermove', (e) => {
+      if (isDragging) {
+        const rect = baContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        updateSlider(x, rect);
+      }
+    });
+    baContainer.addEventListener('pointerup', () => { isDragging = false; });
 
     // Initial state - 50% split
     baBefore.style.clipPath = 'inset(0 50% 0 0)';
