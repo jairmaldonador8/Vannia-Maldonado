@@ -2193,6 +2193,153 @@
     font-weight: 600;
   }
 
+  /* ===== FAQ SECTION ===== */
+  .faq {
+    background: var(--cream-light);
+    padding: 5rem 2rem;
+  }
+
+  .faq .section-header {
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .faq-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .faq-item:hover {
+    border-color: var(--mocha);
+    box-shadow: 0 4px 12px rgba(177, 154, 123, 0.1);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--ink);
+    user-select: none;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item[open] .faq-question {
+    color: var(--mocha);
+    background: rgba(177, 154, 123, 0.05);
+  }
+
+  .faq-question::after {
+    content: '⊕';
+    margin-left: auto;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    color: var(--mocha);
+  }
+
+  .faq-item[open] .faq-question::after {
+    transform: rotate(45deg);
+    content: '⊖';
+  }
+
+  .faq-question:hover {
+    padding-left: 2rem;
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    color: var(--ink);
+    line-height: 1.8;
+    animation: slideDown 0.3s ease;
+  }
+
+  .faq-answer p {
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-answer ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .faq-answer li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .faq-answer li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--mocha);
+    font-weight: 600;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .faq {
+      padding: 3rem 1.5rem;
+    }
+
+    .faq .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-grid {
+      gap: 1rem;
+    }
+
+    .faq-question {
+      font-size: 1rem;
+      padding: 1.25rem;
+    }
+
+    .faq-question:hover {
+      padding-left: 1.25rem;
+    }
+
+    .faq-answer {
+      padding: 0 1.25rem 1.25rem 1.25rem;
+    }
+  }
+
   /* ===== TESTIMONIALS - Premium Carousel ===== */
   .testimonials {
     background: var(--mocha-deep);
@@ -3289,6 +3436,7 @@
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#rinoplastia">Rinoplastía</a></li>
     <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#preguntas">Preguntas frecuentes</a></li>
     <li><a href="#testimonios">Testimonios</a></li>
     <li><a href="#contacto" class="nav-cta"><span><span class="nav-cta-dot"></span>Agendar cita</span></a></li>
   </ul>
@@ -3715,6 +3863,121 @@
       <div class="horizontal-progress-dot"></div>
       <div class="horizontal-progress-dot"></div>
     </div>
+  </div>
+</section>
+
+<!-- ============== FAQ SECTION ============== -->
+<section class="faq" id="preguntas">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Preguntas frecuentes</div>
+    <h2 class="section-title">Respuestas a tus <span class="italic">dudas.</span></h2>
+    <p class="section-intro">Información clave sobre los procedimientos, recuperación y cuidados. Si tienes más preguntas, contáctame directamente.</p>
+  </div>
+
+  <div class="faq-grid reveal">
+    <details class="faq-item">
+      <summary class="faq-question">¿Cuánto dura la recuperación de la rinoplastía ultrasónica?</summary>
+      <div class="faq-answer">
+        <p>La recuperación es significativamente más rápida que la rinoplastía tradicional. Típicamente:</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li><strong>Primera semana:</strong> inflamación y moretones mínimos; puedes retomar actividades normales</li>
+          <li><strong>2-3 semanas:</strong> la mayoría de los moretones desaparecen; vida social normal</li>
+          <li><strong>3 meses:</strong> resultado completamente estabilizado</li>
+        </ul>
+        <p style="margin-top: 1rem;">La diferencia clave: menos trauma quirúrgico = recuperación más amable.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">¿Duele la cirugía? ¿Qué tipo de anestesia se usa?</summary>
+      <div class="faq-answer">
+        <p>No duele durante la cirugía. Se utiliza <strong>anestesia general</strong> para tu comodidad máxima, lo que significa:</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li>Dormir durante todo el procedimiento</li>
+          <li>No sentir dolor ni incomodidad</li>
+          <li>Despertar en recuperación con el procedimiento completado</li>
+        </ul>
+        <p style="margin-top: 1rem;">El postoperatorio puede tener molestias leves manejables con medicamentos prescritos.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">¿Cuándo veré mis resultados finales?</summary>
+      <div class="faq-answer">
+        <p>Los resultados evolucionan con el tiempo:</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li><strong>1 mes:</strong> ya verás cambios significativos</li>
+          <li><strong>3 meses:</strong> la mayoría de la inflamación ha desaparecido</li>
+          <li><strong>6-12 meses:</strong> resultado final completamente visible</li>
+        </ul>
+        <p style="margin-top: 1rem;">La técnica ultrasónica permite cambios más precisos, así que el resultado es predecible desde el inicio.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">¿Puedo combinar rinoplastía con otros procedimientos?</summary>
+      <div class="faq-answer">
+        <p>Sí, frecuentemente combinamos procedimientos para resultados balanceados:</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li>Rinoplastía + mentoplastía (barbilla)</li>
+          <li>Rinoplastía + bichectomía (reducción de mejillas)</li>
+          <li>Rinoplastía + blefaroplastia (párpados)</li>
+          <li>Rinoplastía + toxina botulínica</li>
+        </ul>
+        <p style="margin-top: 1rem;">En la consulta evaluamos tu rostro completo para crear armonía global.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">¿La rinoplastía ultrasónica es reversible?</summary>
+      <div class="faq-answer">
+        <p>La rinoplastía es un procedimiento definitivo, no reversible en el sentido de "volver al antes." Sin embargo:</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li>Con planeación digital, visualizamos juntas el resultado antes de operar</li>
+          <li>Revisiones menores son posibles si es necesario (aproximadamente 5-10% de casos)</li>
+          <li>La precisión ultrasónica reduce significativamente la necesidad de correcciones</li>
+        </ul>
+        <p style="margin-top: 1rem;">Tu satisfacción es la prioridad: usamos simulación 3D para asegurar que el resultado sea exactamente lo que deseas.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">¿Hay cicatrices? ¿Qué tipo de incisiones se hacen?</summary>
+      <div class="faq-answer">
+        <p>Excelente pregunta. Hay dos opciones según el caso:</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li><strong>Rinoplastía cerrada:</strong> incisiones dentro de la nariz, sin cicatrices visibles</li>
+          <li><strong>Rinoplastía abierta:</strong> pequeña incisión en el columela (entre orificios nasales), cicatriz mínima y bien camuflada</li>
+        </ul>
+        <p style="margin-top: 1rem;">La técnica ultrasónica requiere incisiones más pequeñas que la cirugía tradicional, minimizando cicatrización.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">¿Necesito tiempo libre del trabajo?</summary>
+      <div class="faq-answer">
+        <p>Recomendaciones por tipo de trabajo:</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li><strong>Trabajo de oficina:</strong> 1-2 semanas (moretones visibles)</li>
+          <li><strong>Trabajo físico o exposición al público:</strong> 2-3 semanas</li>
+          <li><strong>Deportes/actividad física:</strong> pausa de 3-4 semanas</li>
+        </ul>
+        <p style="margin-top: 1rem;">En mi experiencia, muchos pacientes regresan antes porque se sienten bien y los moretones son mínimos.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">¿Cuál es el costo de una consulta y de la rinoplastía?</summary>
+      <div class="faq-answer">
+        <p>Tenemos opciones accesibles:</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li><strong>Consulta inicial:</strong> 1,000 pesos MXN (diagnóstico, simulación 3D y plan de tratamiento)</li>
+          <li><strong>Procedimiento:</strong> presupuesto personalizado basado en complejidad</li>
+          <li><strong>Planes de financiamiento:</strong> disponibles para hacer la cirugía más accesible</li>
+        </ul>
+        <p style="margin-top: 1rem;">No hay costos ocultos. Durante la consulta recibirás un presupuesto detallado y transparente.</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -4264,13 +4527,13 @@
   }
 
   // ===== REVEAL ON SCROLL =====
-  const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-clip, .timeline-item, .stat-item, .technique-row, .feature-item, .testimonial-card, .about-content h3');
+  const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-clip, .timeline-item, .stat-item, .technique-row, .feature-item, .testimonial-card, .faq-item, .about-content h3');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const parent = entry.target.parentElement;
-        const groupedClasses = ['timeline-item', 'stat-item', 'technique-row', 'feature-item', 'testimonial-card'];
+        const groupedClasses = ['timeline-item', 'stat-item', 'technique-row', 'feature-item', 'testimonial-card', 'faq-item'];
         const isGrouped = groupedClasses.some(cls => entry.target.classList.contains(cls));
 
         let delay = 0;
