@@ -1874,21 +1874,22 @@
     background: var(--paper);
     padding: 3.5rem 3rem;
     border: 1px solid transparent;
-    transition: all 0.5s ease;
     position: relative;
     overflow: visible;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateY(40px) scale(0.95);
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.320, 1),
+                transform 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
 
   .service-h-card.visible {
     opacity: 1;
-    transform: translateX(0);
-    transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(0) scale(1);
   }
 
   .service-h-card::before {
@@ -1917,8 +1918,8 @@
 
   .service-h-card:hover {
     border-color: var(--mocha);
-    transform: translateY(-12px);
-    box-shadow: 0 30px 70px rgba(110, 93, 67, 0.2);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 40px 90px rgba(110, 93, 67, 0.25);
   }
 
   .service-h-card:hover::before { opacity: 1; }
@@ -4596,21 +4597,29 @@
 
   allReveals.forEach(r => observer.observe(r));
 
-  // ===== SERVICE CARDS SCROLL REVEAL =====
+  // ===== SERVICE CARDS SCROLL REVEAL WITH STAGGER =====
   const serviceCards = document.querySelectorAll('.service-h-card');
 
   const servicesObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, idx) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const cardIndex = Array.from(serviceCards).indexOf(entry.target);
+        // Staggered animation: each card appears 150ms after the previous
         setTimeout(() => {
           entry.target.classList.add('visible');
-        }, cardIndex * 200);
+          entry.target.style.transitionDelay = `${cardIndex * 0.15}s`;
+        }, cardIndex * 150);
+
+        servicesObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
+  }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
 
-  serviceCards.forEach(card => servicesObserver.observe(card));
+  serviceCards.forEach(card => {
+    // Set initial animation properties for performance
+    card.style.willChange = 'transform, opacity';
+    servicesObserver.observe(card);
+  });
 
   // ===== Section in-view detection =====
   const specialSections = document.querySelectorAll('.rinoplastia, .testimonials');
