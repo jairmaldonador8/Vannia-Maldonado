@@ -24,7 +24,8 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  html, body { width: 100%; }
 
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -43,8 +44,7 @@
   /* ===== GRAIN OVERLAY ===== */
   .grain {
     position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
+    inset: 0;
     pointer-events: none;
     z-index: 9997;
     opacity: 0.04;
@@ -185,8 +185,7 @@
   /* ===== INTRO OVERLAY ===== */
   .intro-overlay {
     position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
+    inset: 0;
     background: var(--mocha);
     z-index: 1000;
     display: flex;
@@ -1431,6 +1430,85 @@
     content: '✓ ';
     color: var(--mocha);
     font-weight: 700;
+  }
+
+  /* ===== RESPONSIVE TECHNIQUE COMPARISON ===== */
+  @media (max-width: 1024px) {
+    .technique-comparison {
+      padding: 2rem;
+    }
+
+    .technique-row {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+
+    .technique-label {
+      margin-bottom: 0.8rem;
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .technique-comparison {
+      padding: 1.5rem;
+      margin: 0 -1.5rem;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .technique-comparison h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .technique-row {
+      padding: 1rem 1.5rem;
+      gap: 0.5rem;
+      margin: 0;
+    }
+
+    .technique-row:hover {
+      margin: 0;
+      padding: 1rem 1.5rem;
+      background: transparent;
+    }
+
+    .technique-traditional, .technique-ultrasonic {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .technique-comparison {
+      padding: 1rem;
+      margin: 0 -1rem;
+    }
+
+    .technique-comparison h4 {
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+      padding: 0 1rem;
+    }
+
+    .technique-row {
+      padding: 0.8rem 1rem;
+    }
+
+    .technique-row:hover {
+      padding: 0.8rem 1rem;
+    }
+
+    .technique-label {
+      font-size: 0.65rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .technique-traditional, .technique-ultrasonic {
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
   }
 
   .rinoplastia-text h3 {
@@ -3043,6 +3121,13 @@
     .services-flex { flex-direction: column; transform: none !important; padding: 0 2rem; }
     .service-h-card { width: 100%; height: auto; }
     .horizontal-progress { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 5rem 1.5rem 3rem; }
+    .contact { padding: 4rem 1.5rem; }
+    .floating-cta { bottom: 1.5rem; right: 1.5rem; }
   }
 
   @media (max-width: 640px) {
