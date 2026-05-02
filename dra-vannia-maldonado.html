@@ -1,0 +1,4263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dra. Vannia Maldonado · Otorrinolaringología & Rinoplastía Ultrasónica · Mérida</title>
+<meta name="description" content="Otorrinolaringóloga certificada con formación internacional en Brasil, España y Ecuador. Especialista en Rinoplastía Ultrasónica en Mérida, Yucatán." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mocha: #B19A7B;
+    --mocha-dark: #95805F;
+    --mocha-deep: #6E5D43;
+    --cream-light: #F5F0EA;
+    --peach-light: #F4DEC4;
+    --peach: #ECCEAB;
+    --bone: #FAF7F2;
+    --paper: #F0E8DC;
+    --ink: #3D332A;
+    --muted: #9C8A75;
+    --line: #E8DFD0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bone);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    cursor: none;
+    transition: background 1s ease;
+  }
+
+  body.intro-active { overflow: hidden; height: 100vh; }
+
+  /* ===== GRAIN OVERLAY ===== */
+  .grain {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== CUSTOM CURSOR ===== */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--mocha);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    transform: translate(-50%, -50%);
+  }
+
+  .cursor-follower {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid var(--mocha);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                width 0.3s ease, height 0.3s ease, background 0.3s ease,
+                border-color 0.3s ease;
+    transform: translate(-50%, -50%);
+    background: transparent;
+  }
+
+  .cursor-follower .cursor-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    color: var(--mocha-deep);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    line-height: 1;
+    pointer-events: none;
+    font-weight: 500;
+  }
+
+  .cursor.hover {
+    width: 0; height: 0;
+    opacity: 0;
+  }
+
+  .cursor-follower.hover {
+    width: 70px; height: 70px;
+    background: rgba(177, 154, 123, 0.15);
+    border-color: var(--mocha);
+    backdrop-filter: blur(2px);
+  }
+
+  .cursor-follower.hover .cursor-text { opacity: 1; }
+
+  @media (max-width: 1024px) {
+    body { cursor: auto; }
+    .cursor, .cursor-follower { display: none; }
+  }
+
+  /* ===== SCROLL PROGRESS ===== */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--mocha), var(--peach));
+    z-index: 999;
+    width: 0;
+    transition: width 0.1s ease;
+  }
+
+  /* ===== CHAPTER INDICATOR ===== */
+  .chapter-indicator {
+    position: fixed;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .chapter-indicator.visible { opacity: 1; }
+
+  .chapter-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--mocha);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+  }
+
+  .chapter-dot::before {
+    content: attr(data-label);
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--bone);
+    padding: 0.4rem 0.9rem;
+    box-shadow: 0 4px 16px rgba(110, 93, 67, 0.15);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .chapter-dot:hover::before {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-4px);
+  }
+
+  .chapter-dot.active {
+    opacity: 1;
+    background: var(--mocha-deep);
+    width: 28px;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 1024px) {
+    .chapter-indicator { display: none; }
+  }
+
+  /* ===== INTRO OVERLAY ===== */
+  .intro-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: var(--mocha);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: clip-path 1.6s cubic-bezier(0.65, 0, 0.35, 1),
+                opacity 1.6s cubic-bezier(0.65, 0, 0.35, 1);
+    overflow: hidden;
+    clip-path: inset(0 0 0 0);
+    padding: 2rem 1rem;
+  }
+
+  .intro-overlay::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 140%; height: 140%;
+    background: radial-gradient(ellipse at center, rgba(244, 222, 196, 0.25) 0%, transparent 60%);
+    transform: translate(-50%, -50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  .intro-particle {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: var(--peach-light);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle 8s ease-in-out infinite;
+  }
+
+  .intro-particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0.5s; }
+  .intro-particle:nth-child(2) { left: 80%; top: 30%; animation-delay: 1.2s; width: 3px; height: 3px; }
+  .intro-particle:nth-child(3) { left: 25%; top: 70%; animation-delay: 2s; width: 5px; height: 5px; }
+  .intro-particle:nth-child(4) { left: 90%; top: 80%; animation-delay: 0.8s; width: 2px; height: 2px; }
+  .intro-particle:nth-child(5) { left: 50%; top: 15%; animation-delay: 1.8s; }
+  .intro-particle:nth-child(6) { left: 65%; top: 65%; animation-delay: 0.3s; width: 3px; height: 3px; }
+  .intro-particle:nth-child(7) { left: 15%; top: 50%; animation-delay: 1.5s; width: 4px; height: 4px; }
+  .intro-particle:nth-child(8) { left: 85%; top: 45%; animation-delay: 2.5s; }
+
+  @keyframes floatParticle {
+    0%, 100% { opacity: 0; transform: translateY(0) translateX(0); }
+    20% { opacity: 0.8; }
+    50% { opacity: 1; transform: translateY(-30px) translateX(15px); }
+    80% { opacity: 0.6; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+  }
+
+  .intro-overlay.hidden {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .intro-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .intro-logo {
+    width: 280px;
+    max-width: 60vw;
+    height: auto;
+    margin: 0 auto 2rem;
+    opacity: 0;
+    transform: translateY(30px) scale(0.85);
+    animation: introLogoEnter 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards,
+               breathe 4s ease-in-out 2s infinite;
+  }
+
+  .intro-logo svg { width: 100%; height: auto; display: block; }
+
+  @keyframes introLogoEnter {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+
+  .intro-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--peach-light);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: introFade 1.2s cubic-bezier(0.65, 0, 0.35, 1) 0.9s forwards;
+    font-weight: 400;
+  }
+
+  .intro-line {
+    width: 0; height: 1px;
+    background: var(--peach);
+    margin: 0 auto 1.8rem;
+    animation: introLine 1.4s cubic-bezier(0.65, 0, 0.35, 1) 1.2s forwards;
+  }
+
+  @keyframes introLine { to { width: 70px; } }
+
+  .intro-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+    color: var(--bone);
+    line-height: 1.05;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .intro-name .first {
+    display: block;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: introNameFade 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s forwards;
+  }
+
+  .intro-name .last {
+    display: block;
+    font-style: italic;
+    color: var(--peach-light);
+    font-weight: 300;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: introNameFade 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.9s forwards;
+  }
+
+  @keyframes introNameFade {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .intro-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--cream-light);
+    opacity: 0;
+    margin-top: 1.5rem;
+    animation: introFade 1.4s cubic-bezier(0.65, 0, 0.35, 1) 2.5s forwards;
+    font-weight: 300;
+  }
+
+  @keyframes introFade { to { opacity: 1; } }
+
+  .intro-decoration {
+    position: absolute;
+    width: 60px; height: 60px;
+    border: 1px solid rgba(244, 222, 196, 0.4);
+    opacity: 0;
+    animation: introDecorEnter 1.5s ease 0.5s forwards;
+  }
+
+  @keyframes introDecorEnter { to { opacity: 1; } }
+
+  .intro-decoration.tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
+  .intro-decoration.tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
+  .intro-decoration.bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
+  .intro-decoration.br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+
+  /* ===== MAIN CONTENT FADE IN ===== */
+  .main-content {
+    opacity: 0;
+    transition: opacity 1.4s ease-out 0.3s;
+  }
+
+  .main-content.visible { opacity: 1; }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.75rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250, 247, 242, 0);
+    backdrop-filter: blur(0px);
+    border-bottom: 1px solid transparent;
+    transition: all 0.5s ease;
+  }
+
+  nav.scrolled {
+    background: rgba(250, 247, 242, 0.95);
+    backdrop-filter: blur(16px);
+    border-bottom-color: var(--line);
+    padding: 1.25rem 3rem;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+  }
+
+  .main-content.visible .nav-logo {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-logo-mark {
+    width: 120px; height: 120px;
+    transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  nav.scrolled .nav-logo-mark {
+    width: 56px;
+    height: 56px;
+  }
+
+  .nav-logo:hover .nav-logo-mark {
+    transform: rotate(-12deg) scale(1.1);
+    animation: none;
+  }
+
+  .nav-logo-mark svg path {
+    fill: var(--mocha-dark);
+    stroke: var(--mocha-dark);
+  }
+
+  .nav-logo-text {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--ink);
+    transition: font-size 0.5s ease;
+  }
+
+  nav.scrolled .nav-logo-text {
+    font-size: 1.3rem;
+  }
+
+  .nav-logo-text .accent {
+    color: var(--mocha);
+    font-style: italic;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    list-style: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 1s ease 0.7s, transform 1s ease 0.7s;
+  }
+
+  .main-content.visible .nav-links {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links a:not(.nav-cta) {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+    padding: 4px 0;
+  }
+
+  .nav-links a:not(.nav-cta)::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--mocha);
+    transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .nav-links a:not(.nav-cta):hover { color: var(--mocha); }
+  .nav-links a:not(.nav-cta):hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--mocha-deep);
+    color: var(--bone) !important;
+    padding: 0.85rem 1.8rem;
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    animation: ctaSubtlePulse 3s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(110, 93, 67, 0.2);
+  }
+
+  @keyframes ctaSubtlePulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(110, 93, 67, 0.2); }
+    50% { box-shadow: 0 6px 28px rgba(176, 141, 87, 0.4); }
+  }
+
+  /* Shine sweep effect */
+  .nav-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--mocha);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+
+  /* Shimmer overlay */
+  .nav-cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(244, 222, 196, 0.4),
+      transparent
+    );
+    transform: skewX(-20deg);
+    animation: shimmerSweep 4s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  @keyframes shimmerSweep {
+    0%, 100% { left: -100%; }
+    50% { left: 200%; }
+  }
+
+  .nav-cta:hover {
+    background: var(--mocha-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(176, 141, 87, 0.5);
+    animation: none;
+  }
+
+  .nav-cta:hover::before { left: 0; }
+
+  .nav-cta span {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  /* Pulsing dot indicator */
+  .nav-cta .nav-cta-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--peach-light);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .nav-cta .nav-cta-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: var(--peach-light);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: dotPulse 2s ease-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0% {
+      width: 100%;
+      height: 100%;
+      opacity: 0.7;
+    }
+    100% {
+      width: 280%;
+      height: 280%;
+      opacity: 0;
+    }
+  }
+
+  /* ===== HERO with split text ===== */
+  .hero {
+    min-height: 100vh;
+    padding: 11rem 3rem 4rem;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    background: var(--bone);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%; height: 100%;
+    background: linear-gradient(135deg, var(--cream-light) 0%, var(--peach-light) 100%);
+    z-index: 0;
+  }
+
+  .hero-float {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.4;
+    animation: heroFloat 12s ease-in-out infinite;
+  }
+
+  .hero-float.f1 {
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, var(--peach) 0%, transparent 70%);
+    top: 10%; right: 10%;
+    animation-delay: 0s;
+  }
+
+  .hero-float.f2 {
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, var(--peach-light) 0%, transparent 70%);
+    bottom: 15%; left: 5%;
+    animation-delay: 3s;
+  }
+
+  @keyframes heroFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding-left: 2rem;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    font-weight: 500;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 0;
+    height: 1px;
+    background: var(--mocha);
+    animation: lineGrow 1s ease 1s forwards;
+  }
+
+  @keyframes lineGrow { to { width: 40px; } }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.5rem, 7.5vw, 6.5rem);
+    font-weight: 300;
+    line-height: 0.98;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+  }
+
+  /* Split text animation */
+  .split-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+
+  .split-word > span {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .split-line.visible .split-word > span {
+    transform: translateY(0);
+  }
+
+  .split-line .split-word:nth-child(1) > span { transition-delay: 0.1s; }
+  .split-line .split-word:nth-child(2) > span { transition-delay: 0.2s; }
+  .split-line .split-word:nth-child(3) > span { transition-delay: 0.3s; }
+  .split-line .split-word:nth-child(4) > span { transition-delay: 0.4s; }
+  .split-line .split-word:nth-child(5) > span { transition-delay: 0.5s; }
+  .split-line .split-word:nth-child(6) > span { transition-delay: 0.6s; }
+  .split-line .split-word:nth-child(7) > span { transition-delay: 0.7s; }
+  .split-line .split-word:nth-child(8) > span { transition-delay: 0.8s; }
+
+  .hero h1 .accent {
+    font-style: italic;
+    color: var(--mocha);
+    font-weight: 300;
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero h1 .accent::after {
+    content: '';
+    position: absolute;
+    bottom: 0.1em; left: 0;
+    width: 100%; height: 0.08em;
+    background: var(--peach);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1) 2s;
+    z-index: -1;
+    opacity: 0.6;
+  }
+
+  .main-content.visible .hero h1 .accent::after { transform: scaleX(1); }
+
+  .hero-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  .hero-description {
+    font-size: 1.05rem;
+    color: var(--ink);
+    max-width: 480px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .btn-primary {
+    background: var(--mocha-deep);
+    color: var(--bone);
+    padding: 1.1rem 2.5rem;
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--mocha-deep);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: var(--mocha);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: 0;
+  }
+
+  .btn-primary:hover::before {
+    width: 400px; height: 400px;
+  }
+
+  .btn-primary span {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .btn-primary:hover {
+    border-color: var(--mocha);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(110, 93, 67, 0.25);
+  }
+
+  .btn-primary .arrow {
+    transition: transform 0.4s ease;
+    display: inline-block;
+  }
+
+  .btn-primary:hover .arrow { transform: translateX(6px); }
+
+  .btn-secondary {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 4px;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    color: var(--mocha);
+    border-color: var(--mocha);
+  }
+
+  .hero-credentials {
+    display: flex;
+    gap: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .credential-item {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease;
+  }
+
+  .credential-item:hover { transform: translateY(-4px); }
+
+  .credential-number {
+    font-family: 'Fraunces', serif;
+    font-size: 2.4rem;
+    color: var(--mocha);
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  .credential-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-weight: 500;
+  }
+
+  /* HERO PORTRAIT with Ken Burns */
+  .hero-portrait {
+    position: relative;
+    z-index: 1;
+    height: 80vh;
+    max-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portrait-frame {
+    position: relative;
+    width: 100%; height: 100%;
+    max-width: 480px;
+  }
+
+  .portrait-image-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, var(--peach-light) 0%, var(--peach) 100%);
+    box-shadow: 0 30px 80px rgba(110, 93, 67, 0.25);
+  }
+
+  .portrait-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, transparent 0%, transparent 70%, rgba(110, 93, 67, 0.15) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .portrait-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: contrast(1.02) saturate(1.05);
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.6s ease;
+    animation: kenBurns 20s ease-in-out infinite;
+  }
+
+  .portrait-frame:hover .portrait-image {
+    transform: scale(1.05);
+    filter: contrast(1.05) saturate(1.1);
+  }
+
+  @keyframes kenBurns {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.04) translate(-4px, -4px); }
+  }
+
+  /* Decorative V monogram overlay on photo */
+  .portrait-monogram {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 3;
+    width: 60px;
+    height: 60px;
+    background: rgba(250, 247, 242, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--mocha-deep);
+    font-weight: 400;
+    border: 1px solid rgba(177, 154, 123, 0.3);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .portrait-frame:hover .portrait-monogram {
+    transform: rotate(-8deg) scale(1.1);
+  }
+
+  .portrait-decoration {
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 80px; height: 80px;
+    border-top: 1px solid var(--mocha);
+    border-right: 1px solid var(--mocha);
+    transition: all 0.5s ease;
+  }
+
+  .portrait-decoration-bottom {
+    position: absolute;
+    bottom: -20px; left: -20px;
+    width: 80px; height: 80px;
+    border-bottom: 1px solid var(--mocha);
+    border-left: 1px solid var(--mocha);
+    transition: all 0.5s ease;
+  }
+
+  .portrait-frame:hover .portrait-decoration {
+    width: 100px; height: 100px;
+    top: -30px; right: -30px;
+  }
+
+  .portrait-frame:hover .portrait-decoration-bottom {
+    width: 100px; height: 100px;
+    bottom: -30px; left: -30px;
+  }
+
+  .portrait-label {
+    position: absolute;
+    bottom: 30px; left: 30px;
+    background: var(--bone);
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 40px rgba(110, 93, 67, 0.15);
+    transition: transform 0.4s ease;
+  }
+
+  .portrait-frame:hover .portrait-label {
+    transform: translate(-5px, -5px);
+  }
+
+  .portrait-label-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .portrait-label-role {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    margin-top: 0.3rem;
+    font-weight: 600;
+  }
+
+  .hero-logo-mark {
+    position: absolute;
+    top: 30%; left: -5%;
+    width: 80px; height: 80px;
+    opacity: 0.15;
+    z-index: 0;
+    animation: floatRotate 20s ease-in-out infinite;
+  }
+
+  .hero-logo-mark svg { width: 100%; height: auto; }
+  .hero-logo-mark svg path { fill: var(--mocha); }
+
+  @keyframes floatRotate {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(15deg); }
+  }
+
+  /* ===== SECTION COMMONS ===== */
+  section {
+    padding: 8rem 3rem;
+    position: relative;
+  }
+
+  .section-header {
+    max-width: 700px;
+    margin-bottom: 5rem;
+  }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    font-weight: 500;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--mocha);
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.02;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title .italic {
+    font-style: italic;
+    color: var(--mocha);
+    font-weight: 300;
+  }
+
+  .section-intro {
+    font-size: 1.1rem;
+    color: var(--ink);
+    line-height: 1.7;
+    max-width: 600px;
+    font-weight: 300;
+  }
+
+  /* ===== MARQUEE ===== */
+  .marquee-band {
+    background: var(--mocha-deep);
+    color: var(--bone);
+    padding: 2.5rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: fit-content;
+    animation: marqueeScroll 40s linear infinite;
+  }
+
+  .marquee-band:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    flex-shrink: 0;
+  }
+
+  .marquee-item-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    color: var(--peach-light);
+    margin-right: 1rem;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .marquee-item-detail {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-light);
+    opacity: 0.85;
+    font-weight: 500;
+  }
+
+  .marquee-divider {
+    width: 8px; height: 8px;
+    background: var(--mocha);
+    border-radius: 50%;
+    margin: 0 1rem;
+  }
+
+  @keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== ABOUT ===== */
+  .about { background: var(--bone); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-visual {
+    position: sticky;
+    top: 120px;
+    aspect-ratio: 3/4;
+    background: var(--cream-light);
+    overflow: hidden;
+    transition: transform 0.6s ease;
+  }
+
+  .about-visual:hover { transform: scale(1.02); }
+
+  .about-content h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--ink);
+    margin: 2.5rem 0 1rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .about-content h3::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.4em;
+    width: 3px;
+    height: 1.2em;
+    background: var(--mocha);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.6s ease;
+  }
+
+  .about-content h3.visible::before { transform: scaleY(1); }
+  .about-content h3:first-child { margin-top: 0; }
+
+  .about-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .about-content em {
+    color: var(--mocha);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  .timeline {
+    margin-top: 3rem;
+    padding-left: 2rem;
+    border-left: 1px solid var(--mocha);
+    position: relative;
+  }
+
+  .timeline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -3px;
+    width: 7px; height: 7px;
+    background: var(--mocha);
+    border-radius: 50%;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.4rem;
+    top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--mocha);
+    transition: all 0.4s ease;
+  }
+
+  .timeline-item:hover::before {
+    transform: scale(1.5);
+    background: var(--peach);
+    box-shadow: 0 0 0 4px rgba(177, 154, 123, 0.15);
+  }
+
+  .timeline-place {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+  }
+
+  .timeline-item:hover .timeline-place { color: var(--mocha); }
+
+  .timeline-detail {
+    font-size: 0.92rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    font-weight: 400;
+  }
+
+  /* ===== RINOPLASTIA con SVG nose stroke animation ===== */
+  .rinoplastia {
+    background: linear-gradient(135deg, var(--peach-light) 0%, var(--cream-light) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rinoplastia::before {
+    content: 'R';
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-size: 40rem;
+    font-weight: 300;
+    color: rgba(177, 154, 123, 0.08);
+    top: -8rem;
+    right: -5rem;
+    line-height: 1;
+    pointer-events: none;
+    transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .rinoplastia.in-view::before { transform: rotate(-8deg); }
+
+  /* Animated wave SVG */
+  .rinoplastia-waves {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .rinoplastia-waves svg {
+    width: 100%; height: 100%;
+  }
+
+  .rinoplastia-waves path {
+    stroke: var(--mocha);
+    stroke-width: 1;
+    fill: none;
+    opacity: 0.25;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: drawWave 6s ease-in-out infinite alternate;
+  }
+
+  .rinoplastia-waves path:nth-child(2) { animation-delay: 1s; opacity: 0.15; }
+  .rinoplastia-waves path:nth-child(3) { animation-delay: 2s; opacity: 0.1; }
+
+  @keyframes drawWave {
+    0% { stroke-dashoffset: 2000; }
+    50% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -2000; }
+  }
+
+  /* Animated nose silhouette */
+  .nose-svg-container {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 250px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  .nose-svg-container svg {
+    width: 100%; height: 100%;
+  }
+
+  .nose-svg-container path {
+    fill: none;
+    stroke: var(--mocha);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    transition: stroke-dashoffset 2s ease-out;
+  }
+
+  .nose-svg-container.drawn path {
+    stroke-dashoffset: 0;
+  }
+
+  .rinoplastia-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .rinoplastia-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .technique-comparison {
+    background: var(--bone);
+    padding: 3rem;
+    box-shadow: 0 30px 80px rgba(110, 93, 67, 0.12);
+    transition: transform 0.6s ease;
+  }
+
+  .technique-comparison:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 40px 100px rgba(110, 93, 67, 0.18);
+  }
+
+  .technique-comparison h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .technique-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.7s ease, transform 0.7s ease, background 0.4s ease, padding 0.4s ease, margin 0.4s ease;
+  }
+
+  .technique-row.visible { opacity: 1; transform: translateY(0); }
+
+  .technique-row:hover {
+    background: var(--cream-light);
+    margin: 0 -1rem;
+    padding: 1rem;
+  }
+
+  .technique-row:last-child { border-bottom: none; }
+
+  .technique-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    grid-column: 1 / -1;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .technique-traditional, .technique-ultrasonic {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .technique-traditional {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(156,138,117,0.5);
+  }
+
+  .technique-ultrasonic {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .technique-ultrasonic::before {
+    content: '✓ ';
+    color: var(--mocha);
+    font-weight: 700;
+  }
+
+  .rinoplastia-text h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 2.4rem;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .rinoplastia-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .rinoplastia-features {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .feature-item.visible { opacity: 1; transform: translateY(0); }
+
+  .feature-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border: 1px solid var(--mocha);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--mocha);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-top: 2px;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .feature-item:hover .feature-icon {
+    background: var(--mocha);
+    color: var(--bone);
+    transform: rotate(360deg) scale(1.15);
+    box-shadow: 0 8px 20px rgba(177, 154, 123, 0.4);
+  }
+
+  .feature-text strong {
+    display: block;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+
+  .feature-item:hover .feature-text strong { color: var(--mocha); }
+
+  .feature-text span {
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-weight: 300;
+  }
+
+  /* ===== ANTES/DESPUES SLIDER ===== */
+  .before-after-section {
+    background: var(--paper);
+    padding: 8rem 3rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .before-after-container {
+    max-width: 900px;
+    margin: 4rem auto 0;
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(110, 93, 67, 0.2);
+  }
+
+  .ba-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  .ba-after {
+    z-index: 1;
+  }
+
+  .ba-before {
+    z-index: 2;
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 0.1s linear;
+  }
+
+  .ba-divider {
+    position: absolute;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--bone);
+    z-index: 3;
+    pointer-events: none;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
+
+  .ba-divider::before {
+    content: '↔';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bone);
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    color: var(--mocha-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .ba-label {
+    position: absolute;
+    top: 1.5rem;
+    z-index: 4;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--bone);
+    background: rgba(110, 93, 67, 0.85);
+    padding: 0.5rem 1.2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .ba-label.before-label { left: 1.5rem; }
+  .ba-label.after-label { right: 1.5rem; }
+
+  .ba-instruction {
+    text-align: center;
+    margin-top: 2rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--mocha-deep);
+    font-size: 1rem;
+  }
+
+  /* ===== HORIZONTAL SCROLL SERVICES ===== */
+  .services-horizontal {
+    background: var(--bone);
+    position: relative;
+    padding: 8rem 0 0;
+  }
+
+  .services-horizontal-header {
+    padding: 0 3rem;
+    max-width: 700px;
+    margin-bottom: 4rem;
+  }
+
+  .services-horizontal-track {
+    height: 100vh;
+    position: relative;
+  }
+
+  .services-horizontal-inner {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .services-flex {
+    display: flex;
+    gap: 2.5rem;
+    padding: 0 3rem;
+    will-change: transform;
+    transition: transform 0.05s linear;
+  }
+
+  .service-h-card {
+    flex-shrink: 0;
+    width: 480px;
+    height: 60vh;
+    max-height: 600px;
+    background: var(--paper);
+    padding: 3.5rem 3rem;
+    border: 1px solid transparent;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-h-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--peach-light) 0%, var(--cream-light) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+  }
+
+  .service-h-card > * { position: relative; z-index: 1; }
+
+  .service-h-card::after {
+    content: '→';
+    position: absolute;
+    bottom: 2.5rem;
+    right: 3rem;
+    font-size: 1.5rem;
+    color: var(--mocha);
+    transition: transform 0.4s ease;
+    z-index: 1;
+  }
+
+  .service-h-card:hover {
+    border-color: var(--mocha);
+    transform: translateY(-12px);
+    box-shadow: 0 30px 70px rgba(110, 93, 67, 0.2);
+  }
+
+  .service-h-card:hover::before { opacity: 1; }
+  .service-h-card:hover::after { transform: translateX(10px); }
+
+  .service-h-number {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--mocha);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+  }
+
+  .service-h-name {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .service-h-description {
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    font-weight: 300;
+  }
+
+  .service-h-procedures {
+    list-style: none;
+    padding: 0;
+    margin-top: auto;
+  }
+
+  .service-h-procedures li {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--line);
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    transition: padding-left 0.3s ease, color 0.3s ease;
+  }
+
+  .service-h-procedures li:hover {
+    padding-left: 0.5rem;
+    color: var(--mocha-deep);
+  }
+
+  .horizontal-progress {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.6rem;
+    z-index: 5;
+  }
+
+  .horizontal-progress-dot {
+    width: 30px; height: 2px;
+    background: var(--mocha);
+    opacity: 0.3;
+    transition: opacity 0.4s ease;
+  }
+
+  .horizontal-progress-dot.active { opacity: 1; }
+
+  /* ===== STATS ===== */
+  .stats {
+    background: var(--cream-light);
+    padding: 6rem 3rem;
+  }
+
+  .stats-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-item {
+    padding: 1rem;
+    border-right: 1px solid var(--line);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .stat-item.visible { opacity: 1; transform: translateY(0); }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'Fraunces', serif;
+    font-size: 4.5rem;
+    color: var(--ink);
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    transition: transform 0.4s ease;
+  }
+
+  .stat-item:hover .stat-number { transform: scale(1.05); }
+
+  .stat-number .accent {
+    color: var(--mocha);
+    font-style: italic;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+
+  /* ===== TESTIMONIALS - Premium Carousel ===== */
+  .testimonials {
+    background: var(--mocha-deep);
+    color: var(--bone);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-size: 50rem;
+    color: rgba(244, 222, 196, 0.06);
+    top: -10rem;
+    left: -3rem;
+    line-height: 0.8;
+    pointer-events: none;
+    font-weight: 300;
+    transition: transform 1.5s ease;
+  }
+
+  .testimonials.in-view::before { transform: rotate(5deg); }
+
+  .testimonials .section-eyebrow { color: var(--peach-light); }
+  .testimonials .section-eyebrow::before { background: var(--peach-light); }
+  .testimonials .section-title { color: var(--bone); }
+  .testimonials .section-title .italic { color: var(--peach-light); }
+  .testimonials .section-intro { color: var(--cream-light); opacity: 0.9; }
+
+  /* Verified badge band */
+  .verified-band {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 1.2rem 1.8rem;
+    background: rgba(244, 222, 196, 0.08);
+    border: 1px solid rgba(177, 154, 123, 0.3);
+    max-width: fit-content;
+  }
+
+  .verified-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--peach-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--mocha-deep);
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .verified-text {
+    font-size: 0.85rem;
+    color: var(--cream-light);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  .verified-text strong {
+    color: var(--peach-light);
+    font-weight: 600;
+  }
+
+  /* Featured testimonial */
+  .featured-testimonial {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(177, 154, 123, 0.15), rgba(244, 222, 196, 0.05));
+    border: 1px solid var(--mocha);
+    padding: 3rem;
+    margin: 4rem 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-testimonial::before {
+    content: '“';
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-size: 12rem;
+    color: rgba(244, 222, 196, 0.1);
+    top: -2rem;
+    right: 1rem;
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .featured-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--peach-light);
+    background: rgba(177, 154, 123, 0.2);
+    padding: 0.4rem 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(177, 154, 123, 0.3);
+    font-weight: 600;
+  }
+
+  .featured-stars {
+    color: var(--peach-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .featured-quote {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4rem, 2.3vw, 1.8rem);
+    line-height: 1.5;
+    color: var(--bone);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .featured-author {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(177, 154, 123, 0.3);
+  }
+
+  .featured-author-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .featured-avatar {
+    width: 48px;
+    height: 48px;
+    background: var(--peach-light);
+    color: var(--mocha-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .featured-name {
+    font-size: 1.05rem;
+    color: var(--peach-light);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  .featured-meta {
+    font-size: 0.75rem;
+    color: var(--cream-light);
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+  }
+
+  .featured-verification {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--peach-light);
+    font-weight: 600;
+  }
+
+  .featured-verification::before {
+    content: '✓';
+    width: 18px;
+    height: 18px;
+    background: var(--peach-light);
+    color: var(--mocha-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  /* CAROUSEL */
+  .testimonials-carousel-wrapper {
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .carousel-label {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--peach-light);
+    font-weight: 400;
+  }
+
+  .carousel-nav {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .carousel-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--peach-light);
+    color: var(--peach-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+  }
+
+  .carousel-btn:hover {
+    background: var(--peach-light);
+    color: var(--mocha-deep);
+    transform: scale(1.05);
+  }
+
+  .carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .carousel-track-container {
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .carousel-card {
+    flex-shrink: 0;
+    width: calc((100% - 3rem) / 3);
+    background: rgba(244, 222, 196, 0.05);
+    border: 1px solid rgba(177, 154, 123, 0.2);
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+  }
+
+  .carousel-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(244, 222, 196, 0.08), transparent);
+    transition: left 0.8s ease;
+  }
+
+  .carousel-card:hover::before { left: 100%; }
+
+  .carousel-card:hover {
+    border-color: var(--mocha);
+    background: rgba(244, 222, 196, 0.08);
+    transform: translateY(-6px);
+  }
+
+  .carousel-stars {
+    color: var(--peach-light);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .carousel-card-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .carousel-date {
+    font-size: 0.7rem;
+    color: var(--cream-light);
+    opacity: 0.6;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .carousel-quote {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--bone);
+    font-weight: 300;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .carousel-author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(177, 154, 123, 0.2);
+  }
+
+  .carousel-avatar {
+    width: 38px;
+    height: 38px;
+    background: rgba(244, 222, 196, 0.15);
+    color: var(--peach-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    flex-shrink: 0;
+    border: 1px solid rgba(177, 154, 123, 0.3);
+  }
+
+  .carousel-name {
+    font-size: 0.9rem;
+    color: var(--peach-light);
+    font-weight: 500;
+    margin-bottom: 0.1rem;
+  }
+
+  .carousel-service {
+    font-size: 0.7rem;
+    color: var(--cream-light);
+    opacity: 0.65;
+    letter-spacing: 0.04em;
+  }
+
+  .carousel-verified {
+    margin-left: auto;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--peach-light);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .carousel-verified::before {
+    content: '✓';
+    width: 14px;
+    height: 14px;
+    background: var(--peach-light);
+    color: var(--mocha-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  /* Doctor reply */
+  .carousel-reply {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(15, 26, 40, 0.3);
+    border-left: 2px solid var(--peach-light);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--cream-light);
+    opacity: 0.85;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  .carousel-reply-label {
+    display: block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--peach-light);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  .carousel-progress-bar {
+    width: 100%;
+    height: 1px;
+    background: rgba(244, 222, 196, 0.15);
+    margin-top: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carousel-progress-fill {
+    height: 100%;
+    background: var(--peach-light);
+    width: 0;
+    transition: width 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .carousel-counter {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--peach-light);
+    font-size: 0.95rem;
+  }
+
+  .carousel-counter span {
+    color: var(--bone);
+    font-weight: 500;
+  }
+
+  /* Doctoralia link badge */
+  .doctoralia-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    padding: 0.7rem 1.3rem;
+    background: rgba(244, 222, 196, 0.05);
+    border: 1px solid rgba(177, 154, 123, 0.25);
+    color: var(--cream-light);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    transition: all 0.4s ease;
+  }
+
+  .doctoralia-badge:hover {
+    background: rgba(244, 222, 196, 0.1);
+    border-color: var(--peach-light);
+    transform: translateY(-2px);
+  }
+
+  .doctoralia-badge .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--peach-light);
+    border-radius: 50%;
+    animation: ctaPulse 2s ease-in-out infinite;
+  }
+
+  /* Mobile carousel adjustments */
+  @media (max-width: 1024px) {
+    .carousel-card { width: calc((100% - 1.5rem) / 2); }
+  }
+
+  @media (max-width: 640px) {
+    .carousel-card { width: 100%; }
+    .featured-testimonial { padding: 2rem 1.5rem; margin: 3rem 0 2rem; }
+    .featured-testimonial::before { font-size: 8rem; }
+    .carousel-header { flex-direction: column; gap: 1.2rem; align-items: flex-start; }
+    .carousel-btn { width: 42px; height: 42px; }
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    background: var(--paper);
+    padding: 8rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -10%;
+    width: 70%; height: 200%;
+    background: radial-gradient(ellipse, var(--peach-light) 0%, transparent 60%);
+    opacity: 0.5;
+    pointer-events: none;
+    animation: blobMove1 15s ease-in-out infinite;
+  }
+
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    top: -30%; right: -20%;
+    width: 80%; height: 200%;
+    background: radial-gradient(ellipse, var(--peach) 0%, transparent 60%);
+    opacity: 0.3;
+    pointer-events: none;
+    animation: blobMove2 18s ease-in-out infinite;
+  }
+
+  @keyframes blobMove1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(40px, -30px); }
+  }
+
+  @keyframes blobMove2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, 40px); }
+  }
+
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    color: var(--ink);
+    line-height: 1.05;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    letter-spacing: -0.025em;
+  }
+
+  .cta-section h2 .italic {
+    font-style: italic;
+    color: var(--mocha);
+  }
+
+  .cta-section p {
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-whatsapp {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 1.1rem 2.5rem;
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-whatsapp::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: var(--ink);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+    z-index: 0;
+  }
+
+  .btn-whatsapp:hover::before { width: 400px; height: 400px; }
+  .btn-whatsapp span { position: relative; z-index: 1; }
+  .btn-whatsapp:hover { color: var(--bone); }
+
+  /* ===== CONTACT ===== */
+  .contact { background: var(--bone); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+
+  .contact-info-block {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--line);
+    transition: padding-left 0.4s ease;
+  }
+
+  .contact-info-block:hover { padding-left: 1rem; }
+  .contact-info-block:last-child { border-bottom: none; }
+
+  .contact-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+  }
+
+  .contact-value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    color: var(--ink);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .contact-value a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .contact-value a:hover {
+    border-bottom-color: var(--mocha);
+    color: var(--mocha);
+  }
+
+  .contact-form {
+    background: var(--paper);
+    padding: 3rem;
+    transition: transform 0.6s ease;
+  }
+
+  .contact-form:hover { transform: translateY(-5px); }
+
+  .form-title {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .form-group:focus-within label { color: var(--mocha); }
+
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--ink);
+    transition: border-color 0.3s;
+    outline: none;
+    font-weight: 400;
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-bottom-color: var(--mocha);
+  }
+
+  .form-submit {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1.2rem;
+    background: var(--mocha-deep);
+    color: var(--bone);
+    border: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-submit::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--mocha);
+    transition: left 0.4s ease;
+  }
+
+  .form-submit:hover::before { left: 0; }
+  .form-submit span { position: relative; z-index: 1; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--ink);
+    color: var(--cream-light);
+    padding: 5rem 3rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+    max-width: 1300px;
+    margin: 0 auto 3rem;
+  }
+
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-brand-logo svg {
+    width: 60px;
+    height: auto;
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  .footer-brand-logo svg path {
+    fill: var(--peach-light);
+    stroke: var(--peach-light);
+  }
+
+  .footer-brand h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.9rem;
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+
+  .footer-brand h3 .italic {
+    font-style: italic;
+    color: var(--peach-light);
+  }
+
+  .footer-brand p {
+    color: var(--cream-light);
+    opacity: 0.7;
+    line-height: 1.7;
+    max-width: 320px;
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  .footer-section h4 {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--peach-light);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  .footer-section ul { list-style: none; }
+  .footer-section li { margin-bottom: 0.7rem; }
+
+  .footer-section a {
+    color: var(--cream-light);
+    opacity: 0.8;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: opacity 0.3s, color 0.3s, padding-left 0.3s;
+    font-weight: 300;
+    display: inline-block;
+  }
+
+  .footer-section a:hover {
+    opacity: 1;
+    color: var(--peach-light);
+    padding-left: 6px;
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(244, 222, 196, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    color: var(--cream-light);
+    opacity: 0.6;
+    font-weight: 300;
+  }
+
+  .footer-bottom .vita {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--peach-light);
+    opacity: 1;
+  }
+
+  /* ===== UTILITIES ===== */
+  .hero-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .main-content.visible .hero-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .main-content.visible .hero-animate.delay-1 { transition-delay: 0.4s; }
+  .main-content.visible .hero-animate.delay-2 { transition-delay: 0.6s; }
+  .main-content.visible .hero-animate.delay-3 { transition-delay: 0.8s; }
+  .main-content.visible .hero-animate.delay-4 { transition-delay: 1s; }
+  .main-content.visible .hero-animate.delay-5 { transition-delay: 1.2s; }
+  .main-content.visible .hero-animate.delay-6 { transition-delay: 1.4s; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .reveal-clip {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .reveal-clip.visible {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .parallax-element { will-change: transform; }
+
+  /* ===== FLOATING CTA ===== */
+  .floating-cta {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 95;
+    background: var(--mocha-deep);
+    color: var(--bone);
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    box-shadow: 0 10px 40px rgba(110, 93, 67, 0.3);
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .floating-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .floating-cta:hover {
+    background: var(--mocha);
+    transform: translateY(-4px);
+  }
+
+  .floating-cta .pulse {
+    width: 8px; height: 8px;
+    background: var(--peach-light);
+    border-radius: 50%;
+    animation: ctaPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(244, 222, 196, 0.7); }
+    50% { box-shadow: 0 0 0 10px rgba(244, 222, 196, 0); }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    nav.scrolled, nav { padding: 1rem 2rem; }
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 7rem 2rem 4rem;
+    }
+    .hero::before { display: none; }
+    .hero-content { padding-left: 0; }
+    .hero-portrait { height: 60vh; max-width: 400px; margin: 0 auto; }
+    .about-grid, .rinoplastia-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { position: static; max-width: 400px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2rem; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .intro-decoration { width: 40px; height: 40px; }
+    .intro-decoration.tl, .intro-decoration.tr { top: 20px; }
+    .intro-decoration.bl, .intro-decoration.br { bottom: 20px; }
+    .intro-decoration.tl, .intro-decoration.bl { left: 20px; }
+    .intro-decoration.tr, .intro-decoration.br { right: 20px; }
+    .marquee-item-title { font-size: 1.4rem; }
+    .marquee-item { padding: 0 2rem; }
+    .nose-svg-container { display: none; }
+    /* Mobile: services as vertical instead of horizontal */
+    .services-horizontal-track { height: auto; }
+    .services-horizontal-inner { position: static; height: auto; flex-direction: column; }
+    .services-flex { flex-direction: column; transform: none !important; padding: 0 2rem; }
+    .service-h-card { width: 100%; height: auto; }
+    .horizontal-progress { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    nav, nav.scrolled { padding: 1rem 1.5rem; }
+    .nav-links li:not(:last-child) { display: none; }
+    .nav-logo-text { font-size: 1.3rem; }
+    .nav-logo-mark { width: 70px; height: 70px; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-credentials { flex-wrap: wrap; gap: 1.5rem; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 2rem; }
+    .stat-item:last-child { border-bottom: none; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; }
+    .technique-comparison { padding: 2rem 1.5rem; }
+    .contact-form { padding: 2rem 1.5rem; }
+    .intro-logo { width: 200px; max-width: 60vw; }
+    .floating-cta { bottom: 1rem; right: 1rem; padding: 0.8rem 1.2rem; }
+    .ba-label { font-size: 0.85rem; padding: 0.4rem 0.8rem; }
+  }
+</style>
+</head>
+<body class="intro-active">
+
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"><span class="cursor-text" id="cursorText"></span></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Chapter indicator -->
+<div class="chapter-indicator" id="chapterIndicator">
+  <div class="chapter-dot active" data-target="hero" data-label="Inicio"></div>
+  <div class="chapter-dot" data-target="sobre-mi" data-label="Sobre mí"></div>
+  <div class="chapter-dot" data-target="rinoplastia" data-label="Rinoplastía"></div>
+  <div class="chapter-dot" data-target="resultados" data-label="Resultados"></div>
+  <div class="chapter-dot" data-target="servicios" data-label="Servicios"></div>
+  <div class="chapter-dot" data-target="testimonios" data-label="Testimonios"></div>
+  <div class="chapter-dot" data-target="contacto" data-label="Contacto"></div>
+</div>
+
+<!-- Floating CTA -->
+<a href="#contacto" class="floating-cta" id="floatingCta">
+  <span class="pulse"></span>
+  <span>Agenda tu cita</span>
+</a>
+
+<!-- ============== INTRO OVERLAY ============== -->
+<div class="intro-overlay" id="introOverlay">
+  <div class="intro-decoration tl"></div>
+  <div class="intro-decoration tr"></div>
+  <div class="intro-decoration bl"></div>
+  <div class="intro-decoration br"></div>
+
+  <div class="intro-particle"></div>
+  <div class="intro-particle"></div>
+  <div class="intro-particle"></div>
+  <div class="intro-particle"></div>
+  <div class="intro-particle"></div>
+  <div class="intro-particle"></div>
+  <div class="intro-particle"></div>
+  <div class="intro-particle"></div>
+
+  <div class="intro-content">
+    <div class="intro-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240.94 155.91">
+        <path style="fill:#FAF7F2;stroke:#FAF7F2;stroke-miterlimit:10;stroke-width:0.23px;" d="M147.9,50.94c-2.24,4.54-8.88,24.17-13.28,39.02,0,0-8.9-47.93-34.22-46.21-.64.04-.5,2-.32,3.39.24,1.84.36,3.7.28,5.55-.46,11.22-5.8,22.02-8.79,27.24-.9,1.57-1.9,3.08-2.97,4.54-8.21,11.22-1.45,14.02,2.54,14.71,1.1.19,2.23.22,3.35.15,3.53-.23,6.32.58,8.35,1.58,1.87.92,3.49,2.29,4.75,3.94,3.73,4.9,7.12,6.66,7.12,6.66,8.62,3.98,9.92-10.86,9.92-10.86,7.24,1.52,13.54-.8,13.54-.8,2.82-.51,2.39-1.67,2.39-1.67.07-1.74-3.11-.36-3.11-.36-8.11,2.46-12.6.72-12.6.72,2.17-11.59-2.03-13.54-2.03-13.54-3.3-1.99-5.23-.45-6.28,1.18-.79,1.23-1.15,2.68-1.12,4.14.16,7.67,7.33,9.78,7.33,9.78-1.96,19.26-12.89,4.2-12.89,4.2-4.08-6.25-12.33-7.72-15.09-8.09-.81-.11-1.6-.38-2.28-.83-4.6-3.04.17-9.54.17-9.54,12.85-18.61,9.75-39.43,9.75-39.43,0,0,14.02-7.8,28.67,48.52,0,0,2.18,6.63,4.42,0l12.8-39.04c.34-1.03.77-2.02,1.29-2.97.1-.18.2-.37.3-.54.89-1.59,2.69-2.6,4.27.56.15.31.41.56.73.69.33.14.75.15,1.1-.34.3-.43.32-1,.08-1.48-.69-1.41-2.66-4.67-5.68-3.43-1.14.47-1.93,1.45-2.48,2.55ZM118.14,93.56c-2.18-6.22,1.19-7.33,1.19-7.33,6.62-1.2,3.48,12.04,3.48,12.04-1.21-.6-2.12-1.27-2.78-1.86-.86-.77-1.51-1.76-1.89-2.85Z"/>
+      </svg>
+    </div>
+    <div class="intro-eyebrow">Otorrinolaringología · Mérida</div>
+    <div class="intro-line"></div>
+    <h1 class="intro-name">
+      <span class="first">Dra. Vannia</span>
+      <span class="last">Maldonado</span>
+    </h1>
+    <p class="intro-tagline">Tu nariz, tu mejor perfil</p>
+  </div>
+</div>
+
+<div class="main-content" id="mainContent">
+
+<!-- ============== NAVIGATION ============== -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240.94 155.91">
+        <path style="stroke-miterlimit:10;stroke-width:0.23px;" d="M147.9,50.94c-2.24,4.54-8.88,24.17-13.28,39.02,0,0-8.9-47.93-34.22-46.21-.64.04-.5,2-.32,3.39.24,1.84.36,3.7.28,5.55-.46,11.22-5.8,22.02-8.79,27.24-.9,1.57-1.9,3.08-2.97,4.54-8.21,11.22-1.45,14.02,2.54,14.71,1.1.19,2.23.22,3.35.15,3.53-.23,6.32.58,8.35,1.58,1.87.92,3.49,2.29,4.75,3.94,3.73,4.9,7.12,6.66,7.12,6.66,8.62,3.98,9.92-10.86,9.92-10.86,7.24,1.52,13.54-.8,13.54-.8,2.82-.51,2.39-1.67,2.39-1.67.07-1.74-3.11-.36-3.11-.36-8.11,2.46-12.6.72-12.6.72,2.17-11.59-2.03-13.54-2.03-13.54-3.3-1.99-5.23-.45-6.28,1.18-.79,1.23-1.15,2.68-1.12,4.14.16,7.67,7.33,9.78,7.33,9.78-1.96,19.26-12.89,4.2-12.89,4.2-4.08-6.25-12.33-7.72-15.09-8.09-.81-.11-1.6-.38-2.28-.83-4.6-3.04.17-9.54.17-9.54,12.85-18.61,9.75-39.43,9.75-39.43,0,0,14.02-7.8,28.67,48.52,0,0,2.18,6.63,4.42,0l12.8-39.04c.34-1.03.77-2.02,1.29-2.97.1-.18.2-.37.3-.54.89-1.59,2.69-2.6,4.27.56.15.31.41.56.73.69.33.14.75.15,1.1-.34.3-.43.32-1,.08-1.48-.69-1.41-2.66-4.67-5.68-3.43-1.14.47-1.93,1.45-2.48,2.55ZM118.14,93.56c-2.18-6.22,1.19-7.33,1.19-7.33,6.62-1.2,3.48,12.04,3.48,12.04-1.21-.6-2.12-1.27-2.78-1.86-.86-.77-1.51-1.76-1.89-2.85Z"/>
+      </svg>
+    </div>
+    <span class="nav-logo-text">Dra. Vannia <span class="accent">Maldonado</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#rinoplastia">Rinoplastía</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#contacto" class="nav-cta"><span><span class="nav-cta-dot"></span>Agendar cita</span></a></li>
+  </ul>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="hero">
+  <div class="hero-float f1"></div>
+  <div class="hero-float f2"></div>
+
+  <div class="hero-logo-mark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240.94 155.91">
+      <path d="M147.9,50.94c-2.24,4.54-8.88,24.17-13.28,39.02,0,0-8.9-47.93-34.22-46.21-.64.04-.5,2-.32,3.39.24,1.84.36,3.7.28,5.55-.46,11.22-5.8,22.02-8.79,27.24-.9,1.57-1.9,3.08-2.97,4.54-8.21,11.22-1.45,14.02,2.54,14.71,1.1.19,2.23.22,3.35.15,3.53-.23,6.32.58,8.35,1.58,1.87.92,3.49,2.29,4.75,3.94,3.73,4.9,7.12,6.66,7.12,6.66,8.62,3.98,9.92-10.86,9.92-10.86,7.24,1.52,13.54-.8,13.54-.8,2.82-.51,2.39-1.67,2.39-1.67.07-1.74-3.11-.36-3.11-.36-8.11,2.46-12.6.72-12.6.72,2.17-11.59-2.03-13.54-2.03-13.54-3.3-1.99-5.23-.45-6.28,1.18-.79,1.23-1.15,2.68-1.12,4.14.16,7.67,7.33,9.78,7.33,9.78-1.96,19.26-12.89,4.2-12.89,4.2-4.08-6.25-12.33-7.72-15.09-8.09-.81-.11-1.6-.38-2.28-.83-4.6-3.04.17-9.54.17-9.54,12.85-18.61,9.75-39.43,9.75-39.43,0,0,14.02-7.8,28.67,48.52,0,0,2.18,6.63,4.42,0l12.8-39.04c.34-1.03.77-2.02,1.29-2.97.1-.18.2-.37.3-.54.89-1.59,2.69-2.6,4.27.56.15.31.41.56.73.69.33.14.75.15,1.1-.34.3-.43.32-1,.08-1.48-.69-1.41-2.66-4.67-5.68-3.43-1.14.47-1.93,1.45-2.48,2.55ZM118.14,93.56c-2.18-6.22,1.19-7.33,1.19-7.33,6.62-1.2,3.48,12.04,3.48,12.04-1.21-.6-2.12-1.27-2.78-1.86-.86-.77-1.51-1.76-1.89-2.85Z"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow hero-animate delay-1">Otorrinolaringología · Mérida, Yucatán</div>
+    <h1>
+      <span class="split-line" id="splitLine1">
+        <span class="split-word"><span>Tu</span></span>
+        <span class="split-word"><span>nariz,</span></span>
+      </span>
+      <br>
+      <span class="split-line accent-wrapper" id="splitLine2">
+        <span class="accent">
+          <span class="split-word"><span>tu</span></span>
+          <span class="split-word"><span>mejor</span></span>
+          <span class="split-word"><span>perfil.</span></span>
+        </span>
+      </span>
+    </h1>
+    <p class="hero-tagline hero-animate delay-3">Rinoplastía ultrasónica con formación internacional<br>y sensibilidad mexicana.</p>
+    <p class="hero-description hero-animate delay-4">Otorrinolaringóloga certificada por el Consejo Mexicano. Especializada en rinoplastía ultrasónica, una técnica de vanguardia que ofrece resultados naturales con menor trauma quirúrgico.</p>
+
+    <div class="hero-ctas hero-animate delay-5">
+      <a href="#contacto" class="btn-primary"><span>Agendar valoración <span class="arrow">→</span></span></a>
+      <a href="#rinoplastia" class="btn-secondary">Conocer la técnica</a>
+    </div>
+
+    <div class="hero-credentials hero-animate delay-6">
+      <div class="credential-item">
+        <div class="credential-number" data-target="10" data-suffix="+">0+</div>
+        <div class="credential-label">Años de formación</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-number" data-target="44">0</div>
+        <div class="credential-label">Reseñas verificadas</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-number" data-target="4">0</div>
+        <div class="credential-label">Países de formación</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-portrait hero-animate delay-3">
+    <div class="portrait-frame">
+      <div class="portrait-decoration"></div>
+      <div class="portrait-decoration-bottom"></div>
+
+      <div class="portrait-image-wrapper parallax-element">
+        <img src="vannia.jpg" alt="Dra. Vannia Maldonado, Otorrinolaringóloga en Mérida, Yucatán" class="portrait-image" />
+        <div class="portrait-monogram">V</div>
+      </div>
+
+      <div class="portrait-label">
+        <div class="portrait-label-name">Dra. Vannia Maldonado</div>
+        <div class="portrait-label-role">Otorrinolaringóloga</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MARQUEE ============== -->
+<div class="marquee-band">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-item-title">UNAM</span><span class="marquee-item-detail">Médica Cirujana</span></div>
+    <div class="marquee-divider"></div>
+    <div class="marquee-item"><span class="marquee-item-title">Consejo Mexicano</span><span class="marquee-item-detail">Otorrinolaringología</span></div>
+    <div class="marquee-divider"></div>
+    <div class="marquee-item"><span class="marquee-item-title">Brasil</span><span class="marquee-item-detail">Rinología & Cirugía Plástica</span></div>
+    <div class="marquee-divider"></div>
+    <div class="marquee-item"><span class="marquee-item-title">España</span><span class="marquee-item-detail">Cirugía de Base de Cráneo</span></div>
+    <div class="marquee-divider"></div>
+    <div class="marquee-item"><span class="marquee-item-title">Ecuador</span><span class="marquee-item-detail">Fellowship en Rinología</span></div>
+    <div class="marquee-divider"></div>
+    <div class="marquee-item"><span class="marquee-item-title">UNAM</span><span class="marquee-item-detail">Médica Cirujana</span></div>
+    <div class="marquee-divider"></div>
+    <div class="marquee-item"><span class="marquee-item-title">Consejo Mexicano</span><span class="marquee-item-detail">Otorrinolaringología</span></div>
+    <div class="marquee-divider"></div>
+    <div class="marquee-item"><span class="marquee-item-title">Brasil</span><span class="marquee-item-detail">Rinología & Cirugía Plástica</span></div>
+    <div class="marquee-divider"></div>
+    <div class="marquee-item"><span class="marquee-item-title">España</span><span class="marquee-item-detail">Cirugía de Base de Cráneo</span></div>
+    <div class="marquee-divider"></div>
+    <div class="marquee-item"><span class="marquee-item-title">Ecuador</span><span class="marquee-item-detail">Fellowship en Rinología</span></div>
+    <div class="marquee-divider"></div>
+  </div>
+</div>
+
+<!-- ============== ABOUT ============== -->
+<section class="about" id="sobre-mi">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Sobre la doctora</div>
+    <h2 class="section-title">Formación internacional. <span class="italic">Sensibilidad mexicana.</span></h2>
+    <p class="section-intro">Cada nariz es un proyecto único. Cada paciente, una historia. Mi misión es combinar la precisión de las técnicas más avanzadas con un trato humano que entienda que detrás de cada cirugía hay una vida.</p>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-visual reveal-clip">
+      <svg viewBox="0 0 400 533" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+        <defs>
+          <linearGradient id="abtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#F4DEC4"/>
+            <stop offset="100%" stop-color="#ECCEAB"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="533" fill="url(#abtGrad)"/>
+        <g transform="translate(200, 130) scale(0.45)">
+          <path d="M -70,-30 c-2.24,4.54,-8.88,24.17,-13.28,39.02,0,0,-8.9,-47.93,-34.22,-46.21,-.64,.04,-.5,2,-.32,3.39,.24,1.84,.36,3.7,.28,5.55,-.46,11.22,-5.8,22.02,-8.79,27.24,-.9,1.57,-1.9,3.08,-2.97,4.54,-8.21,11.22,-1.45,14.02,2.54,14.71,1.1,.19,2.23,.22,3.35,.15,3.53,-.23,6.32,.58,8.35,1.58,1.87,.92,3.49,2.29,4.75,3.94,3.73,4.9,7.12,6.66,7.12,6.66,8.62,3.98,9.92,-10.86,9.92,-10.86,7.24,1.52,13.54,-.8,13.54,-.8,2.82,-.51,2.39,-1.67,2.39,-1.67,.07,-1.74,-3.11,-.36,-3.11,-.36,-8.11,2.46,-12.6,.72,-12.6,.72,2.17,-11.59,-2.03,-13.54,-2.03,-13.54,-3.3,-1.99,-5.23,-.45,-6.28,1.18,-.79,1.23,-1.15,2.68,-1.12,4.14,.16,7.67,7.33,9.78,7.33,9.78,-1.96,19.26,-12.89,4.2,-12.89,4.2,-4.08,-6.25,-12.33,-7.72,-15.09,-8.09,-.81,-.11,-1.6,-.38,-2.28,-.83,-4.6,-3.04,.17,-9.54,.17,-9.54,12.85,-18.61,9.75,-39.43,9.75,-39.43,0,0,14.02,-7.8,28.67,48.52,0,0,2.18,6.63,4.42,0l12.8,-39.04c.34,-1.03,.77,-2.02,1.29,-2.97,.1,-.18,.2,-.37,.3,-.54,.89,-1.59,2.69,-2.6,4.27,.56,.15,.31,.41,.56,.73,.69,.33,.14,.75,.15,1.1,-.34,.3,-.43,.32,-1,.08,-1.48,-.69,-1.41,-2.66,-4.67,-5.68,-3.43,-1.14,.47,-1.93,1.45,-2.48,2.55Z" fill="#3D332A" opacity="0.7"/>
+        </g>
+        <line x1="80" y1="220" x2="320" y2="220" stroke="#B19A7B" stroke-width="0.8"/>
+        <text x="200" y="260" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="500" letter-spacing="3" fill="#3D332A" text-anchor="middle" opacity="0.7">OTORRINOLARINGÓLOGA · CIRUJANA</text>
+        <text x="200" y="290" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#B19A7B" text-anchor="middle">Mérida · Yucatán · México</text>
+        <g transform="translate(200, 360)">
+          <circle r="40" fill="none" stroke="#B19A7B" stroke-width="0.5"/>
+          <circle r="55" fill="none" stroke="#B19A7B" stroke-width="0.3" opacity="0.5"/>
+          <text font-family="Fraunces, serif" font-size="32" font-style="italic" fill="#3D332A" text-anchor="middle" y="10">est.</text>
+          <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="500" letter-spacing="2" fill="#3D332A" text-anchor="middle" y="30">2014</text>
+        </g>
+        <line x1="120" y1="450" x2="280" y2="450" stroke="#B19A7B" stroke-width="0.5"/>
+        <text x="200" y="475" font-family="Fraunces, serif" font-size="20" font-style="italic" fill="#3D332A" text-anchor="middle">Tu nariz, tu mejor perfil</text>
+      </svg>
+    </div>
+
+    <div class="about-content reveal-right">
+      <h3>Mi camino</h3>
+      <p>Soy Médica Cirujana egresada de la Facultad de Medicina de la UNAM, con especialidad en Otorrinolaringología y Cirugía de Cabeza y Cuello en la Ciudad de México, también avalada por la UNAM.</p>
+      <p>Mi formación me llevó por tres continentes: realicé rotaciones observacionales en Rinología y Cirugía Plástica Facial en Uberlandia, Brasil, y en Rinología y Cirugía de Base de Cráneo Anterior en Sevilla, España. Posteriormente completé un Fellowship en Rinología y Cirugía Plástica Facial en Cuenca, Ecuador.</p>
+      <p>Soy Otorrinolaringóloga certificada por el Consejo Mexicano de Otorrinolaringología y Cirugía de Cabeza y Cuello, y socio numerario tanto de la Sociedad Mexicana de Otorrinolaringología como de la Sociedad Mexicana de Rinología y Cirugía Plástica Facial.</p>
+
+      <h3>Lo que me apasiona</h3>
+      <p>Estoy para ayudarte con procedimientos clínicos y quirúrgicos de Otorrinolaringología. Pero lo que más me apasiona, lo que me lleva a estudiar cada día, es la <em>Rinoplastía Ultrasónica</em>: una técnica de vanguardia que cambia vidas con resultados naturales y recuperaciones más amables.</p>
+
+      <h3>Trayectoria</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-place">Universidad Nacional Autónoma de México</div>
+          <div class="timeline-detail">Médica Cirujana · Facultad de Medicina</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-place">Uberlandia, Brasil</div>
+          <div class="timeline-detail">Rotación en Rinología y Cirugía Plástica Facial</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-place">Sevilla, España</div>
+          <div class="timeline-detail">Rotación en Rinología y Cirugía de Base de Cráneo Anterior</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-place">Cuenca, Ecuador</div>
+          <div class="timeline-detail">Fellowship en Rinología y Cirugía Plástica Facial</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-place">Diplomados especializados</div>
+          <div class="timeline-detail">Rinología y Cirugía Facial UNAM · Laringología y Fonocirugía · Vértigo y Trastornos del Equilibrio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== RINOPLASTIA con animated nose SVG ============== -->
+<section class="rinoplastia" id="rinoplastia">
+
+  <!-- Animated waves background -->
+  <div class="rinoplastia-waves">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="none">
+      <path d="M 0,200 Q 300,150 600,200 T 1200,200"/>
+      <path d="M 0,400 Q 300,350 600,400 T 1200,400"/>
+      <path d="M 0,600 Q 300,550 600,600 T 1200,600"/>
+    </svg>
+  </div>
+
+  <!-- Animated nose silhouette -->
+  <div class="nose-svg-container" id="noseContainer">
+    <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 100,20 Q 95,40 92,60 Q 88,80 85,100 Q 82,120 80,140 Q 78,160 85,175 Q 92,190 100,200 Q 108,210 118,215 Q 130,220 140,218 Q 145,210 142,200 Q 138,190 135,185 Q 130,178 125,175 Q 118,170 112,168 Q 108,165 105,160 Q 102,150 100,140 Q 98,120 100,100 Q 102,80 105,60 Q 108,40 105,25 Q 102,18 100,20 Z"/>
+      <path d="M 95,50 Q 110,55 120,70" stroke-width="1"/>
+      <path d="M 108,165 Q 120,170 128,180" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="rinoplastia-content">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">La técnica que cambia vidas</div>
+      <h2 class="section-title">Rinoplastía <span class="italic">Ultrasónica.</span></h2>
+      <p class="section-intro">La evolución de la cirugía nasal. Mediante ondas ultrasónicas de alta precisión, esculpimos los huesos nasales con una delicadeza imposible para los instrumentos tradicionales. Resultado: cirugías más predecibles, menos trauma, y recuperaciones notablemente más rápidas.</p>
+    </div>
+
+    <div class="rinoplastia-grid">
+      <div class="reveal-left">
+        <div class="technique-comparison">
+          <h4>Tradicional vs. Ultrasónica</h4>
+          <div class="technique-row">
+            <div class="technique-label">Precisión del corte óseo</div>
+            <div class="technique-traditional">Martillo y formón</div>
+            <div class="technique-ultrasonic">Ondas ultrasónicas selectivas</div>
+          </div>
+          <div class="technique-row">
+            <div class="technique-label">Daño a tejidos blandos</div>
+            <div class="technique-traditional">Trauma significativo</div>
+            <div class="technique-ultrasonic">Mínimo, preserva tejidos</div>
+          </div>
+          <div class="technique-row">
+            <div class="technique-label">Inflamación post-op</div>
+            <div class="technique-traditional">Severa, hasta 3 semanas</div>
+            <div class="technique-ultrasonic">Reducida, recuperación más rápida</div>
+          </div>
+          <div class="technique-row">
+            <div class="technique-label">Moretones</div>
+            <div class="technique-traditional">Pronunciados y prolongados</div>
+            <div class="technique-ultrasonic">Mucho menores</div>
+          </div>
+          <div class="technique-row">
+            <div class="technique-label">Resultado estético</div>
+            <div class="technique-traditional">Predecible</div>
+            <div class="technique-ultrasonic">Más natural y refinado</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rinoplastia-text reveal-right">
+        <h3>Una técnica para narices que respiran y se ven hermosas.</h3>
+        <p>La rinoplastía ultrasónica permite remodelar la estructura ósea con una precisión submilimétrica. Se trabajan únicamente los huesos sin dañar la mucosa, los cartílagos circundantes ni los vasos sanguíneos.</p>
+        <p>Esto se traduce en una cirugía más controlada, donde puedo predecir los resultados con mayor exactitud y donde la paciente experimenta una recuperación radicalmente diferente a la que se contaba antes.</p>
+
+        <div class="rinoplastia-features">
+          <div class="feature-item">
+            <div class="feature-icon">a</div>
+            <div class="feature-text">
+              <strong>Resultados naturales</strong>
+              <span>Conservamos la armonía facial, evitando el aspecto "operado".</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">b</div>
+            <div class="feature-text">
+              <strong>Recuperación amable</strong>
+              <span>Menos inflamación y moretones. Vida social más pronto.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">c</div>
+            <div class="feature-text">
+              <strong>Funcional + estético</strong>
+              <span>Mejoramos la respiración mientras refinamos la forma.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">d</div>
+            <div class="feature-text">
+              <strong>Planeación digital</strong>
+              <span>Visualizamos juntas el resultado antes del quirófano.</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 2.5rem">
+          <a href="#contacto" class="btn-primary"><span>Agenda tu valoración <span class="arrow">→</span></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ANTES/DESPUES SLIDER ============== -->
+<section class="before-after-section" id="resultados">
+  <div class="section-header reveal" style="margin: 0 auto 0; text-align: center;">
+    <div class="section-eyebrow" style="justify-content: center;">Resultados visibles</div>
+    <h2 class="section-title">Antes <span class="italic">y después.</span></h2>
+    <p class="section-intro" style="margin: 0 auto;">Desliza el control para ver la transformación. La rinoplastía ultrasónica permite resultados sutiles, naturales y armónicos con tu rostro.</p>
+  </div>
+
+  <div class="before-after-container reveal-scale" id="baContainer">
+    <!-- AFTER (back layer) -->
+    <svg class="ba-image ba-after" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="afterBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#F5F0EA"/>
+          <stop offset="100%" stop-color="#ECCEAB"/>
+        </linearGradient>
+        <linearGradient id="afterSkin" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#F5DCC5"/>
+          <stop offset="100%" stop-color="#E8C9A8"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="500" fill="url(#afterBg)"/>
+      <!-- Refined nose profile -->
+      <g transform="translate(380, 150)">
+        <!-- Face profile -->
+        <path d="M 80,0 Q 75,20 70,40 L 65,80 Q 60,90 55,110 L 45,140 Q 40,155 50,165 L 55,175 Q 60,180 70,180 L 90,180 Q 100,180 105,175 Q 100,170 90,165 Q 80,160 75,150 L 75,140 L 80,135 L 85,130 Q 90,120 88,110 Q 85,90 82,75 Q 80,55 78,35 Q 76,20 80,0 Z" fill="url(#afterSkin)" stroke="#B89572" stroke-width="0.8"/>
+        <!-- Refined nose - smoother profile -->
+        <path d="M 80,0 Q 78,15 75,30 Q 70,55 65,80 Q 60,100 58,115 Q 60,125 65,130 L 75,140" stroke="#A0826A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Eye -->
+        <ellipse cx="68" cy="55" rx="3" ry="2" fill="#3A2A1F"/>
+        <!-- Eyebrow -->
+        <path d="M 60,45 Q 68,42 75,46" stroke="#3A2A1F" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Lip -->
+        <path d="M 70,170 Q 80,168 88,170 Q 85,175 80,175 Q 75,175 70,170 Z" fill="#B07B6B"/>
+        <!-- Cheek shadow -->
+        <ellipse cx="60" cy="100" rx="15" ry="20" fill="#D4928A" opacity="0.15"/>
+      </g>
+      <!-- Decorative elements -->
+      <text x="400" y="450" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#3D332A" text-anchor="middle" opacity="0.5">— Resultado natural y armónico —</text>
+    </svg>
+
+    <!-- BEFORE (front layer with clip-path) -->
+    <svg class="ba-image ba-before" id="baBefore" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="beforeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#E8DFD0"/>
+          <stop offset="100%" stop-color="#D4C5A8"/>
+        </linearGradient>
+        <linearGradient id="beforeSkin" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#F0D5BC"/>
+          <stop offset="100%" stop-color="#E0BD9C"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="500" fill="url(#beforeBg)"/>
+      <!-- Original nose profile with bump -->
+      <g transform="translate(380, 150)">
+        <path d="M 80,0 Q 75,20 72,40 L 68,75 Q 75,82 78,90 Q 65,100 58,115 L 45,140 Q 40,155 50,165 L 55,175 Q 60,180 70,180 L 90,180 Q 100,180 105,175 Q 100,170 90,165 Q 80,160 75,150 L 75,140 L 80,135 L 85,130 Q 90,120 88,110 Q 85,90 82,75 Q 80,55 78,35 Q 76,20 80,0 Z" fill="url(#beforeSkin)" stroke="#A8826A" stroke-width="0.8"/>
+        <!-- Original nose - has dorsal hump -->
+        <path d="M 80,0 Q 78,15 75,28 Q 72,42 70,55 Q 75,72 82,82 Q 75,92 65,100 Q 58,110 55,120 Q 60,130 65,130" stroke="#8F6F3F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="68" cy="55" rx="3" ry="2" fill="#3A2A1F"/>
+        <path d="M 60,45 Q 68,42 75,46" stroke="#3A2A1F" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M 70,170 Q 80,168 88,170 Q 85,175 80,175 Q 75,175 70,170 Z" fill="#B07B6B"/>
+        <ellipse cx="60" cy="100" rx="15" ry="20" fill="#D4928A" opacity="0.15"/>
+      </g>
+      <text x="400" y="450" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#3D332A" text-anchor="middle" opacity="0.5">— Antes de la cirugía —</text>
+    </svg>
+
+    <div class="ba-label before-label">Antes</div>
+    <div class="ba-label after-label">Después</div>
+
+    <div class="ba-divider" id="baDivider" style="left: 50%;"></div>
+  </div>
+
+  <p class="ba-instruction reveal">↔ Mueve el cursor sobre la imagen para revelar el resultado</p>
+</section>
+
+<!-- ============== HORIZONTAL SCROLL SERVICES ============== -->
+<section class="services-horizontal" id="servicios">
+  <div class="services-horizontal-header reveal">
+    <div class="section-eyebrow">Áreas de práctica</div>
+    <h2 class="section-title">Servicios <span class="italic">médico-quirúrgicos.</span></h2>
+    <p class="section-intro">Especialización integral en otorrinolaringología, cirugía nasal y cirugía facial. Cada procedimiento es planeado con precisión y ejecutado con la técnica más adecuada para cada paciente.</p>
+  </div>
+
+  <div class="services-horizontal-track" id="servicesTrack">
+    <div class="services-horizontal-inner">
+      <div class="services-flex" id="servicesFlex">
+        <div class="service-h-card">
+          <div class="service-h-number">— 01</div>
+          <h3 class="service-h-name">Cirugía Nasal Estética y Funcional</h3>
+          <p class="service-h-description">El corazón de mi práctica. Rinoplastías que combinan armonía estética con respiración óptima, usando técnicas de vanguardia.</p>
+          <ul class="service-h-procedures">
+            <li>Rinoplastía ultrasónica</li>
+            <li>Rinoplastía abierta</li>
+            <li>Rinoplastía estética</li>
+            <li>Rinoplastía correctora o funcional</li>
+            <li>Septoplastía nasal</li>
+            <li>Reparación de fractura nasal</li>
+            <li>Cirugía de cornetes</li>
+          </ul>
+        </div>
+
+        <div class="service-h-card">
+          <div class="service-h-number">— 02</div>
+          <h3 class="service-h-name">Cirugía Facial Complementaria</h3>
+          <p class="service-h-description">Procedimientos faciales que armonizan con la cirugía nasal para resultados completos y balanceados.</p>
+          <ul class="service-h-procedures">
+            <li>Rinoplastía + Bichectomía</li>
+            <li>Bichectomía (bolsas de Bichat)</li>
+            <li>Blefaroplastia (párpados)</li>
+            <li>Otoplastia (orejas)</li>
+            <li>Toxina botulínica estética</li>
+            <li>Retiro de lunares</li>
+          </ul>
+        </div>
+
+        <div class="service-h-card">
+          <div class="service-h-number">— 03</div>
+          <h3 class="service-h-name">Otorrinolaringología General</h3>
+          <p class="service-h-description">Atención integral de oído, nariz y garganta para adultos y niños. Diagnóstico preciso y tratamiento personalizado.</p>
+          <ul class="service-h-procedures">
+            <li>Sinusitis crónica y aguda</li>
+            <li>Cirugía de pólipos nasales</li>
+            <li>Cirugía endoscópica nasosinusal</li>
+            <li>Cirugía de ronquido y apnea</li>
+            <li>Amigdalectomía y adenoidectomía</li>
+            <li>Vértigo y trastornos del equilibrio</li>
+            <li>Trastornos de la voz</li>
+            <li>Lavado de oídos</li>
+          </ul>
+        </div>
+
+        <div class="service-h-card">
+          <div class="service-h-number">— 04</div>
+          <h3 class="service-h-name">Atención Pediátrica</h3>
+          <p class="service-h-description">Especial cuidado en el manejo de niños y pacientes con necesidades especiales. Trato empático y entornos amables.</p>
+          <ul class="service-h-procedures">
+            <li>Otitis recurrente</li>
+            <li>Adenoides y amigdalitis</li>
+            <li>Problemas respiratorios</li>
+            <li>Pacientes con autismo</li>
+            <li>Audiometría infantil</li>
+            <li>Hipoacusia infantil</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="horizontal-progress">
+      <div class="horizontal-progress-dot active"></div>
+      <div class="horizontal-progress-dot"></div>
+      <div class="horizontal-progress-dot"></div>
+      <div class="horizontal-progress-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STATS ============== -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number" data-target="44" data-suffix="+">0+</div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="4.9" data-suffix="/5">0/5</div>
+      <div class="stat-label">Calificación promedio</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="100" data-suffix="%">0%</div>
+      <div class="stat-label">Pacientes satisfechos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="33" data-suffix="+">0+</div>
+      <div class="stat-label">Tipos de procedimiento</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TESTIMONIALS - Real Doctoralia Reviews ============== -->
+<section class="testimonials" id="testimonios">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Reseñas verificadas · Doctoralia</div>
+    <h2 class="section-title">Lo que dicen quienes <span class="italic">han confiado en mí.</span></h2>
+    <p class="section-intro">Cada reseña es de pacientes reales que verificaron su cita y pago a través de Doctoralia. He tenido el privilegio de cuidar a familias enteras, niños, adultos mayores y pacientes con necesidades especiales.</p>
+
+    <div class="verified-band">
+      <div class="verified-icon">✓</div>
+      <div class="verified-text">
+        <strong>44 opiniones verificadas</strong> · Calificación promedio <strong>4.9/5</strong> · Verificadas por Doctoralia
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED TESTIMONIAL -->
+  <div class="featured-testimonial reveal-scale">
+    <div class="featured-badge">Reseña destacada · Pediátrico</div>
+    <div class="featured-stars">★ ★ ★ ★ ★</div>
+    <p class="featured-quote">"Mi hija fue la paciente, tiene autismo. La Doctora fue muy empática y profesional con su trato. Me gustó cómo le revisó los oídos, la nariz y los ojos, con mucho cuidado y siempre interactuando con ella para tranquilizarla. Mi hija se sintió muy cómoda y cooperó. Mi esposa y yo la recomendamos ampliamente."</p>
+    <div class="featured-author">
+      <div class="featured-author-info">
+        <div class="featured-avatar">R</div>
+        <div>
+          <div class="featured-name">Ruben Loria</div>
+          <div class="featured-meta">11 de enero de 2026 · Primera visita Otorrinolaringología</div>
+        </div>
+      </div>
+      <div class="featured-verification">Pago y cita verificados</div>
+    </div>
+  </div>
+
+  <!-- CAROUSEL -->
+  <div class="testimonials-carousel-wrapper reveal">
+    <div class="carousel-header">
+      <div class="carousel-label">Más reseñas de pacientes</div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="carouselPrev" aria-label="Anterior">←</button>
+        <button class="carousel-btn" id="carouselNext" aria-label="Siguiente">→</button>
+      </div>
+    </div>
+
+    <div class="carousel-track-container">
+      <div class="carousel-track" id="carouselTrack">
+
+        <!-- Review 1: Marel -->
+        <div class="carousel-card">
+          <div class="carousel-card-meta-top">
+            <div class="carousel-stars">★ ★ ★ ★ ★</div>
+            <div class="carousel-date">27 abr 2026</div>
+          </div>
+          <p class="carousel-quote">"Amable y muy profesional en su trabajo. Cuenta con los aparatos necesarios para la consulta."</p>
+          <div class="carousel-author">
+            <div class="carousel-avatar">M</div>
+            <div>
+              <div class="carousel-name">Marel</div>
+              <div class="carousel-service">Primera visita Otorrinolaringología</div>
+            </div>
+            <div class="carousel-verified">Verificada</div>
+          </div>
+        </div>
+
+        <!-- Review 2: Iker -->
+        <div class="carousel-card">
+          <div class="carousel-card-meta-top">
+            <div class="carousel-stars">★ ★ ★ ★ ★</div>
+            <div class="carousel-date">17 abr 2026</div>
+          </div>
+          <p class="carousel-quote">"Excelente Dra., muy cuidadosa, profesional, la recomiendo 100%."</p>
+          <div class="carousel-author">
+            <div class="carousel-avatar">I</div>
+            <div>
+              <div class="carousel-name">Iker</div>
+              <div class="carousel-service">Lavado de oídos</div>
+            </div>
+            <div class="carousel-verified">Verificada</div>
+          </div>
+        </div>
+
+        <!-- Review 3: Diego Caro -->
+        <div class="carousel-card">
+          <div class="carousel-card-meta-top">
+            <div class="carousel-stars">★ ★ ★ ★ ★</div>
+            <div class="carousel-date">28 mar 2026</div>
+          </div>
+          <p class="carousel-quote">"Todo excelente, atención de 10, la súper recomiendo."</p>
+          <div class="carousel-reply">
+            <span class="carousel-reply-label">Respuesta de la Dra. Vannia</span>
+            Gracias por la confianza, un gusto atenderle :)
+          </div>
+          <div class="carousel-author">
+            <div class="carousel-avatar">D</div>
+            <div>
+              <div class="carousel-name">Diego Caro</div>
+              <div class="carousel-service">Primera visita Otorrinolaringología</div>
+            </div>
+            <div class="carousel-verified">Verificada</div>
+          </div>
+        </div>
+
+        <!-- Review 4: Alicia Soto -->
+        <div class="carousel-card">
+          <div class="carousel-card-meta-top">
+            <div class="carousel-stars">★ ★ ★ ★ ★</div>
+            <div class="carousel-date">27 mar 2026</div>
+          </div>
+          <p class="carousel-quote">"Muy buena atención de la Dra., llevé a mi abuelito y fue muy cuidadosa y atenta con los procedimientos que le realizó. Es muy buena, la recomiendo mucho."</p>
+          <div class="carousel-reply">
+            <span class="carousel-reply-label">Respuesta de la Dra. Vannia</span>
+            Un gusto poder atenderles :))
+          </div>
+          <div class="carousel-author">
+            <div class="carousel-avatar">A</div>
+            <div>
+              <div class="carousel-name">Alicia Soto</div>
+              <div class="carousel-service">Adulto mayor · Primera visita</div>
+            </div>
+            <div class="carousel-verified">Verificada</div>
+          </div>
+        </div>
+
+        <!-- Review 5: ATG -->
+        <div class="carousel-card">
+          <div class="carousel-card-meta-top">
+            <div class="carousel-stars">★ ★ ★ ★ ★</div>
+            <div class="carousel-date">27 mar 2026</div>
+          </div>
+          <p class="carousel-quote">"Una doctora muy profesional y muy buen trato. La recomiendo."</p>
+          <div class="carousel-reply">
+            <span class="carousel-reply-label">Respuesta de la Dra. Vannia</span>
+            Un gusto poder atenderle
+          </div>
+          <div class="carousel-author">
+            <div class="carousel-avatar">A</div>
+            <div>
+              <div class="carousel-name">ATG</div>
+              <div class="carousel-service">Primera visita Otorrinolaringología</div>
+            </div>
+            <div class="carousel-verified">Verificada</div>
+          </div>
+        </div>
+
+        <!-- Review 6: Christian -->
+        <div class="carousel-card">
+          <div class="carousel-card-meta-top">
+            <div class="carousel-stars">★ ★ ★ ★ ★</div>
+            <div class="carousel-date">22 feb 2026</div>
+          </div>
+          <p class="carousel-quote">"Muy buena atención y revisión de la Dra., es muy atenta y nos dio mucha confianza, la recomendamos ampliamente."</p>
+          <div class="carousel-reply">
+            <span class="carousel-reply-label">Respuesta de la Dra. Vannia</span>
+            Un gusto poder atenderle :)
+          </div>
+          <div class="carousel-author">
+            <div class="carousel-avatar">C</div>
+            <div>
+              <div class="carousel-name">Christian</div>
+              <div class="carousel-service">Primera visita Otorrinolaringología</div>
+            </div>
+            <div class="carousel-verified">Verificada</div>
+          </div>
+        </div>
+
+        <!-- Review 7: Román Campos -->
+        <div class="carousel-card">
+          <div class="carousel-card-meta-top">
+            <div class="carousel-stars">★ ★ ★ ★ ★</div>
+            <div class="carousel-date">7 ene 2026</div>
+          </div>
+          <p class="carousel-quote">"Muy amable y clara la doctora, con las dudas que tenía acerca de la consulta."</p>
+          <div class="carousel-reply">
+            <span class="carousel-reply-label">Respuesta de la Dra. Vannia</span>
+            Un gusto poder atenderle :)
+          </div>
+          <div class="carousel-author">
+            <div class="carousel-avatar">R</div>
+            <div>
+              <div class="carousel-name">Román Campos</div>
+              <div class="carousel-service">Consulta valoración Rinoplastía</div>
+            </div>
+            <div class="carousel-verified">Verificada</div>
+          </div>
+        </div>
+
+        <!-- Review 8: Carlos Victoria -->
+        <div class="carousel-card">
+          <div class="carousel-card-meta-top">
+            <div class="carousel-stars">★ ★ ★ ★ ★</div>
+            <div class="carousel-date">7 sep 2025</div>
+          </div>
+          <p class="carousel-quote">"Excelente atención. Muy atenta y profesional. Muy buenas instalaciones."</p>
+          <div class="carousel-reply">
+            <span class="carousel-reply-label">Respuesta de la Dra. Vannia</span>
+            Un gusto atenderle :)
+          </div>
+          <div class="carousel-author">
+            <div class="carousel-avatar">C</div>
+            <div>
+              <div class="carousel-name">Carlos Victoria</div>
+              <div class="carousel-service">Primera visita Otorrinolaringología</div>
+            </div>
+            <div class="carousel-verified">Verificada</div>
+          </div>
+        </div>
+
+        <!-- Review 9: Sergio Narvaez -->
+        <div class="carousel-card">
+          <div class="carousel-card-meta-top">
+            <div class="carousel-stars">★ ★ ★ ★ ★</div>
+            <div class="carousel-date">21 ene 2026</div>
+          </div>
+          <p class="carousel-quote">"Todo bien. Pero faltó que respondiera aunque sea un mensaje para seguimiento a mi padecimiento. Pero se me hace una buena doctora."</p>
+          <div class="carousel-reply">
+            <span class="carousel-reply-label">Respuesta de la Dra. Vannia</span>
+            Un gusto poder atenderle :)
+          </div>
+          <div class="carousel-author">
+            <div class="carousel-avatar">S</div>
+            <div>
+              <div class="carousel-name">Sergio Narvaez</div>
+              <div class="carousel-service">Primera visita Otorrinolaringología</div>
+            </div>
+            <div class="carousel-verified">Verificada</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="carousel-progress-bar">
+      <div class="carousel-progress-fill" id="carouselProgress"></div>
+    </div>
+
+    <div class="carousel-counter">
+      <span id="carouselCurrent">1</span> / <span id="carouselTotal">9</span> reseñas mostradas
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="https://www.doctoralia.com.mx/vannia-maldonado/otorrinolaringologo/yucatan" target="_blank" class="doctoralia-badge">
+        <span class="dot"></span>
+        Ver las 44 reseñas en Doctoralia
+        <span style="opacity: 0.6;">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="cta-section">
+  <div class="cta-content reveal-scale">
+    <div class="section-eyebrow" style="justify-content:center; display:inline-flex">Tu transformación comienza aquí</div>
+    <h2>¿Lista para descubrir <span class="italic">tu mejor perfil?</span></h2>
+    <p>Agenda una valoración personalizada. En nuestra primera consulta evaluamos tu caso, hablamos de tus expectativas, y diseñamos juntas un plan que respete tu rostro y mejore tu vida.</p>
+    <div class="cta-buttons">
+      <a href="#contacto" class="btn-primary"><span>Agendar valoración <span class="arrow">→</span></span></a>
+      <a href="https://wa.me/529999915653" class="btn-whatsapp" target="_blank"><span>WhatsApp directo</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACT ============== -->
+<section class="contact" id="contacto">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Agenda tu cita</div>
+    <h2 class="section-title">Conversemos <span class="italic">sobre tu caso.</span></h2>
+    <p class="section-intro">Cada consulta es privada y personalizada. Te escucho, evalúo tu caso clínicamente, y te explico todas las opciones para que tomes la decisión más informada.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info reveal-left">
+      <div class="contact-info-block">
+        <div class="contact-label">Consultorio</div>
+        <div class="contact-value">
+          Hospitalia Zona Médica<br>
+          Amerimed Hospitals — Consultorio 401<br>
+          <span style="font-family:'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; color: var(--muted); font-weight: 300">
+            Calle 149, Tablajes 27790 y 24540<br>
+            Chichí Suárez, Mérida, Yucatán 97306
+          </span>
+        </div>
+      </div>
+      <div class="contact-info-block">
+        <div class="contact-label">Teléfono</div>
+        <div class="contact-value"><a href="tel:9999915653">999 991 5653</a></div>
+      </div>
+      <div class="contact-info-block">
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-value"><a href="https://wa.me/529999915653" target="_blank">Mensaje directo →</a></div>
+      </div>
+      <div class="contact-info-block">
+        <div class="contact-label">Instagram</div>
+        <div class="contact-value"><a href="https://www.instagram.com/dra.vannia.maldonado" target="_blank">@dra.vannia.maldonado</a></div>
+      </div>
+      <div class="contact-info-block">
+        <div class="contact-label">Idiomas de atención</div>
+        <div class="contact-value">Español · English</div>
+      </div>
+      <div class="contact-info-block">
+        <div class="contact-label">Pacientes</div>
+        <div class="contact-value">Adultos · Niños de cualquier edad</div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal-right">
+      <h3 class="form-title">Solicitar valoración</h3>
+      <div class="form-group">
+        <label>Nombre completo</label>
+        <input type="text" placeholder="Tu nombre" />
+      </div>
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" placeholder="999 000 0000" />
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="tu@correo.com" />
+      </div>
+      <div class="form-group">
+        <label>Motivo de consulta</label>
+        <select>
+          <option>Selecciona una opción</option>
+          <option>Valoración para Rinoplastía</option>
+          <option>Rinoplastía Ultrasónica</option>
+          <option>Septoplastía / problemas respiratorios</option>
+          <option>Sinusitis crónica</option>
+          <option>Cirugía de ronquido / apnea</option>
+          <option>Vértigo</option>
+          <option>Otorrinolaringología general</option>
+          <option>Cirugía facial complementaria</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Cuéntame sobre tu caso (opcional)</label>
+        <textarea placeholder="Comparte cualquier detalle que consideres relevante..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Formulario de demostración. Una vez en producción, esto enviará un email a la doctora vía Resend o similar.')"><span>Enviar solicitud</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240.94 155.91">
+          <path style="stroke-miterlimit:10;stroke-width:0.23px;" d="M147.9,50.94c-2.24,4.54-8.88,24.17-13.28,39.02,0,0-8.9-47.93-34.22-46.21-.64.04-.5,2-.32,3.39.24,1.84.36,3.7.28,5.55-.46,11.22-5.8,22.02-8.79,27.24-.9,1.57-1.9,3.08-2.97,4.54-8.21,11.22-1.45,14.02,2.54,14.71,1.1.19,2.23.22,3.35.15,3.53-.23,6.32.58,8.35,1.58,1.87.92,3.49,2.29,4.75,3.94,3.73,4.9,7.12,6.66,7.12,6.66,8.62,3.98,9.92-10.86,9.92-10.86,7.24,1.52,13.54-.8,13.54-.8,2.82-.51,2.39-1.67,2.39-1.67.07-1.74-3.11-.36-3.11-.36-8.11,2.46-12.6.72-12.6.72,2.17-11.59-2.03-13.54-2.03-13.54-3.3-1.99-5.23-.45-6.28,1.18-.79,1.23-1.15,2.68-1.12,4.14.16,7.67,7.33,9.78,7.33,9.78-1.96,19.26-12.89,4.2-12.89,4.2-4.08-6.25-12.33-7.72-15.09-8.09-.81-.11-1.6-.38-2.28-.83-4.6-3.04.17-9.54.17-9.54,12.85-18.61,9.75-39.43,9.75-39.43,0,0,14.02-7.8,28.67,48.52,0,0,2.18,6.63,4.42,0l12.8-39.04c.34-1.03.77-2.02,1.29-2.97.1-.18.2-.37.3-.54.89-1.59,2.69-2.6,4.27.56.15.31.41.56.73.69.33.14.75.15,1.1-.34.3-.43.32-1,.08-1.48-.69-1.41-2.66-4.67-5.68-3.43-1.14.47-1.93,1.45-2.48,2.55ZM118.14,93.56c-2.18-6.22,1.19-7.33,1.19-7.33,6.62-1.2,3.48,12.04,3.48,12.04-1.21-.6-2.12-1.27-2.78-1.86-.86-.77-1.51-1.76-1.89-2.85Z"/>
+        </svg>
+        <h3>Dra. Vannia <span class="italic">Maldonado</span></h3>
+      </div>
+      <p>Otorrinolaringóloga certificada por el Consejo Mexicano. Especialista en Rinoplastía Ultrasónica con formación internacional. Mérida, Yucatán.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#rinoplastia">Rinoplastía</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#rinoplastia">Rinoplastía Ultrasónica</a></li>
+        <li><a href="#servicios">Cirugía Nasal</a></li>
+        <li><a href="#servicios">Cirugía Facial</a></li>
+        <li><a href="#servicios">Otorrinolaringología</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:9999915653">999 991 5653</a></li>
+        <li><a href="https://wa.me/529999915653">WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/dra.vannia.maldonado">Instagram</a></li>
+        <li>Mérida, Yucatán</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Dra. Vannia Maldonado. Todos los derechos reservados. Cédula 12034973 / 14404635</div>
+    <div>Hecho con cuidado por <span class="vita">VITA Studio</span></div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  // ===== CUSTOM CURSOR =====
+  const cursor = document.getElementById('cursor');
+  const follower = document.getElementById('cursorFollower');
+  const cursorText = document.getElementById('cursorText');
+
+  if (window.matchMedia('(min-width: 1025px)').matches) {
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    function animateFollower() {
+      followerX += (mouseX - followerX) * 0.15;
+      followerY += (mouseY - followerY) * 0.15;
+      follower.style.left = followerX + 'px';
+      follower.style.top = followerY + 'px';
+      requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    // Contextual cursor with text
+    document.querySelectorAll('a:not(.nav-logo), button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+        follower.classList.add('hover');
+        let label = 'Ver';
+        if (el.classList.contains('btn-primary') || el.classList.contains('nav-cta')) label = 'Click';
+        else if (el.href && el.href.includes('wa.me')) label = 'Chat';
+        else if (el.href && el.href.includes('tel:')) label = 'Llamar';
+        else if (el.href && el.href.includes('instagram')) label = 'IG';
+        cursorText.textContent = label;
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+        follower.classList.remove('hover');
+      });
+    });
+
+    // Special handling for nav-logo - smaller subtle effect, no text
+    document.querySelectorAll('.nav-logo').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        follower.style.opacity = '0';
+      });
+      el.addEventListener('mouseleave', () => {
+        follower.style.opacity = '';
+      });
+    });
+
+    document.querySelectorAll('.service-h-card, .testimonial-card').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+        follower.classList.add('hover');
+        cursorText.textContent = 'Ver +';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+        follower.classList.remove('hover');
+      });
+    });
+  }
+
+  // ===== SCROLL PROGRESS BAR =====
+  const scrollProgress = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (window.scrollY / total) * 100;
+    scrollProgress.style.width = progress + '%';
+  });
+
+  // ===== INTRO ANIMATION =====
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const intro = document.getElementById('introOverlay');
+      const main = document.getElementById('mainContent');
+      intro.classList.add('hidden');
+      main.classList.add('visible');
+      document.body.classList.remove('intro-active');
+
+      setTimeout(() => {
+        intro.style.display = 'none';
+        // Trigger split text animation
+        document.getElementById('splitLine1').classList.add('visible');
+        document.getElementById('splitLine2').classList.add('visible');
+        // Animate hero counters
+        animateCounters(document.querySelectorAll('.hero-credentials .credential-number'));
+        // Show chapter indicator
+        document.getElementById('chapterIndicator').classList.add('visible');
+      }, 1600);
+    }, 4200);
+  });
+
+  // ===== ANIMATED COUNTERS with slot machine effect =====
+  function animateCounters(elements) {
+    elements.forEach(el => {
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const isFloat = target % 1 !== 0;
+      const duration = 2200;
+      const stepTime = 30;
+      const steps = duration / stepTime;
+      let step = 0;
+
+      // Slot machine phase: rapid random numbers
+      const slotPhaseSteps = Math.floor(steps * 0.6);
+
+      const timer = setInterval(() => {
+        step++;
+        if (step < slotPhaseSteps) {
+          // Random numbers during slot phase
+          const randomVal = Math.random() * target * 1.5;
+          el.textContent = (isFloat ? randomVal.toFixed(1) : Math.floor(randomVal)) + suffix;
+        } else {
+          // Settling phase
+          const progress = (step - slotPhaseSteps) / (steps - slotPhaseSteps);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = target * eased;
+          el.textContent = (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
+        }
+
+        if (step >= steps) {
+          el.textContent = (isFloat ? target.toFixed(1) : Math.floor(target)) + suffix;
+          clearInterval(timer);
+        }
+      }, stepTime);
+    });
+  }
+
+  // ===== REVEAL ON SCROLL =====
+  const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-clip, .timeline-item, .stat-item, .technique-row, .feature-item, .testimonial-card, .about-content h3');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const parent = entry.target.parentElement;
+        const groupedClasses = ['timeline-item', 'stat-item', 'technique-row', 'feature-item', 'testimonial-card'];
+        const isGrouped = groupedClasses.some(cls => entry.target.classList.contains(cls));
+
+        let delay = 0;
+        if (isGrouped) {
+          const siblings = Array.from(parent.children).filter(child =>
+            groupedClasses.some(cls => child.classList.contains(cls))
+          );
+          const idx = siblings.indexOf(entry.target);
+          delay = idx >= 0 ? idx * 120 : 0;
+        }
+
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+
+          if (entry.target.classList.contains('stat-item')) {
+            const counter = entry.target.querySelector('.stat-number[data-target]');
+            if (counter && !counter.dataset.animated) {
+              counter.dataset.animated = 'true';
+              animateCounters([counter]);
+            }
+          }
+        }, delay);
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+  allReveals.forEach(r => observer.observe(r));
+
+  // ===== Section in-view detection =====
+  const specialSections = document.querySelectorAll('.rinoplastia, .testimonials');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in-view');
+    });
+  }, { threshold: 0.2 });
+
+  specialSections.forEach(s => sectionObserver.observe(s));
+
+  // ===== NOSE SVG DRAW ANIMATION =====
+  const noseContainer = document.getElementById('noseContainer');
+  const noseObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        noseContainer.classList.add('drawn');
+      } else {
+        noseContainer.classList.remove('drawn');
+      }
+    });
+  }, { threshold: 0.3 });
+  noseObserver.observe(noseContainer);
+
+  // ===== SMOOTH SCROLL =====
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ===== NAV BACKGROUND ON SCROLL =====
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // ===== MAGNETIC BUTTONS =====
+  document.querySelectorAll('.btn-primary, .btn-whatsapp, .nav-cta').forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
+
+  // ===== PARALLAX =====
+  const parallaxElements = document.querySelectorAll('.parallax-element');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset;
+        parallaxElements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.bottom > 0 && rect.top < window.innerHeight) {
+            const rate = (scrolled - el.offsetTop) * 0.08;
+            el.style.transform = `translateY(${rate}px)`;
+          }
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // ===== BACKGROUND MORPHING based on scroll =====
+  const sections = [
+    { selector: '.hero', bg: '#FAF7F2' },
+    { selector: '.about', bg: '#FAF7F2' },
+    { selector: '.rinoplastia', bg: '#F5F0EA' },
+    { selector: '.before-after-section', bg: '#F0E8DC' },
+    { selector: '.services-horizontal', bg: '#FAF7F2' },
+    { selector: '.stats', bg: '#F5F0EA' },
+    { selector: '.testimonials', bg: '#6E5D43' },
+    { selector: '.cta-section', bg: '#F0E8DC' },
+    { selector: '.contact', bg: '#FAF7F2' }
+  ];
+
+  const bgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sec = sections.find(s => entry.target.matches(s.selector));
+        if (sec) {
+          // Just keep individual section bg colors
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+
+  sections.forEach(s => {
+    const el = document.querySelector(s.selector);
+    if (el) bgObserver.observe(el);
+  });
+
+  // ===== CHAPTER INDICATOR =====
+  const chapterDots = document.querySelectorAll('.chapter-dot');
+  const chapterSections = ['hero', 'sobre-mi', 'rinoplastia', 'resultados', 'servicios', 'testimonios', 'contacto'];
+
+  chapterDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const targetId = dot.dataset.target;
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY + window.innerHeight / 2;
+    let currentSection = 'hero';
+
+    chapterSections.forEach(id => {
+      const section = document.getElementById(id);
+      if (section && section.offsetTop <= scrollPos) {
+        currentSection = id;
+      }
+    });
+
+    chapterDots.forEach(dot => {
+      if (dot.dataset.target === currentSection) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  });
+
+  // ===== FLOATING CTA - Show only between hero and testimonials =====
+  const floatingCta = document.getElementById('floatingCta');
+  const testimoniosSection = document.getElementById('testimonios');
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    const hasScrolledEnough = currentScroll > 800;
+
+    // Hide once we reach testimonials section onwards
+    let shouldHide = false;
+    if (testimoniosSection) {
+      const testimoniosTop = testimoniosSection.offsetTop;
+      // Hide when we're 200px before testimonials starts
+      if (currentScroll + window.innerHeight > testimoniosTop + 200) {
+        shouldHide = true;
+      }
+    }
+
+    if (hasScrolledEnough && !shouldHide) {
+      floatingCta.classList.add('visible');
+    } else {
+      floatingCta.classList.remove('visible');
+    }
+  });
+
+  // ===== HORIZONTAL SCROLL FOR SERVICES =====
+  if (window.matchMedia('(min-width: 1025px)').matches) {
+    const servicesTrack = document.getElementById('servicesTrack');
+    const servicesFlex = document.getElementById('servicesFlex');
+    const progressDots = document.querySelectorAll('.horizontal-progress-dot');
+
+    if (servicesTrack && servicesFlex) {
+      // Set track height based on number of cards
+      const cards = servicesFlex.querySelectorAll('.service-h-card');
+      const totalScroll = servicesFlex.scrollWidth - window.innerWidth + 200;
+      servicesTrack.style.height = `${window.innerHeight + totalScroll}px`;
+
+      window.addEventListener('scroll', () => {
+        const rect = servicesTrack.getBoundingClientRect();
+        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+          const scrolled = -rect.top;
+          const maxScroll = totalScroll;
+          const progress = Math.min(Math.max(scrolled / maxScroll, 0), 1);
+          servicesFlex.style.transform = `translateX(${-progress * totalScroll}px)`;
+
+          // Update progress dots
+          const activeDot = Math.floor(progress * cards.length);
+          progressDots.forEach((dot, i) => {
+            if (i <= activeDot) dot.classList.add('active');
+            else dot.classList.remove('active');
+          });
+        }
+      });
+    }
+  }
+
+  // ===== TESTIMONIALS CAROUSEL =====
+  const carouselTrack = document.getElementById('carouselTrack');
+  const carouselPrev = document.getElementById('carouselPrev');
+  const carouselNext = document.getElementById('carouselNext');
+  const carouselProgress = document.getElementById('carouselProgress');
+  const carouselCurrent = document.getElementById('carouselCurrent');
+  const carouselTotal = document.getElementById('carouselTotal');
+
+  if (carouselTrack) {
+    const cards = carouselTrack.querySelectorAll('.carousel-card');
+    let currentIndex = 0;
+    let visibleCards = 3;
+    let autoplayTimer;
+
+    function getVisibleCards() {
+      if (window.innerWidth <= 640) return 1;
+      if (window.innerWidth <= 1024) return 2;
+      return 3;
+    }
+
+    function updateCarousel() {
+      visibleCards = getVisibleCards();
+      const maxIndex = Math.max(0, cards.length - visibleCards);
+      currentIndex = Math.min(currentIndex, maxIndex);
+
+      const card = cards[0];
+      const cardWidth = card.offsetWidth;
+      const gap = parseInt(getComputedStyle(carouselTrack).gap) || 24;
+      const offset = (cardWidth + gap) * currentIndex;
+
+      carouselTrack.style.transform = `translateX(-${offset}px)`;
+
+      // Update progress
+      const progress = ((currentIndex + visibleCards) / cards.length) * 100;
+      carouselProgress.style.width = Math.min(progress, 100) + '%';
+
+      // Update counter
+      const showing = Math.min(currentIndex + visibleCards, cards.length);
+      carouselCurrent.textContent = showing;
+      carouselTotal.textContent = cards.length;
+
+      // Update buttons
+      carouselPrev.disabled = currentIndex === 0;
+      carouselNext.disabled = currentIndex >= maxIndex;
+    }
+
+    function nextSlide() {
+      const maxIndex = Math.max(0, cards.length - getVisibleCards());
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // Loop back
+      }
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = Math.max(0, cards.length - getVisibleCards());
+      }
+      updateCarousel();
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayTimer = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+    }
+
+    carouselNext.addEventListener('click', () => {
+      nextSlide();
+      stopAutoplay();
+      startAutoplay(); // Restart timer
+    });
+
+    carouselPrev.addEventListener('click', () => {
+      prevSlide();
+      stopAutoplay();
+      startAutoplay();
+    });
+
+    // Pause on hover
+    carouselTrack.parentElement.addEventListener('mouseenter', stopAutoplay);
+    carouselTrack.parentElement.addEventListener('mouseleave', startAutoplay);
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carouselTrack.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      stopAutoplay();
+    });
+
+    carouselTrack.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+      }
+      startAutoplay();
+    });
+
+    // Recalculate on resize
+    window.addEventListener('resize', updateCarousel);
+
+    // Start carousel when in view
+    const carouselObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAutoplay();
+        } else {
+          stopAutoplay();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    carouselObserver.observe(carouselTrack.parentElement);
+
+    // Initialize
+    updateCarousel();
+  }
+
+  // ===== BEFORE/AFTER SLIDER =====
+  const baContainer = document.getElementById('baContainer');
+  const baBefore = document.getElementById('baBefore');
+  const baDivider = document.getElementById('baDivider');
+
+  if (baContainer && baBefore && baDivider) {
+    let isMouseInside = false;
+
+    baContainer.addEventListener('mousemove', (e) => {
+      const rect = baContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+      baDivider.style.left = `${percent}%`;
+    });
+
+    baContainer.addEventListener('mouseleave', () => {
+      baBefore.style.clipPath = 'inset(0 50% 0 0)';
+      baDivider.style.left = '50%';
+    });
+
+    // Touch support
+    baContainer.addEventListener('touchmove', (e) => {
+      const rect = baContainer.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+      baDivider.style.left = `${percent}%`;
+    });
+
+    // Initial state - 50% split
+    baBefore.style.clipPath = 'inset(0 50% 0 0)';
+  }
+</script>
+
+</body>
+</html>
