@@ -4784,13 +4784,29 @@
       const totalScroll = servicesFlex.scrollWidth - window.innerWidth + 200;
       servicesTrack.style.height = `${window.innerHeight + totalScroll}px`;
 
+      let isInServices = false;
+      let servicesScrollComplete = false;
+
       window.addEventListener('scroll', () => {
         const rect = servicesTrack.getBoundingClientRect();
-        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+        const isWithinServices = rect.top <= 0 && rect.bottom >= window.innerHeight;
+
+        isInServices = isWithinServices;
+
+        if (isWithinServices) {
           const scrolled = -rect.top;
           const maxScroll = totalScroll;
           const progress = Math.min(Math.max(scrolled / maxScroll, 0), 1);
           servicesFlex.style.transform = `translateX(${-progress * totalScroll}px)`;
+          servicesScrollComplete = progress >= 0.99;
+
+          // Fade in services as they appear
+          cards.forEach((card, idx) => {
+            const cardProgress = Math.max(0, (progress * cards.length - idx) / 1);
+            if (cardProgress > 0 && !card.classList.contains('visible')) {
+              card.classList.add('visible');
+            }
+          });
 
           // Update progress dots
           const activeDot = Math.floor(progress * cards.length);
@@ -4800,6 +4816,16 @@
           });
         }
       });
+
+      // Block scroll while in services section
+      document.addEventListener('wheel', (e) => {
+        const rect = servicesTrack.getBoundingClientRect();
+        const isWithinServices = rect.top <= 0 && rect.bottom >= window.innerHeight;
+
+        if (isWithinServices && !servicesScrollComplete) {
+          e.preventDefault();
+        }
+      }, { passive: false });
     }
   }
 
