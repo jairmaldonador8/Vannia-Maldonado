@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jairmaldonador8.github.io/Vannia-Maldonado/sitemap.xml

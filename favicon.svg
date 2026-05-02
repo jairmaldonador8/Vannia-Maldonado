@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .mocha { fill: #B19A7B; }
+      .cream { fill: #F5F0EA; }
+    </style>
+  </defs>
+  <rect width="64" height="64" class="cream"/>
+  <circle cx="32" cy="32" r="28" class="mocha"/>
+  <text x="32" y="40" font-family="serif" font-size="32" font-weight="bold" fill="#F5F0EA" text-anchor="middle" font-style="italic">V</text>
+</svg>
