@@ -1058,35 +1058,42 @@
   /* Portrait label mobile adjustments */
   @media (max-width: 768px) {
     .portrait-label {
-      bottom: 20px;
-      left: 20px;
-      padding: 0.8rem 1.2rem;
+      bottom: 15px;
+      left: 15px;
+      padding: 0.6rem 1rem;
+      max-width: 200px;
     }
 
     .portrait-label-name {
-      font-size: 0.95rem;
+      font-size: 0.8rem;
+      line-height: 1.2;
     }
 
     .portrait-label-role {
-      font-size: 0.55rem;
-      margin-top: 0.25rem;
+      font-size: 0.5rem;
+      margin-top: 0.4rem;
+      line-height: 1.3;
     }
   }
 
   @media (max-width: 480px) {
     .portrait-label {
-      bottom: 15px;
-      left: 15px;
-      padding: 0.6rem 1rem;
+      bottom: 12px;
+      left: 12px;
+      padding: 0.5rem 0.8rem;
+      max-width: 160px;
     }
 
     .portrait-label-name {
-      font-size: 0.85rem;
+      font-size: 0.7rem;
+      line-height: 1.2;
     }
 
     .portrait-label-role {
-      font-size: 0.5rem;
-      margin-top: 0.2rem;
+      font-size: 0.45rem;
+      margin-top: 0.35rem;
+      line-height: 1.2;
+      letter-spacing: 0.1em;
     }
   }
 
@@ -3338,6 +3345,20 @@
   .video-card:hover .play-icon {
     opacity: 1;
     transform: scale(1);
+  }
+
+  /* Mobile video preview improvements */
+  @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
+    .video-overlay {
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .play-icon {
+      opacity: 1;
+      transform: scale(1);
+      width: 50px;
+      height: 50px;
+    }
   }
 
   /* Video Modal */
