@@ -1668,67 +1668,96 @@
     box-shadow: 0 40px 100px rgba(110, 93, 67, 0.2);
   }
 
-  .ba-image {
+  /* Before-After Image Slider */
+  .ba-image-wrapper {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
-  .ba-after {
+  .ba-before-wrapper {
+    z-index: 2;
+  }
+
+  .ba-after-wrapper {
     z-index: 1;
   }
 
-  .ba-before {
-    z-index: 2;
-    clip-path: inset(0 0 0 0);
-    transition: clip-path 0.1s linear;
+  .ba-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .ba-divider {
     position: absolute;
     top: 0;
-    width: 3px;
+    width: 4px;
     height: 100%;
-    background: var(--bone);
-    z-index: 3;
-    pointer-events: none;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    background: var(--peach);
+    cursor: col-resize;
+    z-index: 5;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .ba-divider:hover {
+    box-shadow: 0 0 16px rgba(0,0,0,0.3);
   }
 
   .ba-divider::before {
-    content: '↔';
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--bone);
-    width: 50px; height: 50px;
+    width: 40px;
+    height: 40px;
+    background: var(--peach);
     border-radius: 50%;
-    color: var(--mocha-deep);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .ba-divider::after {
+    content: '◀ ▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    z-index: 1;
   }
 
   .ba-label {
     position: absolute;
-    top: 1.5rem;
-    z-index: 4;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--bone);
-    background: rgba(110, 93, 67, 0.85);
-    padding: 0.5rem 1.2rem;
-    backdrop-filter: blur(10px);
+    top: 16px;
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.9);
+    color: var(--ink);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    z-index: 3;
+    backdrop-filter: blur(4px);
   }
 
-  .ba-label.before-label { left: 1.5rem; }
-  .ba-label.after-label { right: 1.5rem; }
+  .before-label {
+    left: 16px;
+  }
+
+  .after-label {
+    right: 16px;
+  }
 
   .ba-instruction {
     text-align: center;
@@ -1740,58 +1769,23 @@
   }
 
   /* ===== RESPONSIVE BEFORE/AFTER ===== */
-  @media (max-width: 1024px) {
-    .before-after-container {
-      max-width: 100%;
-      margin: 2rem 0 0;
-      aspect-ratio: 4/5;
-    }
-
-    .ba-divider::before {
-      width: 45px;
-      height: 45px;
-      font-size: 1.2rem;
-    }
-
-    .ba-label {
-      font-size: 0.95rem;
-      padding: 0.4rem 1rem;
-    }
-
-    .ba-instruction {
-      font-size: 0.9rem;
-      margin-top: 1.5rem;
-    }
-  }
-
   @media (max-width: 768px) {
     .before-after-container {
-      aspect-ratio: 3/4;
-      margin: 1.5rem 0 0;
-    }
-
-    .ba-divider {
-      width: 4px;
+      aspect-ratio: 4 / 3;
     }
 
     .ba-divider::before {
-      width: 55px;
-      height: 55px;
-      font-size: 1.3rem;
+      width: 32px;
+      height: 32px;
+    }
+
+    .ba-divider::after {
+      font-size: 10px;
     }
 
     .ba-label {
-      top: 1rem;
-      font-size: 0.9rem;
-      padding: 0.35rem 0.9rem;
-    }
-
-    .ba-label.before-label { left: 1rem; }
-    .ba-label.after-label { right: 1rem; }
-
-    .ba-instruction {
-      font-size: 0.85rem;
-      margin-top: 1.2rem;
+      font-size: 0.7rem;
+      padding: 4px 8px;
     }
   }
 
@@ -1801,24 +1795,22 @@
     }
 
     .before-after-container {
-      aspect-ratio: 1/1.2;
+      aspect-ratio: 4 / 3;
       margin: 1.5rem 0 0;
     }
 
-    .ba-divider::before {
-      width: 50px;
-      height: 50px;
-      font-size: 1.2rem;
-    }
-
     .ba-label {
-      font-size: 0.8rem;
-      padding: 0.3rem 0.8rem;
+      font-size: 0.65rem;
+      padding: 3px 6px;
+      top: 12px;
     }
 
-    .ba-instruction {
-      font-size: 0.8rem;
-      margin-top: 1rem;
+    .before-label {
+      left: 12px;
+    }
+
+    .after-label {
+      right: 12px;
     }
 
     .section-header.reveal {
@@ -3191,6 +3183,123 @@
     .floating-cta { bottom: 1rem; right: 1rem; padding: 0.8rem 1.2rem; }
     .ba-label { font-size: 0.85rem; padding: 0.4rem 0.8rem; }
   }
+
+  /* ===== CASOS DE ÉXITO GALLERY ===== */
+  .success-cases {
+    padding: 4rem 2rem;
+    background: var(--bone);
+  }
+
+  .success-cases-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .success-cases-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 2rem;
+  }
+
+  .case-card {
+    background: var(--cream-light);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .case-card.visible {
+    animation: fadeInGallery 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: var(--stagger-delay, 0ms);
+  }
+
+  .case-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(110, 93, 67, 0.12);
+  }
+
+  .case-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .image-pair {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-pair img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    border-right: 2px solid var(--line);
+  }
+
+  .image-pair img:last-child {
+    border-right: none;
+  }
+
+  @keyframes fadeInGallery {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .success-cases {
+      padding: 3rem 1.5rem;
+    }
+
+    .cases-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .image-pair {
+      height: 250px;
+    }
+
+    .case-card:hover {
+      transform: scale(1.01);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cases-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .image-pair {
+      height: 200px;
+    }
+
+    .success-cases-title {
+      font-size: 1.4rem;
+    }
+  }
 </style>
 </head>
 <body class="intro-active">
@@ -3543,74 +3652,40 @@
   </div>
 
   <div class="before-after-container reveal-scale" id="baContainer">
-    <!-- AFTER (back layer) -->
-    <svg class="ba-image ba-after" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <linearGradient id="afterBg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#F5F0EA"/>
-          <stop offset="100%" stop-color="#ECCEAB"/>
-        </linearGradient>
-        <linearGradient id="afterSkin" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#F5DCC5"/>
-          <stop offset="100%" stop-color="#E8C9A8"/>
-        </linearGradient>
-      </defs>
-      <rect width="800" height="500" fill="url(#afterBg)"/>
-      <!-- Refined nose profile -->
-      <g transform="translate(380, 150)">
-        <!-- Face profile -->
-        <path d="M 80,0 Q 75,20 70,40 L 65,80 Q 60,90 55,110 L 45,140 Q 40,155 50,165 L 55,175 Q 60,180 70,180 L 90,180 Q 100,180 105,175 Q 100,170 90,165 Q 80,160 75,150 L 75,140 L 80,135 L 85,130 Q 90,120 88,110 Q 85,90 82,75 Q 80,55 78,35 Q 76,20 80,0 Z" fill="url(#afterSkin)" stroke="#B89572" stroke-width="0.8"/>
-        <!-- Refined nose - smoother profile -->
-        <path d="M 80,0 Q 78,15 75,30 Q 70,55 65,80 Q 60,100 58,115 Q 60,125 65,130 L 75,140" stroke="#A0826A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <!-- Eye -->
-        <ellipse cx="68" cy="55" rx="3" ry="2" fill="#3A2A1F"/>
-        <!-- Eyebrow -->
-        <path d="M 60,45 Q 68,42 75,46" stroke="#3A2A1F" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <!-- Lip -->
-        <path d="M 70,170 Q 80,168 88,170 Q 85,175 80,175 Q 75,175 70,170 Z" fill="#B07B6B"/>
-        <!-- Cheek shadow -->
-        <ellipse cx="60" cy="100" rx="15" ry="20" fill="#D4928A" opacity="0.15"/>
-      </g>
-      <!-- Decorative elements -->
-      <text x="400" y="450" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#3D332A" text-anchor="middle" opacity="0.5">— Resultado natural y armónico —</text>
-    </svg>
+    <!-- Before image (top layer) -->
+    <div class="ba-image-wrapper ba-before-wrapper">
+      <img
+        src="images/casos-exito/Antes y después/WhatsApp Image 2026-05-02 at 19.57.51 (1).jpeg"
+        alt="Antes de la cirugía"
+        class="ba-image ba-before"
+        loading="eager"
+        width="800"
+        height="500"
+      />
+      <div class="ba-label before-label">Antes</div>
+    </div>
 
-    <!-- BEFORE (front layer with clip-path) -->
-    <svg class="ba-image ba-before" id="baBefore" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <linearGradient id="beforeBg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#E8DFD0"/>
-          <stop offset="100%" stop-color="#D4C5A8"/>
-        </linearGradient>
-        <linearGradient id="beforeSkin" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#F0D5BC"/>
-          <stop offset="100%" stop-color="#E0BD9C"/>
-        </linearGradient>
-      </defs>
-      <rect width="800" height="500" fill="url(#beforeBg)"/>
-      <!-- Original nose profile with bump -->
-      <g transform="translate(380, 150)">
-        <path d="M 80,0 Q 75,20 72,40 L 68,75 Q 75,82 78,90 Q 65,100 58,115 L 45,140 Q 40,155 50,165 L 55,175 Q 60,180 70,180 L 90,180 Q 100,180 105,175 Q 100,170 90,165 Q 80,160 75,150 L 75,140 L 80,135 L 85,130 Q 90,120 88,110 Q 85,90 82,75 Q 80,55 78,35 Q 76,20 80,0 Z" fill="url(#beforeSkin)" stroke="#A8826A" stroke-width="0.8"/>
-        <!-- Original nose - has dorsal hump -->
-        <path d="M 80,0 Q 78,15 75,28 Q 72,42 70,55 Q 75,72 82,82 Q 75,92 65,100 Q 58,110 55,120 Q 60,130 65,130" stroke="#8F6F3F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <ellipse cx="68" cy="55" rx="3" ry="2" fill="#3A2A1F"/>
-        <path d="M 60,45 Q 68,42 75,46" stroke="#3A2A1F" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M 70,170 Q 80,168 88,170 Q 85,175 80,175 Q 75,175 70,170 Z" fill="#B07B6B"/>
-        <ellipse cx="60" cy="100" rx="15" ry="20" fill="#D4928A" opacity="0.15"/>
-      </g>
-      <text x="400" y="450" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#3D332A" text-anchor="middle" opacity="0.5">— Antes de la cirugía —</text>
-    </svg>
+    <!-- After image (bottom layer) -->
+    <div class="ba-image-wrapper ba-after-wrapper">
+      <img
+        src="images/casos-exito/Antes y después/WhatsApp Image 2026-05-02 at 19.58.11.jpeg"
+        alt="Después de la cirugía"
+        class="ba-image ba-after"
+        loading="eager"
+        width="800"
+        height="500"
+      />
+      <div class="ba-label after-label">Después</div>
+    </div>
 
-    <div class="ba-label before-label">Antes</div>
-    <div class="ba-label after-label">Después</div>
-
+    <!-- Draggable divider -->
     <div class="ba-divider" id="baDivider" style="left: 50%;"></div>
   </div>
 
-  <p class="ba-instruction reveal">↔ Mueve el cursor sobre la imagen para revelar el resultado</p>
+  <p class="ba-instruction reveal">↔ Mueve el cursor o desliza para revelar el resultado</p>
 
   <p class="ba-disclaimer reveal" style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #9C8A75; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-    <em>Nota:</em> Las ilustraciones mostradas son ilustrativas y representativas. Cada paciente es único y los resultados varían según sus características anatómicas, tipo de piel y objetivos personales. Durante la consulta inicial, utilizamos simulación digital para visualizar el resultado esperado de forma personalizada.
+    <em>Nota:</em> Los resultados mostrados son de pacientes reales con autorización. Cada paciente es único y los resultados varían según sus características anatómicas, tipo de piel y objetivos personales. Durante la consulta inicial, utilizamos simulación digital para visualizar el resultado esperado de forma personalizada.
   </p>
 </section>
 
@@ -3680,6 +3755,61 @@
         <li>Audiometría infantil</li>
         <li>Hipoacusia infantil</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CASOS DE ÉXITO SECTION -->
+<section class="success-cases">
+  <div class="success-cases-container">
+    <h2 class="success-cases-title">Casos de <span class="italic">Éxito.</span></h2>
+
+    <div class="cases-grid">
+      <!-- Case 1 -->
+      <div class="case-card" data-case="1">
+        <img src="images/casos-exito/Caso 1/WhatsApp Image 2026-05-02 at 19.52.50 (1).jpeg"
+             alt="Caso de éxito 1"
+             loading="lazy"
+             width="400" height="300" />
+      </div>
+
+      <!-- Case 2 -->
+      <div class="case-card" data-case="2">
+        <img src="images/casos-exito/Caso 2/WhatsApp Image 2026-05-02 at 19.53.17.jpeg"
+             alt="Caso de éxito 2"
+             loading="lazy"
+             width="400" height="300" />
+      </div>
+
+      <!-- Case 3 -->
+      <div class="case-card" data-case="3">
+        <img src="images/casos-exito/Caso 3/WhatsApp Image 2026-05-02 at 19.54.25.jpeg"
+             alt="Caso de éxito 3"
+             loading="lazy"
+             width="400" height="300" />
+      </div>
+
+      <!-- Case 4 -->
+      <div class="case-card" data-case="4">
+        <img src="images/casos-exito/Caso 4/WhatsApp Image 2026-05-02 at 19.56.14.jpeg"
+             alt="Caso de éxito 4"
+             loading="lazy"
+             width="400" height="300" />
+      </div>
+
+      <!-- Case 5 (has 2 images for before/after) -->
+      <div class="case-card" data-case="5">
+        <div class="image-pair">
+          <img src="images/casos-exito/Caso 5/WhatsApp Image 2026-05-02 at 19.59.09.jpeg"
+               alt="Caso 5 - Antes"
+               loading="lazy"
+               width="200" height="300" />
+          <img src="images/casos-exito/Caso 5/WhatsApp Image 2026-05-02 at 19.59.09 (1).jpeg"
+               alt="Caso 5 - Después"
+               loading="lazy"
+               width="200" height="300" />
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -4734,83 +4864,107 @@
     updateCarousel();
   }
 
-  // ===== BEFORE/AFTER SLIDER =====
-  const baContainer = document.getElementById('baContainer');
-  const baBefore = document.getElementById('baBefore');
-  const baDivider = document.getElementById('baDivider');
-  const baInstruction = document.querySelector('.ba-instruction');
+  // ===== BEFORE/AFTER IMAGE SLIDER =====
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('baContainer');
+    const divider = document.getElementById('baDivider');
+    const beforeWrapper = document.querySelector('.ba-before-wrapper');
+    let isActive = false;
 
-  if (baContainer && baBefore && baDivider) {
-    let isMouseInside = false;
-    let isDragging = false;
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    function updateDividerPosition(e) {
+      if (!isActive && e.type !== 'touchstart' && e.type !== 'touchmove') return;
 
-    // Update instruction based on device
-    if (baInstruction) {
-      if (isMobile) {
-        baInstruction.textContent = '👆 Toca y desliza para ver la transformación';
-      } else {
-        baInstruction.textContent = '↔ Mueve el cursor sobre la imagen para revelar el resultado';
+      const rect = container.getBoundingClientRect();
+      let x = e.clientX - rect.left;
+
+      if (e.touches) {
+        x = e.touches[0].clientX - rect.left;
       }
+
+      x = Math.max(0, Math.min(x, rect.width));
+
+      const percentage = (x / rect.width) * 100;
+
+      divider.style.left = percentage + '%';
+      beforeWrapper.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
     }
 
-    const updateSlider = (x, rect) => {
-      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
-      baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
-      baDivider.style.left = `${percent}%`;
-    };
+    divider.addEventListener('mousedown', function() {
+      isActive = true;
+      container.style.cursor = 'col-resize';
+    });
 
-    // Mouse events (desktop)
-    baContainer.addEventListener('mouseenter', () => { isMouseInside = true; });
-    baContainer.addEventListener('mouseleave', () => {
-      isMouseInside = false;
-      if (!isMobile) {
-        baBefore.style.clipPath = 'inset(0 50% 0 0)';
-        baDivider.style.left = '50%';
+    document.addEventListener('mouseup', function() {
+      isActive = false;
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (isActive) {
+        updateDividerPosition(e);
       }
     });
 
-    baContainer.addEventListener('mousemove', (e) => {
-      if (isMouseInside) {
-        const rect = baContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        updateSlider(x, rect);
+    container.addEventListener('mousemove', function(e) {
+      if (!isActive) {
+        updateDividerPosition(e);
       }
     });
 
-    // Touch events (mobile)
-    baContainer.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      e.preventDefault();
+    let touchStartX = 0;
+    container.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      isActive = true;
     });
 
-    baContainer.addEventListener('touchmove', (e) => {
-      if (isDragging) {
-        e.preventDefault();
-        const rect = baContainer.getBoundingClientRect();
-        const x = e.touches[0].clientX - rect.left;
-        updateSlider(x, rect);
+    container.addEventListener('touchend', function() {
+      isActive = false;
+    });
+
+    container.addEventListener('touchmove', function(e) {
+      const touchCurrentX = e.touches[0].clientX;
+      if (Math.abs(touchCurrentX - touchStartX) > 2) {
+        updateDividerPosition(e);
+        touchStartX = touchCurrentX;
       }
     });
 
-    baContainer.addEventListener('touchend', () => {
-      isDragging = false;
-    });
+    divider.style.left = '50%';
+    beforeWrapper.style.clipPath = 'inset(0 50% 0 0)';
+  });
+</script>
 
-    // Pointer events for better cross-device support
-    baContainer.addEventListener('pointerdown', () => { isDragging = true; });
-    baContainer.addEventListener('pointermove', (e) => {
-      if (isDragging) {
-        const rect = baContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        updateSlider(x, rect);
+<!-- Intersection Observer for Gallery Fade-In -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        // Calculate stagger delay based on position in grid
+        const cards = Array.from(document.querySelectorAll('.case-card'));
+        const cardIndex = cards.indexOf(entry.target);
+
+        // Set CSS custom property for animation delay (CSS handles animation)
+        entry.target.style.setProperty('--stagger-delay', (cardIndex * 100) + 'ms');
+
+        // Add visible class to trigger CSS animation
+        entry.target.classList.add('visible');
+
+        // Stop observing this element after triggering
+        observer.unobserve(entry.target);
       }
     });
-    baContainer.addEventListener('pointerup', () => { isDragging = false; });
+  }, observerOptions);
 
-    // Initial state - 50% split
-    baBefore.style.clipPath = 'inset(0 50% 0 0)';
-  }
+  // Observe all case cards
+  document.querySelectorAll('.case-card').forEach(function(card) {
+    observer.observe(card);
+  });
+});
 </script>
 
 </body>
