@@ -4668,10 +4668,12 @@
   // ===== INTRO ANIMATION WITH SCROLL SKIP =====
   let introComplete = false;
   let scrollTriggered = false;
+  let scrollListenerActive = true;
 
   function completeIntro() {
     if (introComplete) return;
     introComplete = true;
+    scrollListenerActive = false;
 
     const intro = document.getElementById('introOverlay');
     const main = document.getElementById('mainContent');
@@ -4688,26 +4690,31 @@
 
     setTimeout(() => {
       intro.style.display = 'none';
-      document.getElementById('splitLine1').classList.add('visible');
-      document.getElementById('splitLine2').classList.add('visible');
+      const splitLine1 = document.getElementById('splitLine1');
+      const splitLine2 = document.getElementById('splitLine2');
+      const chapterIndicator = document.getElementById('chapterIndicator');
+
+      if (splitLine1) splitLine1.classList.add('visible');
+      if (splitLine2) splitLine2.classList.add('visible');
+      if (chapterIndicator) chapterIndicator.classList.add('visible');
+
       animateCounters(document.querySelectorAll('.hero-credentials .credential-number'));
-      document.getElementById('chapterIndicator').classList.add('visible');
     }, 400);
   }
 
   // Detect scroll during intro - skip to content
-  window.addEventListener('scroll', () => {
-    if (!introComplete && window.scrollY > 100) {
+  window.addEventListener('scroll', (e) => {
+    if (scrollListenerActive && !introComplete) {
       scrollTriggered = true;
       completeIntro();
     }
-  }, { once: true });
+  });
 
   // Auto-complete intro after timeout
   window.addEventListener('load', () => {
     setTimeout(() => {
       completeIntro();
-    }, 1900); // Reduced from 4200 to match new intro timing
+    }, 1900);
   });
 
   // ===== ANIMATED COUNTERS with slot machine effect =====
