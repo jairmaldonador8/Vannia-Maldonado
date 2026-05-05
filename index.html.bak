@@ -3,55 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rinoplastía Ultrasónica Mérida | Dra. Vannia Maldonado · Otorrinolaringóloga</title>
-<meta name="description" content="Especialista en rinoplastía ultrasónica en Mérida. Otorrinolaringóloga con formación internacional en Brasil, España y Ecuador. Consulta disponible." />
-<meta property="og:type" content="website" />
-<meta property="og:locale" content="es_MX" />
-<meta property="og:url" content="https://jairmaldonador8.github.io/Vannia-Maldonado/" />
-<meta property="og:title" content="Rinoplastía Ultrasónica Mérida | Dra. Vannia Maldonado" />
-<meta property="og:description" content="Especialista en rinoplastía ultrasónica con formación internacional. Resultados naturales, menor trauma quirúrgico." />
-<meta property="og:image" content="https://jairmaldonador8.github.io/Vannia-Maldonado/vannia.jpg" />
-<meta property="og:image:alt" content="Dra. Vannia Maldonado, Otorrinolaringóloga especialista en rinoplastía ultrasónica" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Rinoplastía Ultrasónica Mérida | Dra. Vannia Maldonado" />
-<meta name="twitter:description" content="Especialista en rinoplastía ultrasónica con formación internacional. Resultados naturales, menor trauma quirúrgico." />
-<meta name="twitter:image" content="https://jairmaldonador8.github.io/Vannia-Maldonado/vannia.jpg" />
-<link rel="icon" type="image/svg+xml" href="/Vannia-Maldonado/favicon.svg" />
+<title>Dra. Vannia Maldonado · Otorrinolaringología & Rinoplastía Ultrasónica · Mérida</title>
+<meta name="description" content="Otorrinolaringóloga certificada con formación internacional en Brasil, España y Ecuador. Especialista en Rinoplastía Ultrasónica en Mérida, Yucatán." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Physician",
-  "name": "Dra. Vannia Maldonado",
-  "jobTitle": "Otorrinolaringóloga",
-  "description": "Especialista en rinoplastía ultrasónica. Formación internacional en Brasil, España y Ecuador.",
-  "url": "https://jairmaldonador8.github.io/Vannia-Maldonado/",
-  "image": "https://jairmaldonador8.github.io/Vannia-Maldonado/vannia.jpg",
-  "sameAs": [],
-  "areaServed": {
-    "@type": "City",
-    "name": "Mérida",
-    "addressRegion": "Yucatán",
-    "addressCountry": "MX"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Mérida",
-    "addressRegion": "Yucatán",
-    "addressCountry": "MX"
-  },
-  "medicalSpecialty": "Otorrinolaryngology",
-  "availableLanguage": ["es", "en"],
-  "knowsLanguage": ["es", "en"],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": 44
-  }
-}
-</script>
 <style>
   :root {
     --mocha: #B19A7B;
@@ -68,17 +24,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100%;
-  }
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -97,7 +43,8 @@
   /* ===== GRAIN OVERLAY ===== */
   .grain {
     position: fixed;
-    inset: 0;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     pointer-events: none;
     z-index: 9997;
     opacity: 0.04;
@@ -238,7 +185,8 @@
   /* ===== INTRO OVERLAY ===== */
   .intro-overlay {
     position: fixed;
-    inset: 0;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     background: var(--mocha);
     z-index: 1000;
     display: flex;
@@ -1055,48 +1003,6 @@
     font-weight: 600;
   }
 
-  /* Portrait label mobile adjustments */
-  @media (max-width: 768px) {
-    .portrait-label {
-      bottom: 15px;
-      left: 15px;
-      padding: 0.6rem 1rem;
-      max-width: 200px;
-    }
-
-    .portrait-label-name {
-      font-size: 0.8rem;
-      line-height: 1.2;
-    }
-
-    .portrait-label-role {
-      font-size: 0.5rem;
-      margin-top: 0.4rem;
-      line-height: 1.3;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .portrait-label {
-      bottom: 12px;
-      left: 12px;
-      padding: 0.5rem 0.8rem;
-      max-width: 160px;
-    }
-
-    .portrait-label-name {
-      font-size: 0.7rem;
-      line-height: 1.2;
-    }
-
-    .portrait-label-role {
-      font-size: 0.45rem;
-      margin-top: 0.35rem;
-      line-height: 1.2;
-      letter-spacing: 0.1em;
-    }
-  }
-
   .hero-logo-mark {
     position: absolute;
     top: 30%; left: -5%;
@@ -1122,7 +1028,7 @@
 
   .section-header {
     max-width: 700px;
-    margin-bottom: 2.5rem;
+    margin-bottom: 5rem;
   }
 
   .section-eyebrow {
@@ -1230,8 +1136,8 @@
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: 4rem;
-    align-items: center;
+    gap: 6rem;
+    align-items: start;
   }
 
   .about-visual {
@@ -1249,7 +1155,7 @@
     font-family: 'Fraunces', serif;
     font-size: 2rem;
     color: var(--ink);
-    margin: 0.5rem 0 0.5rem;
+    margin: 2.5rem 0 1rem;
     font-weight: 400;
     letter-spacing: -0.02em;
     position: relative;
@@ -1275,7 +1181,7 @@
     font-size: 1.05rem;
     line-height: 1.8;
     color: var(--ink);
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.2rem;
     font-weight: 300;
   }
 
@@ -1286,7 +1192,7 @@
   }
 
   .timeline {
-    margin-top: 0.8rem;
+    margin-top: 3rem;
     padding-left: 2rem;
     border-left: 1px solid var(--mocha);
     position: relative;
@@ -1304,7 +1210,7 @@
 
   .timeline-item {
     position: relative;
-    padding-bottom: 1.2rem;
+    padding-bottom: 2rem;
     opacity: 0;
     transform: translateX(-20px);
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -1527,96 +1433,6 @@
     font-weight: 700;
   }
 
-  /* ===== VERTICAL SCROLL ONLY (TRUE MOBILE ONLY) ===== */
-  @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
-    * {
-      touch-action: pan-y pinch-zoom;
-    }
-
-    input, textarea, select {
-      touch-action: auto;
-    }
-  }
-
-  /* ===== RESPONSIVE TECHNIQUE COMPARISON ===== */
-  @media (max-width: 1024px) {
-    .technique-comparison {
-      padding: 2rem;
-    }
-
-    .technique-row {
-      grid-template-columns: 1fr;
-      gap: 0.8rem;
-    }
-
-    .technique-label {
-      margin-bottom: 0.8rem;
-      font-size: 0.7rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .technique-comparison {
-      padding: 1.5rem;
-      margin: 0;
-      box-shadow: none;
-      background: transparent;
-    }
-
-    .technique-comparison h4 {
-      font-size: 1.3rem;
-      margin-bottom: 1.5rem;
-      padding: 0 1.5rem;
-    }
-
-    .technique-row {
-      padding: 1rem 1.5rem;
-      gap: 0.5rem;
-      margin: 0;
-    }
-
-    .technique-row:hover {
-      margin: 0;
-      padding: 1rem 1.5rem;
-      background: transparent;
-    }
-
-    .technique-traditional, .technique-ultrasonic {
-      font-size: 0.85rem;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .technique-comparison {
-      padding: 1rem;
-      margin: 0;
-    }
-
-    .technique-comparison h4 {
-      font-size: 1.15rem;
-      margin-bottom: 1rem;
-      padding: 0 1rem;
-    }
-
-    .technique-row {
-      padding: 0.8rem 1rem;
-    }
-
-    .technique-row:hover {
-      padding: 0.8rem 1rem;
-    }
-
-    .technique-label {
-      font-size: 0.65rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .technique-traditional, .technique-ultrasonic {
-      font-size: 0.8rem;
-      line-height: 1.4;
-    }
-  }
-
   .rinoplastia-text h3 {
     font-family: 'Fraunces', serif;
     font-size: 2.4rem;
@@ -1710,96 +1526,67 @@
     box-shadow: 0 40px 100px rgba(110, 93, 67, 0.2);
   }
 
-  /* Before-After Image Slider */
-  .ba-image-wrapper {
+  .ba-image {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
   }
 
-  .ba-before-wrapper {
-    z-index: 2;
-  }
-
-  .ba-after-wrapper {
+  .ba-after {
     z-index: 1;
   }
 
-  .ba-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  .ba-before {
+    z-index: 2;
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 0.1s linear;
   }
 
   .ba-divider {
     position: absolute;
     top: 0;
-    width: 4px;
+    width: 3px;
     height: 100%;
-    background: var(--peach);
-    cursor: col-resize;
-    z-index: 5;
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    transition: box-shadow 0.2s ease;
-  }
-
-  .ba-divider:hover {
-    box-shadow: 0 0 16px rgba(0,0,0,0.3);
+    background: var(--bone);
+    z-index: 3;
+    pointer-events: none;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
   }
 
   .ba-divider::before {
-    content: '';
+    content: '↔';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    background: var(--peach);
+    background: var(--bone);
+    width: 50px; height: 50px;
     border-radius: 50%;
+    color: var(--mocha-deep);
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .ba-divider::after {
-    content: '◀ ▶';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--ink);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    z-index: 1;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   }
 
   .ba-label {
     position: absolute;
-    top: 16px;
-    padding: 6px 12px;
-    background: rgba(255,255,255,0.9);
-    color: var(--ink);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    border-radius: 4px;
-    z-index: 3;
-    backdrop-filter: blur(4px);
+    top: 1.5rem;
+    z-index: 4;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--bone);
+    background: rgba(110, 93, 67, 0.85);
+    padding: 0.5rem 1.2rem;
+    backdrop-filter: blur(10px);
   }
 
-  .before-label {
-    left: 16px;
-  }
-
-  .after-label {
-    right: 16px;
-  }
+  .ba-label.before-label { left: 1.5rem; }
+  .ba-label.after-label { right: 1.5rem; }
 
   .ba-instruction {
     text-align: center;
@@ -1810,222 +1597,166 @@
     font-size: 1rem;
   }
 
-  /* ===== RESPONSIVE BEFORE/AFTER ===== */
-  @media (max-width: 768px) {
-    .before-after-container {
-      aspect-ratio: 4 / 3;
-    }
-
-    .ba-divider::before {
-      width: 32px;
-      height: 32px;
-    }
-
-    .ba-divider::after {
-      font-size: 10px;
-    }
-
-    .ba-label {
-      font-size: 0.7rem;
-      padding: 4px 8px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .before-after-section {
-      padding: 2rem 1rem;
-    }
-
-    .before-after-container {
-      aspect-ratio: 4 / 3;
-      margin: 1.5rem 0 0;
-    }
-
-    .ba-label {
-      font-size: 0.65rem;
-      padding: 3px 6px;
-      top: 12px;
-    }
-
-    .before-label {
-      left: 12px;
-    }
-
-    .after-label {
-      right: 12px;
-    }
-
-    .section-header.reveal {
-      margin-bottom: 2rem;
-    }
-
-    .section-intro {
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-  }
-
-  /* ===== COMPARISON IMAGE (Static) ===== */
-  .comparison-image-container {
-    max-width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    padding: 0 2rem;
-  }
-
-  .comparison-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    box-shadow: 0 12px 48px rgba(110, 93, 67, 0.15);
-  }
-
-  @media (max-width: 768px) {
-    .comparison-image-container {
-      padding: 0 1rem;
-    }
-  }
-
   /* ===== HORIZONTAL SCROLL SERVICES ===== */
-  /* ===== SERVICES GRID ===== */
-  .services {
+  .services-horizontal {
     background: var(--bone);
-    padding: 8rem 3rem;
+    position: relative;
+    padding: 8rem 0 0;
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin: 3rem auto 0;
-    max-width: 1200px;
+  .services-horizontal-header {
+    padding: 0 3rem;
+    max-width: 700px;
+    margin-bottom: 4rem;
   }
 
-  .service-card {
+  .services-horizontal-track {
+    height: 100vh;
+    position: relative;
+  }
+
+  .services-horizontal-inner {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .services-flex {
+    display: flex;
+    gap: 2.5rem;
+    padding: 0 3rem;
+    will-change: transform;
+    transition: transform 0.05s linear;
+  }
+
+  .service-h-card {
+    flex-shrink: 0;
+    width: 480px;
+    height: 60vh;
+    max-height: 600px;
     background: var(--paper);
-    padding: 3rem 2.5rem;
+    padding: 3.5rem 3rem;
     border: 1px solid transparent;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.5s ease;
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    opacity: 0;
-    transform: translateY(40px);
     display: flex;
     flex-direction: column;
-    will-change: transform, opacity;
-    backface-visibility: hidden;
+    opacity: 0;
+    transform: translateX(50px);
   }
 
-  .service-card.visible {
+  .service-h-card.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
+    transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .service-card::before {
+  .service-h-card::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: linear-gradient(135deg, var(--peach-light) 0%, var(--cream-light) 100%);
     opacity: 0;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.5s ease;
     z-index: 0;
   }
 
-  .service-card:hover::before {
-    opacity: 1;
-  }
+  .service-h-card > * { position: relative; z-index: 1; }
 
-  .service-card > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .service-card::after {
+  .service-h-card::after {
     content: '→';
     position: absolute;
-    bottom: 2rem;
-    right: 2.5rem;
-    font-size: 1.4rem;
+    bottom: 2.5rem;
+    right: 3rem;
+    font-size: 1.5rem;
     color: var(--mocha);
     transition: transform 0.4s ease;
     z-index: 1;
   }
 
-  .service-card:hover {
+  .service-h-card:hover {
     border-color: var(--mocha);
-    transform: translateY(-8px);
-    box-shadow: 0 30px 60px rgba(110, 93, 67, 0.15);
+    transform: translateY(-12px);
+    box-shadow: 0 30px 70px rgba(110, 93, 67, 0.2);
   }
 
-  .service-card:hover::after {
-    transform: translateX(10px);
-  }
+  .service-h-card:hover::before { opacity: 1; }
+  .service-h-card:hover::after { transform: translateX(10px); }
 
-  .service-number {
+  .service-h-number {
     font-family: 'Fraunces', serif;
     font-style: italic;
     color: var(--mocha);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    font-weight: 400;
   }
 
-  .service-name {
+  .service-h-name {
     font-family: 'Fraunces', serif;
-    font-size: 1.7rem;
+    font-size: 2rem;
     color: var(--ink);
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.02em;
   }
 
-  .service-description {
-    font-size: 0.95rem;
+  .service-h-description {
+    font-size: 1rem;
     color: var(--ink);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
     font-weight: 300;
   }
 
-  .service-procedures {
+  .service-h-procedures {
     list-style: none;
     padding: 0;
     margin-top: auto;
   }
 
-  .service-procedures li {
+  .service-h-procedures li {
     font-size: 0.85rem;
     color: var(--muted);
-    padding: 0.4rem 0;
+    padding: 0.5rem 0;
     border-top: 1px solid var(--line);
+    letter-spacing: 0.02em;
+    font-weight: 400;
     transition: padding-left 0.3s ease, color 0.3s ease;
   }
 
-  .service-procedures li:hover {
+  .service-h-procedures li:hover {
     padding-left: 0.5rem;
     color: var(--mocha-deep);
   }
 
-  /* ===== RESPONSIVE SERVICES ===== */
-  @media (max-width: 1024px) {
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
+  .horizontal-progress {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.6rem;
+    z-index: 5;
   }
 
-  @media (max-width: 640px) {
-    .services {
-      padding: 5rem 1.5rem;
-    }
-
-    .service-card {
-      padding: 2rem 1.5rem;
-    }
+  .horizontal-progress-dot {
+    width: 30px; height: 2px;
+    background: var(--mocha);
+    opacity: 0.3;
+    transition: opacity 0.4s ease;
   }
+
+  .horizontal-progress-dot.active { opacity: 1; }
 
   /* ===== STATS ===== */
   .stats {
@@ -2077,153 +1808,6 @@
     color: var(--muted);
     margin-top: 1rem;
     font-weight: 600;
-  }
-
-  /* ===== FAQ SECTION ===== */
-  .faq {
-    background: var(--cream-light);
-    padding: 5rem 2rem;
-  }
-
-  .faq .section-header {
-    margin-bottom: 4rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-
-  .faq-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .faq-item {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .faq-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .faq-item:hover {
-    border-color: var(--mocha);
-    box-shadow: 0 4px 12px rgba(177, 154, 123, 0.1);
-  }
-
-  .faq-question {
-    display: flex;
-    align-items: center;
-    padding: 1.5rem;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 1.1rem;
-    color: var(--ink);
-    user-select: none;
-    transition: all 0.3s ease;
-  }
-
-  .faq-item[open] .faq-question {
-    color: var(--mocha);
-    background: rgba(177, 154, 123, 0.05);
-  }
-
-  .faq-question::after {
-    content: '⊕';
-    margin-left: auto;
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
-    color: var(--mocha);
-  }
-
-  .faq-item[open] .faq-question::after {
-    transform: rotate(45deg);
-    content: '⊖';
-  }
-
-  .faq-question:hover {
-    padding-left: 2rem;
-  }
-
-  .faq-answer {
-    padding: 0 1.5rem 1.5rem 1.5rem;
-    color: var(--ink);
-    line-height: 1.8;
-    animation: slideDown 0.3s ease;
-  }
-
-  .faq-answer p {
-    margin-bottom: 0.5rem;
-  }
-
-  .faq-answer ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .faq-answer li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-  }
-
-  .faq-answer li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--mocha);
-    font-weight: 600;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .faq {
-      padding: 3rem 1.5rem;
-    }
-
-    .faq .section-header {
-      margin-bottom: 2.5rem;
-    }
-
-    .faq-grid {
-      gap: 1rem;
-    }
-
-    .faq-question {
-      font-size: 1rem;
-      padding: 1.25rem;
-    }
-
-    .faq-question:hover {
-      padding-left: 1.25rem;
-    }
-
-    .faq-answer {
-      padding: 0 1.25rem 1.25rem 1.25rem;
-    }
   }
 
   /* ===== TESTIMONIALS - Premium Carousel ===== */
@@ -3220,21 +2804,13 @@
     .horizontal-progress { display: none; }
   }
 
-  @media (max-width: 768px) {
-    section { padding: 4rem 1.5rem !important; margin: 0 !important; }
-    .hero { padding: 5rem 1.5rem 3rem !important; }
-    .contact { padding: 4rem 1.5rem !important; }
-    .floating-cta { bottom: 1.5rem; right: 1.5rem; }
-    main, .main-content { width: 100%; overflow-x: hidden; }
-  }
-
   @media (max-width: 640px) {
     nav, nav.scrolled { padding: 1rem 1.5rem; }
     .nav-links li:not(:last-child) { display: none; }
     .nav-logo-text { font-size: 1.3rem; }
     .nav-logo-mark { width: 70px; height: 70px; }
-    section { padding: 3rem 1.5rem !important; margin: 0 !important; }
-    .hero { padding: 4rem 1.5rem 2rem !important; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
     .hero-credentials { flex-wrap: wrap; gap: 1.5rem; }
     .stats-grid { grid-template-columns: 1fr; }
     .stat-item { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 2rem; }
@@ -3242,237 +2818,11 @@
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
     .hero-ctas { flex-direction: column; align-items: flex-start; }
-    .technique-comparison { padding: 1.5rem !important; margin: 0 !important; }
-    .contact-form { padding: 1.5rem; }
+    .technique-comparison { padding: 2rem 1.5rem; }
+    .contact-form { padding: 2rem 1.5rem; }
     .intro-logo { width: 200px; max-width: 60vw; }
     .floating-cta { bottom: 1rem; right: 1rem; padding: 0.8rem 1.2rem; }
     .ba-label { font-size: 0.85rem; padding: 0.4rem 0.8rem; }
-  }
-
-  /* ===== CASOS DE ÉXITO GALLERY ===== */
-  .success-cases {
-    padding: 4rem 2rem;
-    background: var(--bone);
-  }
-
-  .success-cases-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .success-cases-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 300;
-    color: var(--ink);
-    margin-bottom: 3rem;
-    text-align: center;
-  }
-
-  .cases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
-    margin-bottom: 2rem;
-  }
-
-  .case-card {
-    background: var(--cream-light);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .case-card.visible {
-    animation: fadeInGallery 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    animation-delay: var(--stagger-delay, 0ms);
-  }
-
-  .case-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(110, 93, 67, 0.12);
-  }
-
-  .case-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .video-card {
-    position: relative;
-    cursor: pointer;
-    aspect-ratio: 4/3;
-  }
-
-  .case-preview {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    background: var(--cream-light);
-  }
-
-  .video-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0);
-    transition: background 0.3s ease;
-  }
-
-  .video-card:hover .video-overlay {
-    background: rgba(0, 0, 0, 0.3);
-  }
-
-  .play-icon {
-    width: 60px;
-    height: 60px;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-  }
-
-  .video-card:hover .play-icon {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  /* Mobile video preview improvements */
-  @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
-    .video-overlay {
-      background: rgba(0, 0, 0, 0.15);
-    }
-
-    .play-icon {
-      opacity: 1;
-      transform: scale(1);
-      width: 50px;
-      height: 50px;
-    }
-  }
-
-  /* Video Modal */
-  .video-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    animation: fadeIn 0.3s ease;
-  }
-
-  .video-modal-content {
-    position: relative;
-    width: 90vw;
-    max-width: 1000px;
-    aspect-ratio: 16/9;
-  }
-
-  .modal-video {
-    width: 100%;
-    height: 100%;
-    background: black;
-  }
-
-  .video-modal-close {
-    position: absolute;
-    top: -50px;
-    right: 0;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-    z-index: 10000;
-    transition: transform 0.2s ease;
-  }
-
-  .video-modal-close:hover {
-    transform: scale(1.1);
-  }
-
-  .image-pair {
-    display: flex;
-    width: 100%;
-    height: 100%;
-  }
-
-  .image-pair img {
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-    border-right: 2px solid var(--line);
-  }
-
-  .image-pair img:last-child {
-    border-right: none;
-  }
-
-  @keyframes fadeInGallery {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .success-cases {
-      padding: 3rem 1.5rem;
-    }
-
-    .cases-grid {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 16px;
-    }
-
-    .image-pair {
-      height: 250px;
-    }
-
-    .case-card:hover {
-      transform: scale(1.01);
-    }
-
-    .video-modal-content {
-      width: 95vw;
-      max-width: 100%;
-    }
-
-    .video-modal-close {
-      top: 10px;
-      right: 10px;
-      font-size: 32px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .cases-grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .image-pair {
-      height: 200px;
-    }
-
-    .success-cases-title {
-      font-size: 1.4rem;
-    }
   }
 </style>
 </head>
@@ -3495,7 +2845,7 @@
 </div>
 
 <!-- Floating CTA -->
-<a href="https://wa.me/529999915653" target="_blank" class="floating-cta" id="floatingCta">
+<a href="#contacto" class="floating-cta" id="floatingCta">
   <span class="pulse"></span>
   <span>Agenda tu cita</span>
 </a>
@@ -3548,9 +2898,8 @@
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#rinoplastia">Rinoplastía</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#preguntas">Preguntas frecuentes</a></li>
     <li><a href="#testimonios">Testimonios</a></li>
-    <li><a href="https://wa.me/529999915653" target="_blank" class="nav-cta"><span><span class="nav-cta-dot"></span>Agendar cita</span></a></li>
+    <li><a href="#contacto" class="nav-cta"><span><span class="nav-cta-dot"></span>Agendar cita</span></a></li>
   </ul>
 </nav>
 
@@ -3582,23 +2931,24 @@
       </span>
     </h1>
     <p class="hero-tagline hero-animate delay-3">Rinoplastía ultrasónica con formación internacional<br>y sensibilidad mexicana.</p>
+    <p class="hero-description hero-animate delay-4">Otorrinolaringóloga certificada por el Consejo Mexicano. Especializada en rinoplastía ultrasónica, una técnica de vanguardia que ofrece resultados naturales con menor trauma quirúrgico.</p>
 
     <div class="hero-ctas hero-animate delay-5">
-      <a href="https://wa.me/529999915653" target="_blank" class="btn-primary"><span>Agendar valoración <span class="arrow">→</span></span></a>
+      <a href="#contacto" class="btn-primary"><span>Agendar valoración <span class="arrow">→</span></span></a>
       <a href="#rinoplastia" class="btn-secondary">Conocer la técnica</a>
     </div>
 
     <div class="hero-credentials hero-animate delay-6">
       <div class="credential-item">
-        <div class="credential-number" data-target="10" data-suffix="+">10+</div>
+        <div class="credential-number" data-target="10" data-suffix="+">0+</div>
         <div class="credential-label">Años de formación</div>
       </div>
       <div class="credential-item">
-        <div class="credential-number" data-target="44" data-suffix="">44</div>
+        <div class="credential-number" data-target="44">0</div>
         <div class="credential-label">Reseñas verificadas</div>
       </div>
       <div class="credential-item">
-        <div class="credential-number" data-target="4" data-suffix="">4</div>
+        <div class="credential-number" data-target="4">0</div>
         <div class="credential-label">Países de formación</div>
       </div>
     </div>
@@ -3610,7 +2960,7 @@
       <div class="portrait-decoration-bottom"></div>
 
       <div class="portrait-image-wrapper parallax-element">
-        <img src="vannia.jpg" alt="Dra. Vannia Maldonado - Especialista en Rinoplastía Ultrasónica, Otorrinolaringóloga certificada en Mérida, Yucatán" class="portrait-image" />
+        <img src="vannia.jpg" alt="Dra. Vannia Maldonado, Otorrinolaringóloga en Mérida, Yucatán" class="portrait-image" />
         <div class="portrait-monogram">V</div>
       </div>
 
@@ -3684,8 +3034,13 @@
     </div>
 
     <div class="about-content reveal-right">
-      <h3>Especialidad</h3>
-      <p>La <em>Rinoplastía Ultrasónica</em> es mi enfoque: resultados naturales con recuperación más rápida y cómoda.</p>
+      <h3>Mi camino</h3>
+      <p>Soy Médica Cirujana egresada de la Facultad de Medicina de la UNAM, con especialidad en Otorrinolaringología y Cirugía de Cabeza y Cuello en la Ciudad de México, también avalada por la UNAM.</p>
+      <p>Mi formación me llevó por tres continentes: realicé rotaciones observacionales en Rinología y Cirugía Plástica Facial en Uberlandia, Brasil, y en Rinología y Cirugía de Base de Cráneo Anterior en Sevilla, España. Posteriormente completé un Fellowship en Rinología y Cirugía Plástica Facial en Cuenca, Ecuador.</p>
+      <p>Soy Otorrinolaringóloga certificada por el Consejo Mexicano de Otorrinolaringología y Cirugía de Cabeza y Cuello, y socio numerario tanto de la Sociedad Mexicana de Otorrinolaringología como de la Sociedad Mexicana de Rinología y Cirugía Plástica Facial.</p>
+
+      <h3>Lo que me apasiona</h3>
+      <p>Estoy para ayudarte con procedimientos clínicos y quirúrgicos de Otorrinolaringología. Pero lo que más me apasiona, lo que me lleva a estudiar cada día, es la <em>Rinoplastía Ultrasónica</em>: una técnica de vanguardia que cambia vidas con resultados naturales y recuperaciones más amables.</p>
 
       <h3>Trayectoria</h3>
       <div class="timeline">
@@ -3776,7 +3131,8 @@
 
       <div class="rinoplastia-text reveal-right">
         <h3>Una técnica para narices que respiran y se ven hermosas.</h3>
-        <p>Precisión submilimétrica en hueso nasal sin dañar tejidos blandos, vasos ni cartílagos. Resultado: cirugía controlada, resultados predecibles y recuperación radicalmente diferente.</p>
+        <p>La rinoplastía ultrasónica permite remodelar la estructura ósea con una precisión submilimétrica. Se trabajan únicamente los huesos sin dañar la mucosa, los cartílagos circundantes ni los vasos sanguíneos.</p>
+        <p>Esto se traduce en una cirugía más controlada, donde puedo predecir los resultados con mayor exactitud y donde la paciente experimenta una recuperación radicalmente diferente a la que se contaba antes.</p>
 
         <div class="rinoplastia-features">
           <div class="feature-item">
@@ -3810,7 +3166,7 @@
         </div>
 
         <div style="margin-top: 2.5rem">
-          <a href="https://wa.me/529999915653" target="_blank" class="btn-primary"><span>Agenda tu valoración <span class="arrow">→</span></span></a>
+          <a href="#contacto" class="btn-primary"><span>Agenda tu valoración <span class="arrow">→</span></span></a>
         </div>
       </div>
     </div>
@@ -3822,298 +3178,155 @@
   <div class="section-header reveal" style="margin: 0 auto 0; text-align: center;">
     <div class="section-eyebrow" style="justify-content: center;">Resultados visibles</div>
     <h2 class="section-title">Antes <span class="italic">y después.</span></h2>
-    <p class="section-intro" style="margin: 0 auto;">Resultados sutiles, naturales y armónicos con tu rostro. Cada transformación es única y personalizada.</p>
+    <p class="section-intro" style="margin: 0 auto;">Desliza el control para ver la transformación. La rinoplastía ultrasónica permite resultados sutiles, naturales y armónicos con tu rostro.</p>
   </div>
 
-  <div class="comparison-image-container reveal-scale">
-    <img
-      src="images/casos-exito/Antes y después/comparison.jpeg"
-      alt="Comparación antes y después de la cirugía"
-      class="comparison-image"
-      loading="eager"
-      width="1080"
-      height="1080"
-    />
+  <div class="before-after-container reveal-scale" id="baContainer">
+    <!-- AFTER (back layer) -->
+    <svg class="ba-image ba-after" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="afterBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#F5F0EA"/>
+          <stop offset="100%" stop-color="#ECCEAB"/>
+        </linearGradient>
+        <linearGradient id="afterSkin" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#F5DCC5"/>
+          <stop offset="100%" stop-color="#E8C9A8"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="500" fill="url(#afterBg)"/>
+      <!-- Refined nose profile -->
+      <g transform="translate(380, 150)">
+        <!-- Face profile -->
+        <path d="M 80,0 Q 75,20 70,40 L 65,80 Q 60,90 55,110 L 45,140 Q 40,155 50,165 L 55,175 Q 60,180 70,180 L 90,180 Q 100,180 105,175 Q 100,170 90,165 Q 80,160 75,150 L 75,140 L 80,135 L 85,130 Q 90,120 88,110 Q 85,90 82,75 Q 80,55 78,35 Q 76,20 80,0 Z" fill="url(#afterSkin)" stroke="#B89572" stroke-width="0.8"/>
+        <!-- Refined nose - smoother profile -->
+        <path d="M 80,0 Q 78,15 75,30 Q 70,55 65,80 Q 60,100 58,115 Q 60,125 65,130 L 75,140" stroke="#A0826A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Eye -->
+        <ellipse cx="68" cy="55" rx="3" ry="2" fill="#3A2A1F"/>
+        <!-- Eyebrow -->
+        <path d="M 60,45 Q 68,42 75,46" stroke="#3A2A1F" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Lip -->
+        <path d="M 70,170 Q 80,168 88,170 Q 85,175 80,175 Q 75,175 70,170 Z" fill="#B07B6B"/>
+        <!-- Cheek shadow -->
+        <ellipse cx="60" cy="100" rx="15" ry="20" fill="#D4928A" opacity="0.15"/>
+      </g>
+      <!-- Decorative elements -->
+      <text x="400" y="450" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#3D332A" text-anchor="middle" opacity="0.5">— Resultado natural y armónico —</text>
+    </svg>
+
+    <!-- BEFORE (front layer with clip-path) -->
+    <svg class="ba-image ba-before" id="baBefore" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="beforeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#E8DFD0"/>
+          <stop offset="100%" stop-color="#D4C5A8"/>
+        </linearGradient>
+        <linearGradient id="beforeSkin" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#F0D5BC"/>
+          <stop offset="100%" stop-color="#E0BD9C"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="500" fill="url(#beforeBg)"/>
+      <!-- Original nose profile with bump -->
+      <g transform="translate(380, 150)">
+        <path d="M 80,0 Q 75,20 72,40 L 68,75 Q 75,82 78,90 Q 65,100 58,115 L 45,140 Q 40,155 50,165 L 55,175 Q 60,180 70,180 L 90,180 Q 100,180 105,175 Q 100,170 90,165 Q 80,160 75,150 L 75,140 L 80,135 L 85,130 Q 90,120 88,110 Q 85,90 82,75 Q 80,55 78,35 Q 76,20 80,0 Z" fill="url(#beforeSkin)" stroke="#A8826A" stroke-width="0.8"/>
+        <!-- Original nose - has dorsal hump -->
+        <path d="M 80,0 Q 78,15 75,28 Q 72,42 70,55 Q 75,72 82,82 Q 75,92 65,100 Q 58,110 55,120 Q 60,130 65,130" stroke="#8F6F3F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="68" cy="55" rx="3" ry="2" fill="#3A2A1F"/>
+        <path d="M 60,45 Q 68,42 75,46" stroke="#3A2A1F" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M 70,170 Q 80,168 88,170 Q 85,175 80,175 Q 75,175 70,170 Z" fill="#B07B6B"/>
+        <ellipse cx="60" cy="100" rx="15" ry="20" fill="#D4928A" opacity="0.15"/>
+      </g>
+      <text x="400" y="450" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#3D332A" text-anchor="middle" opacity="0.5">— Antes de la cirugía —</text>
+    </svg>
+
+    <div class="ba-label before-label">Antes</div>
+    <div class="ba-label after-label">Después</div>
+
+    <div class="ba-divider" id="baDivider" style="left: 50%;"></div>
   </div>
 
-  <p class="ba-disclaimer reveal" style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #9C8A75; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-    <em>Nota:</em> Los resultados mostrados son de pacientes reales con autorización. Cada paciente es único y los resultados varían según sus características anatómicas, tipo de piel y objetivos personales. Durante la consulta inicial, utilizamos simulación digital para visualizar el resultado esperado de forma personalizada.
-  </p>
+  <p class="ba-instruction reveal">↔ Mueve el cursor sobre la imagen para revelar el resultado</p>
 </section>
 
-<!-- ============== SERVICES GRID ============== -->
-<section class="services" id="servicios">
-  <div class="section-header reveal">
+<!-- ============== HORIZONTAL SCROLL SERVICES ============== -->
+<section class="services-horizontal" id="servicios">
+  <div class="services-horizontal-header reveal">
     <div class="section-eyebrow">Áreas de práctica</div>
     <h2 class="section-title">Servicios <span class="italic">médico-quirúrgicos.</span></h2>
     <p class="section-intro">Especialización integral en otorrinolaringología, cirugía nasal y cirugía facial. Cada procedimiento es planeado con precisión y ejecutado con la técnica más adecuada para cada paciente.</p>
   </div>
 
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-number">— 01</div>
-      <h3 class="service-name">Cirugía Nasal Estética y Funcional</h3>
-      <p class="service-description">El corazón de mi práctica. Rinoplastías que combinan armonía estética con respiración óptima.</p>
-      <ul class="service-procedures">
-        <li>Rinoplastía ultrasónica</li>
-        <li>Rinoplastía abierta</li>
-        <li>Rinoplastía estética</li>
-        <li>Rinoplastía correctora o funcional</li>
-        <li>Septoplastía nasal</li>
-        <li>Reparación de fractura nasal</li>
-        <li>Cirugía de cornetes</li>
-      </ul>
-    </div>
-
-    <div class="service-card">
-      <div class="service-number">— 02</div>
-      <h3 class="service-name">Cirugía Facial Complementaria</h3>
-      <p class="service-description">Procedimientos faciales que armonizan con la cirugía nasal para resultados completos y balanceados.</p>
-      <ul class="service-procedures">
-        <li>Rinoplastía + Bichectomía</li>
-        <li>Bichectomía (bolsas de Bichat)</li>
-        <li>Blefaroplastia (párpados)</li>
-        <li>Otoplastia (orejas)</li>
-        <li>Toxina botulínica estética</li>
-        <li>Retiro de lunares</li>
-      </ul>
-    </div>
-
-    <div class="service-card">
-      <div class="service-number">— 03</div>
-      <h3 class="service-name">Otorrinolaringología General</h3>
-      <p class="service-description">Atención integral de oído, nariz y garganta para adultos y niños.</p>
-      <ul class="service-procedures">
-        <li>Sinusitis crónica y aguda</li>
-        <li>Cirugía de pólipos nasales</li>
-        <li>Cirugía endoscópica nasosinusal</li>
-        <li>Cirugía de ronquido y apnea</li>
-        <li>Amigdalectomía y adenoidectomía</li>
-        <li>Vértigo y trastornos del equilibrio</li>
-        <li>Trastornos de la voz</li>
-        <li>Lavado de oídos</li>
-      </ul>
-    </div>
-
-    <div class="service-card">
-      <div class="service-number">— 04</div>
-      <h3 class="service-name">Pacientes con necesidades especiales</h3>
-      <p class="service-description">Atención empática y especializada para niños con autismo, adultos mayores y pacientes que requieren un trato particularmente cuidadoso.</p>
-      <ul class="service-procedures">
-        <li>Niños con autismo</li>
-        <li>Adultos mayores</li>
-        <li>Otitis recurrente pediátrica</li>
-        <li>Adenoides y amigdalitis</li>
-        <li>Audiometría infantil</li>
-        <li>Hipoacusia infantil</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CASOS DE ÉXITO SECTION -->
-<section class="success-cases">
-  <div class="success-cases-container">
-    <h2 class="success-cases-title">Casos de <span class="italic">Éxito.</span></h2>
-
-    <div class="cases-grid">
-      <!-- Case 1 -->
-      <div class="case-card video-card" data-case="1" data-video="images/casos-exito/Antes y después/WhatsApp Video 2026-05-02 at 19.49.29.mp4">
-        <img src="images/casos-exito/Caso 1/WhatsApp Image 2026-05-02 at 19.52.50 (1).jpeg"
-             srcset="images/casos-exito/Caso 1/WhatsApp Image 2026-05-02 at 19.52.50 (1)-mobile.jpeg 480w,
-                     images/casos-exito/Caso 1/WhatsApp Image 2026-05-02 at 19.52.50 (1).jpeg 1200w"
-             sizes="(max-width: 768px) 480px, 1200px"
-             alt="Caso de éxito 1"
-             class="case-preview"
-             loading="eager"
-             width="400" height="300" />
-        <div class="video-overlay">
-          <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
+  <div class="services-horizontal-track" id="servicesTrack">
+    <div class="services-horizontal-inner">
+      <div class="services-flex" id="servicesFlex">
+        <div class="service-h-card">
+          <div class="service-h-number">— 01</div>
+          <h3 class="service-h-name">Cirugía Nasal Estética y Funcional</h3>
+          <p class="service-h-description">El corazón de mi práctica. Rinoplastías que combinan armonía estética con respiración óptima, usando técnicas de vanguardia.</p>
+          <ul class="service-h-procedures">
+            <li>Rinoplastía ultrasónica</li>
+            <li>Rinoplastía abierta</li>
+            <li>Rinoplastía estética</li>
+            <li>Rinoplastía correctora o funcional</li>
+            <li>Septoplastía nasal</li>
+            <li>Reparación de fractura nasal</li>
+            <li>Cirugía de cornetes</li>
+          </ul>
         </div>
-      </div>
 
-      <!-- Case 2 -->
-      <div class="case-card video-card" data-case="2" data-video="images/casos-exito/Caso 2/WhatsApp Video 2026-05-02 at 19.53.21.mp4">
-        <img src="images/casos-exito/Caso 2/WhatsApp Image 2026-05-02 at 19.53.17.jpeg"
-             srcset="images/casos-exito/Caso 2/WhatsApp Image 2026-05-02 at 19.53.17-mobile.jpeg 480w,
-                     images/casos-exito/Caso 2/WhatsApp Image 2026-05-02 at 19.53.17.jpeg 1200w"
-             sizes="(max-width: 768px) 480px, 1200px"
-             alt="Caso de éxito 2"
-             class="case-preview"
-             loading="eager"
-             width="400" height="300" />
-        <div class="video-overlay">
-          <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
+        <div class="service-h-card">
+          <div class="service-h-number">— 02</div>
+          <h3 class="service-h-name">Cirugía Facial Complementaria</h3>
+          <p class="service-h-description">Procedimientos faciales que armonizan con la cirugía nasal para resultados completos y balanceados.</p>
+          <ul class="service-h-procedures">
+            <li>Rinoplastía + Bichectomía</li>
+            <li>Bichectomía (bolsas de Bichat)</li>
+            <li>Blefaroplastia (párpados)</li>
+            <li>Otoplastia (orejas)</li>
+            <li>Toxina botulínica estética</li>
+            <li>Retiro de lunares</li>
+          </ul>
         </div>
-      </div>
 
-      <!-- Case 3 -->
-      <div class="case-card video-card" data-case="3" data-video="images/casos-exito/Caso 3/WhatsApp Video 2026-05-02 at 19.54.43.mp4">
-        <img src="images/casos-exito/Caso 3/WhatsApp Image 2026-05-02 at 19.54.25.jpeg"
-             srcset="images/casos-exito/Caso 3/WhatsApp Image 2026-05-02 at 19.54.25-mobile.jpeg 480w,
-                     images/casos-exito/Caso 3/WhatsApp Image 2026-05-02 at 19.54.25.jpeg 1200w"
-             sizes="(max-width: 768px) 480px, 1200px"
-             alt="Caso de éxito 3"
-             class="case-preview"
-             loading="eager"
-             width="400" height="300" />
-        <div class="video-overlay">
-          <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
+        <div class="service-h-card">
+          <div class="service-h-number">— 03</div>
+          <h3 class="service-h-name">Otorrinolaringología General</h3>
+          <p class="service-h-description">Atención integral de oído, nariz y garganta para adultos y niños. Diagnóstico preciso y tratamiento personalizado.</p>
+          <ul class="service-h-procedures">
+            <li>Sinusitis crónica y aguda</li>
+            <li>Cirugía de pólipos nasales</li>
+            <li>Cirugía endoscópica nasosinusal</li>
+            <li>Cirugía de ronquido y apnea</li>
+            <li>Amigdalectomía y adenoidectomía</li>
+            <li>Vértigo y trastornos del equilibrio</li>
+            <li>Trastornos de la voz</li>
+            <li>Lavado de oídos</li>
+          </ul>
         </div>
-      </div>
 
-      <!-- Case 4 -->
-      <div class="case-card video-card" data-case="4" data-video="images/casos-exito/Caso 4/WhatsApp Video 2026-05-02 at 19.55.43.mp4">
-        <img src="images/casos-exito/Caso 4/WhatsApp Image 2026-05-02 at 19.56.14.jpeg"
-             srcset="images/casos-exito/Caso 4/WhatsApp Image 2026-05-02 at 19.56.14-mobile.jpeg 480w,
-                     images/casos-exito/Caso 4/WhatsApp Image 2026-05-02 at 19.56.14.jpeg 1200w"
-             sizes="(max-width: 768px) 480px, 1200px"
-             alt="Caso de éxito 4"
-             class="case-preview"
-             loading="eager"
-             width="400" height="300" />
-        <div class="video-overlay">
-          <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Case 5 (has 2 images for before/after) -->
-      <div class="case-card" data-case="5">
-        <div class="image-pair">
-          <img src="images/casos-exito/Caso 5/WhatsApp Image 2026-05-02 at 19.59.09.jpeg"
-               alt="Caso 5 - Antes"
-               loading="lazy"
-               width="200" height="300" />
-          <img src="images/casos-exito/Caso 5/WhatsApp Image 2026-05-02 at 19.59.09 (1).jpeg"
-               alt="Caso 5 - Después"
-               loading="lazy"
-               width="200" height="300" />
+        <div class="service-h-card">
+          <div class="service-h-number">— 04</div>
+          <h3 class="service-h-name">Atención Pediátrica</h3>
+          <p class="service-h-description">Especial cuidado en el manejo de niños y pacientes con necesidades especiales. Trato empático y entornos amables.</p>
+          <ul class="service-h-procedures">
+            <li>Otitis recurrente</li>
+            <li>Adenoides y amigdalitis</li>
+            <li>Problemas respiratorios</li>
+            <li>Pacientes con autismo</li>
+            <li>Audiometría infantil</li>
+            <li>Hipoacusia infantil</li>
+          </ul>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============== FAQ SECTION ============== -->
-<section class="faq" id="preguntas">
-  <div class="section-header reveal">
-    <div class="section-eyebrow">Preguntas frecuentes</div>
-    <h2 class="section-title">Respuestas a tus <span class="italic">dudas.</span></h2>
-    <p class="section-intro">Información clave sobre los procedimientos, recuperación y cuidados. Si tienes más preguntas, contáctame directamente.</p>
-  </div>
-
-  <div class="faq-grid reveal">
-    <details class="faq-item">
-      <summary class="faq-question">¿Cuánto dura la recuperación de la rinoplastía ultrasónica?</summary>
-      <div class="faq-answer">
-        <p>La recuperación es significativamente más rápida que la rinoplastía tradicional. Típicamente:</p>
-        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-          <li><strong>Primera semana:</strong> inflamación y moretones mínimos; puedes retomar actividades normales</li>
-          <li><strong>2-3 semanas:</strong> la mayoría de los moretones desaparecen; vida social normal</li>
-          <li><strong>3 meses:</strong> resultado completamente estabilizado</li>
-        </ul>
-        <p style="margin-top: 1rem;">La diferencia clave: menos trauma quirúrgico = recuperación más amable.</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">¿Duele la cirugía? ¿Qué tipo de anestesia se usa?</summary>
-      <div class="faq-answer">
-        <p>No duele durante la cirugía. Se utiliza <strong>anestesia general</strong> para tu comodidad máxima, lo que significa:</p>
-        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-          <li>Dormir durante todo el procedimiento</li>
-          <li>No sentir dolor ni incomodidad</li>
-          <li>Despertar en recuperación con el procedimiento completado</li>
-        </ul>
-        <p style="margin-top: 1rem;">El postoperatorio puede tener molestias leves manejables con medicamentos prescritos.</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">¿Cuándo veré mis resultados finales?</summary>
-      <div class="faq-answer">
-        <p>Los resultados evolucionan con el tiempo:</p>
-        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-          <li><strong>1 mes:</strong> ya verás cambios significativos</li>
-          <li><strong>3 meses:</strong> la mayoría de la inflamación ha desaparecido</li>
-          <li><strong>6-12 meses:</strong> resultado final completamente visible</li>
-        </ul>
-        <p style="margin-top: 1rem;">La técnica ultrasónica permite cambios más precisos, así que el resultado es predecible desde el inicio.</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">¿Puedo combinar rinoplastía con otros procedimientos?</summary>
-      <div class="faq-answer">
-        <p>Sí, frecuentemente combinamos procedimientos para resultados balanceados:</p>
-        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-          <li>Rinoplastía + mentoplastía (barbilla)</li>
-          <li>Rinoplastía + bichectomía (reducción de mejillas)</li>
-          <li>Rinoplastía + blefaroplastia (párpados)</li>
-          <li>Rinoplastía + toxina botulínica</li>
-        </ul>
-        <p style="margin-top: 1rem;">En la consulta evaluamos tu rostro completo para crear armonía global.</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">¿La rinoplastía ultrasónica es reversible?</summary>
-      <div class="faq-answer">
-        <p>La rinoplastía es un procedimiento definitivo, no reversible en el sentido de "volver al antes." Sin embargo:</p>
-        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-          <li>Con planeación digital, visualizamos juntas el resultado antes de operar</li>
-          <li>Revisiones menores son posibles si es necesario (aproximadamente 5-10% de casos)</li>
-          <li>La precisión ultrasónica reduce significativamente la necesidad de correcciones</li>
-        </ul>
-        <p style="margin-top: 1rem;">Tu satisfacción es la prioridad: usamos simulación 3D para asegurar que el resultado sea exactamente lo que deseas.</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">¿Hay cicatrices? ¿Qué tipo de incisiones se hacen?</summary>
-      <div class="faq-answer">
-        <p>Excelente pregunta. Hay dos opciones según el caso:</p>
-        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-          <li><strong>Rinoplastía cerrada:</strong> incisiones dentro de la nariz, sin cicatrices visibles</li>
-          <li><strong>Rinoplastía abierta:</strong> pequeña incisión en el columela (entre orificios nasales), cicatriz mínima y bien camuflada</li>
-        </ul>
-        <p style="margin-top: 1rem;">La técnica ultrasónica requiere incisiones más pequeñas que la cirugía tradicional, minimizando cicatrización.</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">¿Necesito tiempo libre del trabajo?</summary>
-      <div class="faq-answer">
-        <p>Recomendaciones por tipo de trabajo:</p>
-        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-          <li><strong>Trabajo de oficina:</strong> 1-2 semanas (moretones visibles)</li>
-          <li><strong>Trabajo físico o exposición al público:</strong> 2-3 semanas</li>
-          <li><strong>Deportes/actividad física:</strong> pausa de 3-4 semanas</li>
-        </ul>
-        <p style="margin-top: 1rem;">En mi experiencia, muchos pacientes regresan antes porque se sienten bien y los moretones son mínimos.</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">¿Cuál es el costo de una consulta y de la rinoplastía?</summary>
-      <div class="faq-answer">
-        <p>Tenemos opciones accesibles:</p>
-        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-          <li><strong>Consulta inicial:</strong> 1,000 pesos MXN (diagnóstico, simulación 3D y plan de tratamiento)</li>
-          <li><strong>Procedimiento:</strong> presupuesto personalizado basado en complejidad</li>
-          <li><strong>Planes de financiamiento:</strong> disponibles para hacer la cirugía más accesible</li>
-        </ul>
-        <p style="margin-top: 1rem;">No hay costos ocultos. Durante la consulta recibirás un presupuesto detallado y transparente.</p>
-      </div>
-    </details>
+    <div class="horizontal-progress">
+      <div class="horizontal-progress-dot active"></div>
+      <div class="horizontal-progress-dot"></div>
+      <div class="horizontal-progress-dot"></div>
+      <div class="horizontal-progress-dot"></div>
+    </div>
   </div>
 </section>
 
@@ -4121,19 +3334,19 @@
 <section class="stats">
   <div class="stats-grid">
     <div class="stat-item">
-      <div class="stat-number" data-target="44" data-suffix="+">44+</div>
+      <div class="stat-number" data-target="44" data-suffix="+">0+</div>
       <div class="stat-label">Reseñas verificadas</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number" data-target="4.9" data-suffix="/5">4.9/5</div>
+      <div class="stat-number" data-target="4.9" data-suffix="/5">0/5</div>
       <div class="stat-label">Calificación promedio</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number" data-target="100" data-suffix="%">100%</div>
+      <div class="stat-number" data-target="100" data-suffix="%">0%</div>
       <div class="stat-label">Pacientes satisfechos</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number" data-target="33" data-suffix="+">33+</div>
+      <div class="stat-number" data-target="33" data-suffix="+">0+</div>
       <div class="stat-label">Tipos de procedimiento</div>
     </div>
   </div>
@@ -4144,7 +3357,7 @@
   <div class="section-header reveal">
     <div class="section-eyebrow">Reseñas verificadas · Doctoralia</div>
     <h2 class="section-title">Lo que dicen quienes <span class="italic">han confiado en mí.</span></h2>
-    <p class="section-intro">Pacientes reales, citas y pagos verificados. Familias enteras, niños, adultos mayores y necesidades especiales: el privilegio de servir con calidad.</p>
+    <p class="section-intro">Cada reseña es de pacientes reales que verificaron su cita y pago a través de Doctoralia. He tenido el privilegio de cuidar a familias enteras, niños, adultos mayores y pacientes con necesidades especiales.</p>
 
     <div class="verified-band">
       <div class="verified-icon">✓</div>
@@ -4393,7 +3606,7 @@
     <h2>¿Lista para descubrir <span class="italic">tu mejor perfil?</span></h2>
     <p>Agenda una valoración personalizada. En nuestra primera consulta evaluamos tu caso, hablamos de tus expectativas, y diseñamos juntas un plan que respete tu rostro y mejore tu vida.</p>
     <div class="cta-buttons">
-      <a href="https://wa.me/529999915653" target="_blank" class="btn-primary"><span>Agendar valoración <span class="arrow">→</span></span></a>
+      <a href="#contacto" class="btn-primary"><span>Agendar valoración <span class="arrow">→</span></span></a>
       <a href="https://wa.me/529999915653" class="btn-whatsapp" target="_blank"><span>WhatsApp directo</span></a>
     </div>
   </div>
@@ -4440,13 +3653,6 @@
         <div class="contact-label">Pacientes</div>
         <div class="contact-value">Adultos · Niños de cualquier edad</div>
       </div>
-      <div class="contact-info-block">
-        <div class="contact-label">Consulta inicial</div>
-        <div class="contact-value">
-          <strong>$1,000 MXN</strong>
-          <span style="display: block; font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem;">Incluye: valoración completa, simulación digital 3D, plan de tratamiento personalizado</span>
-        </div>
-      </div>
     </div>
 
     <div class="contact-form reveal-right">
@@ -4479,38 +3685,6 @@
         </select>
       </div>
       <div class="form-group">
-        <label>¿Qué tipo de procedimiento te interesa?</label>
-        <select>
-          <option>Selecciona una opción</option>
-          <option>Solo estético</option>
-          <option>Estético + funcional</option>
-          <option>Solo funcional (respiración)</option>
-          <option>Consulta diagnóstica</option>
-          <option>Sin decisión aún</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>¿Cuándo te gustaría realizarte el procedimiento?</label>
-        <select>
-          <option>Selecciona una opción</option>
-          <option>Este mes</option>
-          <option>En 2-3 meses</option>
-          <option>En 4-6 meses</option>
-          <option>En 6+ meses</option>
-          <option>Solo quiero información</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>¿Has tenido cirugía nasal anterior?</label>
-        <select>
-          <option>Selecciona una opción</option>
-          <option>No, es mi primera vez</option>
-          <option>Sí, una rinoplastía anterior</option>
-          <option>Sí, otra cirugía nasal</option>
-          <option>Prefiero no decir</option>
-        </select>
-      </div>
-      <div class="form-group">
         <label>Cuéntame sobre tu caso (opcional)</label>
         <textarea placeholder="Comparte cualquier detalle que consideres relevante..."></textarea>
       </div>
@@ -4538,7 +3712,7 @@
         <li><a href="#rinoplastia">Rinoplastía</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#testimonios">Testimonios</a></li>
-        <li><a href="https://wa.me/529999915653" target="_blank">Contacto</a></li>
+        <li><a href="#contacto">Contacto</a></li>
       </ul>
     </div>
     <div class="footer-section">
@@ -4702,13 +3876,13 @@
   }
 
   // ===== REVEAL ON SCROLL =====
-  const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-clip, .timeline-item, .stat-item, .technique-row, .feature-item, .testimonial-card, .faq-item, .service-card, .about-content h3');
+  const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-clip, .timeline-item, .stat-item, .technique-row, .feature-item, .testimonial-card, .about-content h3');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const parent = entry.target.parentElement;
-        const groupedClasses = ['timeline-item', 'stat-item', 'technique-row', 'feature-item', 'testimonial-card', 'faq-item', 'service-card'];
+        const groupedClasses = ['timeline-item', 'stat-item', 'technique-row', 'feature-item', 'testimonial-card'];
         const isGrouped = groupedClasses.some(cls => entry.target.classList.contains(cls));
 
         let delay = 0;
@@ -4739,29 +3913,21 @@
 
   allReveals.forEach(r => observer.observe(r));
 
-  // ===== SERVICE CARDS SCROLL REVEAL WITH STAGGER =====
+  // ===== SERVICE CARDS SCROLL REVEAL =====
   const serviceCards = document.querySelectorAll('.service-h-card');
 
   const servicesObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+    entries.forEach((entry, idx) => {
       if (entry.isIntersecting) {
         const cardIndex = Array.from(serviceCards).indexOf(entry.target);
-        // Staggered animation: each card appears 150ms after the previous
         setTimeout(() => {
           entry.target.classList.add('visible');
-          entry.target.style.transitionDelay = `${cardIndex * 0.15}s`;
-        }, cardIndex * 150);
-
-        servicesObserver.unobserve(entry.target);
+        }, cardIndex * 200);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+  }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
 
-  serviceCards.forEach(card => {
-    // Set initial animation properties for performance
-    card.style.willChange = 'transform, opacity';
-    servicesObserver.observe(card);
-  });
+  serviceCards.forEach(card => servicesObserver.observe(card));
 
   // ===== Section in-view detection =====
   const specialSections = document.querySelectorAll('.rinoplastia, .testimonials');
@@ -4923,6 +4089,37 @@
     }
   });
 
+  // ===== HORIZONTAL SCROLL FOR SERVICES =====
+  if (window.matchMedia('(min-width: 1025px)').matches) {
+    const servicesTrack = document.getElementById('servicesTrack');
+    const servicesFlex = document.getElementById('servicesFlex');
+    const progressDots = document.querySelectorAll('.horizontal-progress-dot');
+
+    if (servicesTrack && servicesFlex) {
+      // Set track height based on number of cards
+      const cards = servicesFlex.querySelectorAll('.service-h-card');
+      const totalScroll = servicesFlex.scrollWidth - window.innerWidth + 200;
+      servicesTrack.style.height = `${window.innerHeight + totalScroll}px`;
+
+      window.addEventListener('scroll', () => {
+        const rect = servicesTrack.getBoundingClientRect();
+        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+          const scrolled = -rect.top;
+          const maxScroll = totalScroll;
+          const progress = Math.min(Math.max(scrolled / maxScroll, 0), 1);
+          servicesFlex.style.transform = `translateX(${-progress * totalScroll}px)`;
+
+          // Update progress dots
+          const activeDot = Math.floor(progress * cards.length);
+          progressDots.forEach((dot, i) => {
+            if (i <= activeDot) dot.classList.add('active');
+            else dot.classList.remove('active');
+          });
+        }
+      });
+    }
+  }
+
   // ===== TESTIMONIALS CAROUSEL =====
   const carouselTrack = document.getElementById('carouselTrack');
   const carouselPrev = document.getElementById('carouselPrev');
@@ -5052,174 +4249,39 @@
     updateCarousel();
   }
 
-  // ===== BEFORE/AFTER IMAGE SLIDER =====
-  document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('baContainer');
-    const divider = document.getElementById('baDivider');
-    const beforeWrapper = document.querySelector('.ba-before-wrapper');
-    let isActive = false;
+  // ===== BEFORE/AFTER SLIDER =====
+  const baContainer = document.getElementById('baContainer');
+  const baBefore = document.getElementById('baBefore');
+  const baDivider = document.getElementById('baDivider');
 
-    function updateDividerPosition(e) {
-      if (!isActive && e.type !== 'touchstart' && e.type !== 'touchmove') return;
+  if (baContainer && baBefore && baDivider) {
+    let isMouseInside = false;
 
-      const rect = container.getBoundingClientRect();
-      let x = e.clientX - rect.left;
-
-      if (e.touches) {
-        x = e.touches[0].clientX - rect.left;
-      }
-
-      x = Math.max(0, Math.min(x, rect.width));
-
-      const percentage = (x / rect.width) * 100;
-
-      divider.style.left = percentage + '%';
-      beforeWrapper.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-    }
-
-    divider.addEventListener('mousedown', function() {
-      isActive = true;
-      container.style.cursor = 'col-resize';
+    baContainer.addEventListener('mousemove', (e) => {
+      const rect = baContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+      baDivider.style.left = `${percent}%`;
     });
 
-    document.addEventListener('mouseup', function() {
-      isActive = false;
+    baContainer.addEventListener('mouseleave', () => {
+      baBefore.style.clipPath = 'inset(0 50% 0 0)';
+      baDivider.style.left = '50%';
     });
 
-    document.addEventListener('mousemove', function(e) {
-      if (isActive) {
-        updateDividerPosition(e);
-      }
+    // Touch support
+    baContainer.addEventListener('touchmove', (e) => {
+      const rect = baContainer.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+      baDivider.style.left = `${percent}%`;
     });
 
-    container.addEventListener('mousemove', function(e) {
-      if (!isActive) {
-        updateDividerPosition(e);
-      }
-    });
-
-    let touchStartX = 0;
-    container.addEventListener('touchstart', function(e) {
-      touchStartX = e.touches[0].clientX;
-      isActive = true;
-    });
-
-    container.addEventListener('touchend', function() {
-      isActive = false;
-    });
-
-    container.addEventListener('touchmove', function(e) {
-      const touchCurrentX = e.touches[0].clientX;
-      if (Math.abs(touchCurrentX - touchStartX) > 2) {
-        updateDividerPosition(e);
-        touchStartX = touchCurrentX;
-      }
-    });
-
-    divider.style.left = '50%';
-    beforeWrapper.style.clipPath = 'inset(0 50% 0 0)';
-  });
-</script>
-
-<!-- Video Modal -->
-<div id="videoModal" class="video-modal" style="display:none;">
-  <div class="video-modal-content">
-    <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
-    <video id="modalVideo" class="modal-video" controls>
-      <source src="" type="video/mp4">
-    </video>
-  </div>
-</div>
-
-<!-- Intersection Observer for Gallery Fade-In -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        // Calculate stagger delay based on position in grid
-        const cards = Array.from(document.querySelectorAll('.case-card'));
-        const cardIndex = cards.indexOf(entry.target);
-
-        // Set CSS custom property for animation delay (CSS handles animation)
-        entry.target.style.setProperty('--stagger-delay', (cardIndex * 100) + 'ms');
-
-        // Add visible class to trigger CSS animation
-        entry.target.classList.add('visible');
-
-        // Stop observing this element after triggering
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  // Observe all case cards
-  document.querySelectorAll('.case-card').forEach(function(card) {
-    observer.observe(card);
-  });
-});
-
-// Video modal functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const videoCards = document.querySelectorAll('.video-card');
-
-  videoCards.forEach(function(card) {
-    const videoSrc = card.getAttribute('data-video');
-
-    if (videoSrc) {
-      // Open modal on click
-      card.addEventListener('click', function(e) {
-        openVideoModal(videoSrc);
-      });
-    }
-  });
-});
-
-function openVideoModal(videoSrc) {
-  const modal = document.getElementById('videoModal');
-  const modalVideo = document.getElementById('modalVideo');
-  const source = modalVideo.querySelector('source');
-
-  source.src = videoSrc;
-  modalVideo.load();
-  modalVideo.play();
-
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeVideoModal() {
-  const modal = document.getElementById('videoModal');
-  const modalVideo = document.getElementById('modalVideo');
-
-  modalVideo.pause();
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
-
-// Close modal on background click
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('videoModal');
-  if (modal) {
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        closeVideoModal();
-      }
-    });
+    // Initial state - 50% split
+    baBefore.style.clipPath = 'inset(0 50% 0 0)';
   }
-
-  // Close on Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeVideoModal();
-    }
-  });
-});
 </script>
 
 </body>
