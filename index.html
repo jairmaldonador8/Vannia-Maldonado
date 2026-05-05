@@ -3078,12 +3078,32 @@
     transform: translateY(0);
   }
 
-  .main-content.visible .hero-animate.delay-1 { transition-delay: 0.1s; }
-  .main-content.visible .hero-animate.delay-2 { transition-delay: 0.15s; }
-  .main-content.visible .hero-animate.delay-3 { transition-delay: 0.2s; }
-  .main-content.visible .hero-animate.delay-4 { transition-delay: 0.25s; }
-  .main-content.visible .hero-animate.delay-5 { transition-delay: 0.3s; }
-  .main-content.visible .hero-animate.delay-6 { transition-delay: 0.35s; }
+  .main-content.visible .hero-animate.delay-1 { transition-delay: 0s; }
+  .main-content.visible .hero-animate.delay-2 { transition-delay: 0.05s; }
+  .main-content.visible .hero-animate.delay-3 { transition-delay: 0.1s; }
+  .main-content.visible .hero-animate.delay-4 { transition-delay: 0.15s; }
+  .main-content.visible .hero-animate.delay-5 { transition-delay: 0.2s; }
+  .main-content.visible .hero-animate.delay-6 { transition-delay: 0.25s; }
+
+  /* Skip intro on scroll - instant load */
+  .main-content.skip-intro .hero-animate.delay-1,
+  .main-content.skip-intro .hero-animate.delay-2,
+  .main-content.skip-intro .hero-animate.delay-3,
+  .main-content.skip-intro .hero-animate.delay-4,
+  .main-content.skip-intro .hero-animate.delay-5,
+  .main-content.skip-intro .hero-animate.delay-6 {
+    transition-delay: 0s !important;
+  }
+
+  .intro-section {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .intro-section.hide-intro {
+    opacity: 0;
+    transform: translateY(-30px);
+    pointer-events: none;
+  }
 
   .reveal {
     opacity: 0;
@@ -4645,26 +4665,49 @@
     scrollProgress.style.width = progress + '%';
   });
 
-  // ===== INTRO ANIMATION =====
+  // ===== INTRO ANIMATION WITH SCROLL SKIP =====
+  let introComplete = false;
+  let scrollTriggered = false;
+
+  function completeIntro() {
+    if (introComplete) return;
+    introComplete = true;
+
+    const intro = document.getElementById('introOverlay');
+    const main = document.getElementById('mainContent');
+
+    intro.classList.add('hidden');
+    main.classList.add('visible');
+
+    if (scrollTriggered) {
+      main.classList.add('skip-intro');
+      intro.classList.add('hide-intro');
+    }
+
+    document.body.classList.remove('intro-active');
+
+    setTimeout(() => {
+      intro.style.display = 'none';
+      document.getElementById('splitLine1').classList.add('visible');
+      document.getElementById('splitLine2').classList.add('visible');
+      animateCounters(document.querySelectorAll('.hero-credentials .credential-number'));
+      document.getElementById('chapterIndicator').classList.add('visible');
+    }, 400);
+  }
+
+  // Detect scroll during intro - skip to content
+  window.addEventListener('scroll', () => {
+    if (!introComplete && window.scrollY > 100) {
+      scrollTriggered = true;
+      completeIntro();
+    }
+  }, { once: true });
+
+  // Auto-complete intro after timeout
   window.addEventListener('load', () => {
     setTimeout(() => {
-      const intro = document.getElementById('introOverlay');
-      const main = document.getElementById('mainContent');
-      intro.classList.add('hidden');
-      main.classList.add('visible');
-      document.body.classList.remove('intro-active');
-
-      setTimeout(() => {
-        intro.style.display = 'none';
-        // Trigger split text animation
-        document.getElementById('splitLine1').classList.add('visible');
-        document.getElementById('splitLine2').classList.add('visible');
-        // Animate hero counters
-        animateCounters(document.querySelectorAll('.hero-credentials .credential-number'));
-        // Show chapter indicator
-        document.getElementById('chapterIndicator').classList.add('visible');
-      }, 1600);
-    }, 4200);
+      completeIntro();
+    }, 1900); // Reduced from 4200 to match new intro timing
   });
 
   // ===== ANIMATED COUNTERS with slot machine effect =====
