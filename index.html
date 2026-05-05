@@ -3309,14 +3309,12 @@
     aspect-ratio: 4/3;
   }
 
-  .case-video {
+  .case-preview {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
     background: var(--cream-light);
-    background-size: cover;
-    background-position: center;
   }
 
   .video-overlay {
@@ -3920,12 +3918,12 @@
 
     <div class="cases-grid">
       <!-- Case 1 -->
-      <div class="case-card video-card" data-case="1">
-        <video class="case-video"
-               poster="images/casos-exito/Caso 1/WhatsApp Image 2026-05-02 at 19.52.50 (1).jpeg"
-               preload="none">
-          <source src="images/casos-exito/Antes y después/WhatsApp Video 2026-05-02 at 19.49.29.mp4" type="video/mp4">
-        </video>
+      <div class="case-card video-card" data-case="1" data-video="images/casos-exito/Antes y después/WhatsApp Video 2026-05-02 at 19.49.29.mp4">
+        <img src="images/casos-exito/Caso 1/WhatsApp Image 2026-05-02 at 19.52.50 (1).jpeg"
+             alt="Caso de éxito 1"
+             class="case-preview"
+             loading="lazy"
+             width="400" height="300" />
         <div class="video-overlay">
           <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -3934,12 +3932,12 @@
       </div>
 
       <!-- Case 2 -->
-      <div class="case-card video-card" data-case="2">
-        <video class="case-video"
-               poster="images/casos-exito/Caso 2/WhatsApp Image 2026-05-02 at 19.53.17.jpeg"
-               loading="lazy">
-          <source src="images/casos-exito/Caso 2/WhatsApp Video 2026-05-02 at 19.53.21.mp4" type="video/mp4">
-        </video>
+      <div class="case-card video-card" data-case="2" data-video="images/casos-exito/Caso 2/WhatsApp Video 2026-05-02 at 19.53.21.mp4">
+        <img src="images/casos-exito/Caso 2/WhatsApp Image 2026-05-02 at 19.53.17.jpeg"
+             alt="Caso de éxito 2"
+             class="case-preview"
+             loading="lazy"
+             width="400" height="300" />
         <div class="video-overlay">
           <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -3948,12 +3946,12 @@
       </div>
 
       <!-- Case 3 -->
-      <div class="case-card video-card" data-case="3">
-        <video class="case-video"
-               poster="images/casos-exito/Caso 3/WhatsApp Image 2026-05-02 at 19.54.25.jpeg"
-               loading="lazy">
-          <source src="images/casos-exito/Caso 3/WhatsApp Video 2026-05-02 at 19.54.43.mp4" type="video/mp4">
-        </video>
+      <div class="case-card video-card" data-case="3" data-video="images/casos-exito/Caso 3/WhatsApp Video 2026-05-02 at 19.54.43.mp4">
+        <img src="images/casos-exito/Caso 3/WhatsApp Image 2026-05-02 at 19.54.25.jpeg"
+             alt="Caso de éxito 3"
+             class="case-preview"
+             loading="lazy"
+             width="400" height="300" />
         <div class="video-overlay">
           <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -3962,12 +3960,12 @@
       </div>
 
       <!-- Case 4 -->
-      <div class="case-card video-card" data-case="4">
-        <video class="case-video"
-               poster="images/casos-exito/Caso 4/WhatsApp Image 2026-05-02 at 19.56.14.jpeg"
-               loading="lazy">
-          <source src="images/casos-exito/Caso 4/WhatsApp Video 2026-05-02 at 19.55.43.mp4" type="video/mp4">
-        </video>
+      <div class="case-card video-card" data-case="4" data-video="images/casos-exito/Caso 4/WhatsApp Video 2026-05-02 at 19.55.43.mp4">
+        <img src="images/casos-exito/Caso 4/WhatsApp Image 2026-05-02 at 19.56.14.jpeg"
+             alt="Caso de éxito 4"
+             class="case-preview"
+             loading="lazy"
+             width="400" height="300" />
         <div class="video-overlay">
           <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -5154,36 +5152,17 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Video auto-play and modal functionality
+// Video modal functionality
 document.addEventListener('DOMContentLoaded', function() {
   const videoCards = document.querySelectorAll('.video-card');
-  const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
   videoCards.forEach(function(card) {
-    const video = card.querySelector('.case-video');
+    const videoSrc = card.getAttribute('data-video');
 
-    if (video) {
-      video.muted = true;
-      video.loop = true;
-      video.autoplay = false;
-
-      // Desktop: autoplay on hover
-      if (!isMobile) {
-        card.addEventListener('mouseenter', function() {
-          video.play().catch(function(err) {
-            console.log('Autoplay prevented:', err);
-          });
-        });
-
-        card.addEventListener('mouseleave', function() {
-          video.pause();
-          video.currentTime = 0;
-        });
-      }
-
-      // Mobile & Desktop: open modal on click
+    if (videoSrc) {
+      // Open modal on click
       card.addEventListener('click', function(e) {
-        openVideoModal(video.querySelector('source').src);
+        openVideoModal(videoSrc);
       });
     }
   });
