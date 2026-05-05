@@ -1055,6 +1055,41 @@
     font-weight: 600;
   }
 
+  /* Portrait label mobile adjustments */
+  @media (max-width: 768px) {
+    .portrait-label {
+      bottom: 20px;
+      left: 20px;
+      padding: 0.8rem 1.2rem;
+    }
+
+    .portrait-label-name {
+      font-size: 0.95rem;
+    }
+
+    .portrait-label-role {
+      font-size: 0.55rem;
+      margin-top: 0.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .portrait-label {
+      bottom: 15px;
+      left: 15px;
+      padding: 0.6rem 1rem;
+    }
+
+    .portrait-label-name {
+      font-size: 0.85rem;
+    }
+
+    .portrait-label-role {
+      font-size: 0.5rem;
+      margin-top: 0.2rem;
+    }
+  }
+
   .hero-logo-mark {
     position: absolute;
     top: 30%; left: -5%;
