@@ -3273,6 +3273,8 @@
     object-fit: cover;
     display: block;
     background: var(--cream-light);
+    background-size: cover;
+    background-position: center;
   }
 
   .video-overlay {
@@ -3865,7 +3867,7 @@
       <div class="case-card video-card" data-case="1">
         <video class="case-video"
                poster="images/casos-exito/Caso 1/WhatsApp Image 2026-05-02 at 19.52.50 (1).jpeg"
-               loading="lazy">
+               preload="none">
           <source src="images/casos-exito/Antes y después/WhatsApp Video 2026-05-02 at 19.49.29.mp4" type="video/mp4">
         </video>
         <div class="video-overlay">
@@ -5099,27 +5101,31 @@ document.addEventListener('DOMContentLoaded', function() {
 // Video auto-play and modal functionality
 document.addEventListener('DOMContentLoaded', function() {
   const videoCards = document.querySelectorAll('.video-card');
+  const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
   videoCards.forEach(function(card) {
     const video = card.querySelector('.case-video');
 
-    // Auto-play with muted attribute for browsers
     if (video) {
       video.muted = true;
       video.loop = true;
       video.autoplay = false;
 
-      // Start autoplay when card becomes visible
-      card.addEventListener('mouseenter', function() {
-        video.play();
-      });
+      // Desktop: autoplay on hover
+      if (!isMobile) {
+        card.addEventListener('mouseenter', function() {
+          video.play().catch(function(err) {
+            console.log('Autoplay prevented:', err);
+          });
+        });
 
-      card.addEventListener('mouseleave', function() {
-        video.pause();
-        video.currentTime = 0;
-      });
+        card.addEventListener('mouseleave', function() {
+          video.pause();
+          video.currentTime = 0;
+        });
+      }
 
-      // Open modal on click
+      // Mobile & Desktop: open modal on click
       card.addEventListener('click', function(e) {
         openVideoModal(video.querySelector('source').src);
       });
