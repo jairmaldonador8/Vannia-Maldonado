@@ -1823,6 +1823,29 @@
     }
   }
 
+  /* ===== COMPARISON IMAGE (Static) ===== */
+  .comparison-image-container {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem;
+  }
+
+  .comparison-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 12px 48px rgba(110, 93, 67, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    .comparison-image-container {
+      padding: 0 1rem;
+    }
+  }
+
   /* ===== HORIZONTAL SCROLL SERVICES ===== */
   /* ===== SERVICES GRID ===== */
   .services {
@@ -3651,35 +3674,15 @@
     <p class="section-intro" style="margin: 0 auto;">Desliza para ver la transformación. Resultados sutiles, naturales y armónicos con tu rostro.</p>
   </div>
 
-  <div class="before-after-container reveal-scale" id="baContainer">
-    <!-- Before image (top layer) -->
-    <div class="ba-image-wrapper ba-before-wrapper">
-      <img
-        src="images/casos-exito/Antes y después/slider-comparison.jpeg"
-        alt="Comparación antes y después de la cirugía"
-        class="ba-image ba-before"
-        loading="eager"
-        width="800"
-        height="500"
-      />
-      <div class="ba-label before-label">Antes</div>
-    </div>
-
-    <!-- After image (bottom layer) -->
-    <div class="ba-image-wrapper ba-after-wrapper">
-      <img
-        src="images/casos-exito/Antes y después/slider-comparison.jpeg"
-        alt="Comparación antes y después de la cirugía"
-        class="ba-image ba-after"
-        loading="eager"
-        width="800"
-        height="500"
-      />
-      <div class="ba-label after-label">Después</div>
-    </div>
-
-    <!-- Draggable divider -->
-    <div class="ba-divider" id="baDivider" style="left: 50%;"></div>
+  <div class="comparison-image-container reveal-scale">
+    <img
+      src="images/casos-exito/Antes y después/comparison.jpeg"
+      alt="Comparación antes y después de la cirugía"
+      class="comparison-image"
+      loading="eager"
+      width="1080"
+      height="1080"
+    />
   </div>
 
   <p class="ba-instruction reveal">↔ Mueve el cursor o desliza para revelar el resultado</p>
